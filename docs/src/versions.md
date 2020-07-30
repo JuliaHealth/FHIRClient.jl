@@ -4,7 +4,7 @@ CurrentModule = FHIRClients
 
 # Version number of FHIRClients.jl
 
-To get the version number of the currently running FHIRClients.jl, use the
+In order to see the current FHIRClients.jl version, use the
 `FHIRClients.version` function:
 
 ```jldoctest
