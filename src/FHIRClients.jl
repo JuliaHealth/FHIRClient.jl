@@ -1,4 +1,4 @@
-module FHIRClient
+module FHIRClients
 
 import HTTP
 import JSON3
@@ -11,4 +11,4 @@ A `FHIRType` is a Julia type representation of a FHIR object.
 """
 abstract type FHIRType end
 
-end # end module FHIRClient
+end # end module FHIRClients

@@ -1,6 +1,6 @@
-using FHIRClient
+using FHIRClients
 using Test
 
-@testset "FHIRClient.jl" begin
+@testset "FHIRClients.jl" begin
     # Write your tests here.
 end
