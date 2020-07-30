@@ -1,5 +1,5 @@
 module FHIRClient
 
-# Write your package code here.
+abstract type FHIRType end
 
 end
