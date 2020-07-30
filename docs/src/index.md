@@ -1,12 +1,12 @@
 ```@meta
-CurrentModule = FHIRClient
+CurrentModule = FHIRClients
 ```
 
-# FHIRClient
+# FHIRClients
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [FHIRClient]
+Modules = [FHIRClients]
 ```
