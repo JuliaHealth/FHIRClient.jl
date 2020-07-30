@@ -1,5 +1,7 @@
 module FHIRClient
 
-# Write your package code here.
+import HTTP
+import JSON3
+# import OMOPCommonDataModel
 
-end
+end # end module FHIRClient
