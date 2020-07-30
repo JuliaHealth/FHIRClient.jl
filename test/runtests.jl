@@ -8,6 +8,7 @@ FHIRCLIENTS_AUTHENTICATED_TESTS = get(ENV, "FHIRCLIENTS_AUTHENTICATED_TESTS", ""
 
 @testset "FHIRClient.jl" begin
     @testset "Unit tests" begin
+        include("unit-tests.jl")
     end
     @testset "Doctests" begin
         doctest(FHIRClients)
