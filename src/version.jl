@@ -1,5 +1,8 @@
 import Pkg
 
+"""
+The version of the FHIRClients.jl package.
+"""
 function version()::VersionNumber
     package_directory = dirname(dirname(@__FILE__))
     project_file = joinpath(package_directory, "Project.toml")
