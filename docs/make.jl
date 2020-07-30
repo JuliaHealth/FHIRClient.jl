@@ -13,7 +13,10 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Examples" => "examples.md",
+        "API" => "index.md",
     ],
+    strict = true,
 )
 
 deploydocs(;

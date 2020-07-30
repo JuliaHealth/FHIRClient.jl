@@ -1,14 +1,17 @@
 module FHIRClients
 
 import HTTP
+import HealthBase
 import JSON3
 # import OMOPCommonDataModel
 
+export FHIRBaseURL
+export FHIRClient
+export FHIREndpoint
 export FHIRType
 
-"""
-A `FHIRType` is a Julia type representation of a FHIR object.
-"""
-abstract type FHIRType end
+include("types.jl")
+
+include("requests.jl")
 
 end # end module FHIRClients

@@ -5,4 +5,8 @@
 [![Build Status](https://github.com/JuliaHealth/FHIRClients.jl/workflows/CI/badge.svg)](https://github.com/JuliaHealth/FHIRClient.jl/actions)
 [![Coverage](https://codecov.io/gh/JuliaHealth/FHIRClients.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JuliaHealth/FHIRClient.jl)
 
-Julia clients for connecting to [FHIR (Fast Healthcare Interoperability Resources)](https://hl7.org/fhir/) servers.
+FHIRClients.jl provides the `FHIRClient` type for connecting to servers that
+support the [FHIR (Fast Healthcare Interoperability Resources)](https://hl7.org/fhir/)
+standard for health care data exchange.
+
+Please see the [documentation](https://JuliaHealth.github.io/FHIRClients.jl/stable).
