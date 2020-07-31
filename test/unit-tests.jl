@@ -2,6 +2,10 @@ using FHIRClient
 
 using Test
 
+@testset "types" begin
+    Base.show(Base.devnull, FHIRClient.Credential("foobar"))
+end
+
 @testset "version" begin
     @test FHIRClient.version() isa VersionNumber
     @test FHIRClient.version() > v"0"
