@@ -21,7 +21,7 @@ v"4.0.1"
 ```
 
 In order to see the current `FHIRClient.jl` version, use the
-`FHIRClient.fhir_version` function:
+`FHIRClient.version` function:
 
 ```jldoctest
 julia> using FHIRClient
