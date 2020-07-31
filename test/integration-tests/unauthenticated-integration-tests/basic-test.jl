@@ -6,6 +6,8 @@ using Test
     endpoint = FHIRClient.Endpoint("https://hapi.fhir.org/baseR4")
     fhir_version = FHIRClient.R4()
     client = FHIRClient.Client(fhir_version, endpoint)
+    @test FHIRClient.get_fhir_version(client) == fhir_version
+    @test FHIRClient.get_endpoint(client) == endpoint
     query = "/Patient/22692"
     response = FHIRClient.fhir_get_json(client, query)
     @test response.resourceType == "Patient"
