@@ -1,4 +1,4 @@
-module FHIRClients
+module FHIRClient
 
 import DocStringExtensions
 import HTTP
@@ -9,10 +9,14 @@ import Pkg
 import StructTypes
 
 export FHIRType
+export FHIRVersion
 
 include("types.jl")
 
-include("requests.jl")
+struct R4 <: FHIRVersion end
+const FHIR_VERSION_R4 = v"4.0.1"
 include("version.jl")
 
-end # end module FHIRClients
+include("requests.jl")
+
+end # end module FHIRClient

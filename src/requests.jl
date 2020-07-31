@@ -2,7 +2,7 @@ import HTTP
 import JSON3
 
 function fhir_get_raw(client::Client,
-                           query_string::AbstractString)
+                      query_string::AbstractString)
     endpoint = get_endpoint(client)
     base_url = get_base_url(endpoint)
     full_url = string(base_url, query_string)
@@ -16,7 +16,7 @@ function fhir_get_raw(client::Client,
 end
 
 function fhir_get_json(client::Client,
-                  query_string::AbstractString)
+                       query_string::AbstractString)
     body = fhir_get_raw(client, query_string)
     json = JSON3.read(body)
     return json

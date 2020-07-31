@@ -1,14 +1,14 @@
-using FHIRClients
+using FHIRClient
 using Documenter
 
 makedocs(;
-    modules=[FHIRClients],
+    modules=[FHIRClient],
     authors="Dilum Aluthge, Brown Center for Biomedical Informatics, JuliaHealth, and contributors",
-    repo="https://github.com/JuliaHealth/FHIRClients.jl/blob/{commit}{path}#L{line}",
-    sitename="FHIRClients.jl",
+    repo="https://github.com/JuliaHealth/FHIRClient.jl/blob/{commit}{path}#L{line}",
+    sitename="FHIRClient.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://JuliaHealth.github.io/FHIRClients.jl",
+        canonical="https://JuliaHealth.github.io/FHIRClient.jl",
         assets=String[],
     ),
     pages=[
@@ -21,5 +21,5 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/JuliaHealth/FHIRClients.jl",
+    repo="github.com/JuliaHealth/FHIRClient.jl",
 )

@@ -1,4 +1,4 @@
-name = "FHIRClients"
+name = "FHIRClient"
 uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 authors = ["Dilum Aluthge", "Brown Center for Biomedical Informatics", "JuliaHealth", "contributors"]
 version = "0.1.0"
