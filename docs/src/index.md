@@ -1,10 +1,11 @@
 ```@meta
-CurrentModule = FHIRClients
+CurrentModule = FHIRClient
 ```
 
-# FHIRClients
+# FHIRClient
 
-[FHIRClients.jl](https://github.com/JuliaHealth/FHIRClients.jl) provides the
-`FHIRClient` type for connecting to
+[FHIRClient.jl](https://github.com/JuliaHealth/FHIRClient.jl)
+provides a Julia client for connecting to servers that support the
 [Fast Healthcare Interoperability Resources (FHIR)](https://hl7.org/fhir/)
-servers and building [SMART on FHIR](https://smarthealthit.org/) applications.
+specification and building [SMART on FHIR](https://smarthealthit.org/)
+applications.

@@ -1,13 +1,17 @@
-using FHIRClients
+using FHIRClient
 
 using Test
 
 @testset "Basic test" begin
-    endpoint = FHIRClients.Endpoint("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
-    client = FHIRClients.Client(endpoint)
-    patient_search_string = "/Patient?given=Jason&family=Argonaut"
-    response = FHIRClients.fhir_get_json(client, patient_search_string)
-    @test response.entry[1].resource.name[1].text == "Jason Argonaut"
-    @test response.entry[1].resource.name[1].family == ["Argonaut"]
-    @test response.entry[1].resource.name[1].given == ["Jason"]
+    endpoint = FHIRClient.Endpoint("https://hapi.fhir.org/baseR4")
+    fhir_version = FHIRClient.R4()
+    client = FHIRClient.Client(fhir_version, endpoint)
+    query = "/Patient/22692"
+    response = FHIRClient.fhir_get_json(client, query)
+    @test response.resourceType == "Patient"
+    @test response.id == "22692"
+    @test length(response.name) == 1
+    @test response.name[1].text == "Jason Argonaut"
+    @test response.name[1].family == "Argonaut"
+    @test response.name[1].given == String["Jason"]
 end
