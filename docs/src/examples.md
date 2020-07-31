@@ -4,7 +4,7 @@ CurrentModule = FHIRClient
 
 # Examples
 
-```jldoctest
+```julia
 julia> using FHIRClient
 
 julia> endpoint = FHIRClient.Endpoint("https://hapi.fhir.org/baseR4")
