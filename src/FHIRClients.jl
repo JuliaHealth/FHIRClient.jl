@@ -5,6 +5,7 @@ import HealthBase
 import JSON3
 # import OMOPCommonDataModel
 import Pkg
+import StructTypes
 
 export FHIRBaseURL
 export FHIRClient
