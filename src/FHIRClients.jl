@@ -8,9 +8,6 @@ import JSON3
 import Pkg
 import StructTypes
 
-export FHIRBaseURL
-export FHIRClient
-export FHIREndpoint
 export FHIRType
 
 include("types.jl")
