@@ -9,22 +9,22 @@ abstract type FHIRType end
 """
 A FHIR endpoint.
 """
-struct FHIREndpoint
+struct Endpoint
     base_url::HTTP.URI
 end
 
 """
 Construct a FHIR endpoint given the base URL.
 """
-@inline FHIREndpoint(base_url::AbstractString) = FHIREndpoint(HTTP.URI(base_url))
+@inline Endpoint(base_url::AbstractString) = Endpoint(HTTP.URI(base_url))
 
-@inline get_base_url(endpoint::FHIREndpoint) = endpoint.base_url
+@inline get_base_url(endpoint::Endpoint) = endpoint.base_url
 
 """
 A FHIR client.
 """
-struct FHIRClient <: HealthBase.AbstractFHIRClient
-    endpoint::FHIREndpoint
+struct Client <: HealthBase.AbstractFHIRClient
+    endpoint::Endpoint
 end
 
-@inline get_endpoint(client::FHIRClient) = client.endpoint
+@inline get_endpoint(client::Client) = client.endpoint
