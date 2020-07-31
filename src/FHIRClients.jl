@@ -1,5 +1,6 @@
 module FHIRClients
 
+import DocStringExtensions
 import HTTP
 import HealthBase
 import JSON3
