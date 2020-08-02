@@ -11,18 +11,20 @@ import StructTypes
 
 export FHIRType
 export FHIRVersion
+export fhir_get_struct
 
 include("types.jl")
-
-struct R4 <: FHIRVersion end
-const FHIR_VERSION_R4 = v"4.0.1"
 include("version.jl")
 
+include("Generate/Generate.jl")
 include("authentication.jl")
-include("authentication_headers.jl")
+include("authentication-headers.jl")
 include("client.jl")
 include("endpoint.jl")
 include("headers.jl")
+include("json-struct-mapping/json-struct-mapping.jl")
+include("omop-common-data-model/omop-common-data-model.jl")
 include("requests.jl")
+include("utils.jl")
 
 end # end module FHIRClient
