@@ -18,6 +18,10 @@ struct R4 <: FHIRVersion end
 const FHIR_VERSION_R4 = v"4.0.1"
 include("version.jl")
 
+include("authentication.jl")
+include("authentication_headers.jl")
+include("client.jl")
+include("endpoint.jl")
 include("headers.jl")
 include("requests.jl")
 

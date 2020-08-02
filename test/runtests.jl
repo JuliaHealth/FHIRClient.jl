@@ -19,6 +19,8 @@ FHIRCLIENT_AUTHENTICATED_TESTS = get(ENV, "FHIRCLIENT_AUTHENTICATED_TESTS", "") 
         end
         if FHIRCLIENT_AUTHENTICATED_TESTS
             @info("FHIRCLIENT_AUTHENTICATED_TESTS is true. Running the authenticated tests now...")
+            @testset "Integration tests: authenticated" begin
+            end
         else
             @info("FHIRCLIENT_AUTHENTICATED_TESTS is not true, so we will not run the authenticated tests.")
         end

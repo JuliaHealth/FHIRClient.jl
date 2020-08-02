@@ -13,8 +13,9 @@ FHIRClient.Endpoint(HTTP.URI("https://hapi.fhir.org/baseR4"))
 julia> fhir_version = FHIRClient.R4()
 FHIRClient.R4()
 
-julia> auth = FHIRClient.AnonymousAuth()
-FHIRClient.AnonymousAuth()
+julia> auth = FHIRClient.OAuth2()
+
+julia> FHIRClient.set_token!(auth, "token_value")
 
 julia> client = FHIRClient.Client(fhir_version, endpoint, auth)
 FHIRClient.Client{FHIRClient.R4,FHIRClient.AnonymousAuth}(FHIRClient.R4(), FHIRClient.Endpoint(HTTP.URI("https://hapi.fhir.org/baseR4")), FHIRClient.AnonymousAuth())
@@ -54,4 +55,31 @@ julia> response.name
 
 julia> response.birthDate
 "1985-08-01"
+
+julia> Base.shred!(auth)
+
+julia> Base.shred!(client)
+```
+
+```julia
+julia> using FHIRClient
+
+julia> auth = FHIRClient.AnonymousAuth()
+FHIRClient.AnonymousAuth()
+```
+
+```julia
+julia> using FHIRClient
+
+julia> auth = FHIRClient.OAuth2()
+
+julia> FHIRClient.set_token!(auth, "token_value")
+```
+
+```julia
+julia> using FHIRClient
+
+julia> auth = FHIRClient.UsernamePassAuth(; username = "my_username")
+
+julia> FHIRClient.set_password!(auth, "my_password")
 ```
