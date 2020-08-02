@@ -32,9 +32,12 @@ using Test
         patient = fhir_get_struct(client, query_string, FHIRClient.FHIRPatient)
         @test patient isa FHIRClient.FHIRPatient
         @test length(patient.name) == 1
-        for equality_function in [_isequal_recursive, _isequal_under_serialization]
-            @test equality_function(patient.name, FHIRClient.FHIRName[FHIRClient.FHIRName("usual", "Jason Argonaut", "Argonaut", ["Jason"])])
-        end
+        @test patient.name[1].use == "usual"
+        @test patient.name[1].text == "Jason Argonaut"
+        @test patient.name[1].family == "Argonaut"
+        @test length(patient.name[1].given) == 1
+        @test patient.name[1].given == String["Jason"]
+        @test _mutable_struct_equality(patient.name, FHIRClient.FHIRName[FHIRClient.FHIRName("usual", "Jason Argonaut", "Argonaut", ["Jason"])])
         @test patient.birthDate == "1985-08-01"
         Base.shred!(auth)
         Base.shred!(client)
