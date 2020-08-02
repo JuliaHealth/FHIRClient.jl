@@ -7,12 +7,16 @@ function fhir_get_raw(client::Client,
     endpoint = get_endpoint(client)
     base_url = get_base_url(endpoint)
     full_url = string(base_url, query_string)
+
     new_headers = Dict{String, String}()
+
     json_headers!(new_headers)
     authentication_headers!(new_headers, client)
-    _headers = deepcopy(headers)
-    merge!(new_headers, _headers)
+    merge!(new_headers, headers)
+
     r = HTTP.request("GET", full_url, new_headers)
+    empty!(new_headers)
+
     body = String(r.body)
     return body
 end
