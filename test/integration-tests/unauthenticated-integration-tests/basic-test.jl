@@ -2,6 +2,8 @@ using FHIRClient
 
 using Test
 
+# query_string = "/Patient?given=Jason&family=Argonaut"
+
 @testset "Basic test" begin
     anonymous_auth = FHIRClient.AnonymousAuth()
     oauth2_auth = FHIRClient.OAuth2()
@@ -25,15 +27,17 @@ using Test
         client = FHIRClient.Client(fhir_version, endpoint, auth)
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_endpoint(client) == endpoint
-        query = "/Patient/22692"
-        response = FHIRClient.fhir_get_json(client, query)
-        @test response.resourceType == "Patient"
-        @test response.id == "22692"
-        @test length(response.name) == 1
-        @test response.name[1].text == "Jason Argonaut"
-        @test response.name[1].family == "Argonaut"
-        @test length(response.name[1].given) == 1
-        @test response.name[1].given == String["Jason"]
+        query_string = "/Patient/22692"
+        json_response = FHIRClient._fhir_get_json(client, query_string)
+        patient = fhir_get_struct(client, query_string, FHIRClient.FHIRPatient)
+        @test patient isa FHIRClient.FHIRPatient
+        @test length(patient.name) == 1
+        for equality_function in [_isequal_recursive, _isequal_under_serialization]
+            @test equality_function(patient.name, FHIRClient.FHIRName[FHIRClient.FHIRName("usual", "Jason Argonaut", "Argonaut", ["Jason"])])
+        end
+        @test patient.birthDate == "1985-08-01"
+        Base.shred!(auth)
+        Base.shred!(client)
     end
     for i in 1:length(all_auths)
         Base.shred!(all_auths[i])

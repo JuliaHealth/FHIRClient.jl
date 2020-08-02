@@ -82,3 +82,8 @@ function Base.shred!(password_auth::UsernamePassAuth)::Nothing
     Base.shred!(password_auth.password_cred)
     return nothing
 end
+
+function Base.shred!(client::Client)::Nothing
+    Base.shred!(client.auth)
+    return nothing
+end

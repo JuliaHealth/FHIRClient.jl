@@ -1,10 +1,16 @@
 using FHIRClient
 
+using DataFrames
 using Documenter
+using PrettyPrint
+using Serialization
+using StructArrays
 using Test
 
 FHIRCLIENT_AUTHENTICATED_TESTS = get(ENV, "FHIRCLIENT_AUTHENTICATED_TESTS", "") == "true"
 @info("FHIRCLIENT_AUTHENTICATED_TESTS: $(FHIRCLIENT_AUTHENTICATED_TESTS)")
+
+include("test-utilities.jl")
 
 @testset "FHIRClient.jl" begin
     @testset "Unit tests" begin
