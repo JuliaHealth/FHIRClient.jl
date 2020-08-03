@@ -2,7 +2,7 @@
 CurrentModule = FHIRClient
 ```
 
-# CDM Version
+# FHIR Versions
 
 The following table shows which versions of the FHIR specifications are
 implemented in each version of the `FHIRClient.jl` Julia package.
