@@ -7,7 +7,7 @@ CurrentModule = FHIRClient
 ```julia
 julia> using FHIRClient
 
-julia> using DataFrames, StructArrays
+julia> using DataFrames, StructArrays, Tables
 
 julia> endpoint = FHIRClient.Endpoint("https://hapi.fhir.org/baseR4")
 FHIRClient.Endpoint(HTTP.URI("https://hapi.fhir.org/baseR4"))
