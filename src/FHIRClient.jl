@@ -5,7 +5,7 @@ import DocStringExtensions
 import HTTP
 import HealthBase
 import JSON3
-# import OMOPCommonDataModel
+import OMOPCommonDataModel
 import Pkg
 import StructTypes
 
