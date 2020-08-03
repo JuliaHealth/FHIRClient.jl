@@ -14,10 +14,12 @@ A struct corresponding to a version of the FHIR specification.
 abstract type FHIRVersion end
 
 """
-A FHIR endpoint.
+The base URL for a FHIR server.
+
+The base URL is also called the "Service Root URL"
 """
-struct Endpoint
-    base_url::HTTP.URI
+struct BaseURL
+    uri::HTTP.URI
 end
 
 """
@@ -25,7 +27,7 @@ A FHIR client.
 """
 struct Client{V <: FHIRVersion, A <: Authentication} <: HealthBase.AbstractFHIRClient
     fhir_version::V
-    endpoint::Endpoint
+    base_url::BaseURL
     auth::A
 end
 

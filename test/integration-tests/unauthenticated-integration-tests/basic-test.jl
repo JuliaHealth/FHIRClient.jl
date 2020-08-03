@@ -1,5 +1,6 @@
 using FHIRClient
 
+using JSON3
 using Test
 
 # query_string = "/Patient?given=Jason&family=Argonaut"
@@ -22,14 +23,20 @@ using Test
         username_password_auth_2,
     ]
     for auth in all_auths
-        endpoint = FHIRClient.Endpoint("https://hapi.fhir.org/baseR4")
+        base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
         fhir_version = FHIRClient.R4()
-        client = FHIRClient.Client(fhir_version, endpoint, auth)
+        client = FHIRClient.Client(fhir_version, base_url, auth)
         @test FHIRClient.get_fhir_version(client) == fhir_version
-        @test FHIRClient.get_endpoint(client) == endpoint
-        query_string = "/Patient/22692"
-        json_response = FHIRClient._fhir_get_json(client, query_string)
-        patient = fhir_get_struct(client, query_string, FHIRClient.FHIRPatient)
+        @test FHIRClient.get_base_url(client) == base_url
+        request_path = "/Patient/22692"
+        json_response = FHIRClient.request_json(client, "GET", request_path)
+        json_response = FHIRClient.request_json(client, "GET", request_path; body = JSON3.read("{}"))
+        json_response = FHIRClient.request_json(client, "GET", request_path; query = Dict{String, String}())
+        json_response = FHIRClient.request_json(client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}())
+        patient = FHIRClient.request(FHIRClient.FHIRPatient, client, "GET", request_path)
+        patient = FHIRClient.request(FHIRClient.FHIRPatient, client, "GET", request_path; body = JSON3.read("{}"))
+        patient = FHIRClient.request(FHIRClient.FHIRPatient, client, "GET", request_path; query = Dict{String, String}())
+        patient = FHIRClient.request(FHIRClient.FHIRPatient, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}())
         @test patient isa FHIRClient.FHIRPatient
         @test length(patient.name) == 1
         @test patient.name[1].use == "usual"
