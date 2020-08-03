@@ -12,13 +12,13 @@ julia> using DataFrames, PrettyPrint, StructArrays, Tables
 julia> base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
 FHIRClient.BaseURL(HTTP.URI("https://hapi.fhir.org/baseR4"))
 
-julia> fhir_version = FHIRClient.R4()
+julia> fhir_release = FHIRClient.R4()
 FHIRClient.R4()
 
 julia> auth = FHIRClient.AnonymousAuth()
 FHIRClient.AnonymousAuth()
 
-julia> client = FHIRClient.Client(fhir_version, base_url, auth)
+julia> client = FHIRClient.Client(fhir_release, base_url, auth)
 FHIRClient.Client{FHIRClient.R4,FHIRClient.AnonymousAuth}(FHIRClient.R4(), FHIRClient.BaseURL(HTTP.URI("https://hapi.fhir.org/baseR4")), FHIRClient.AnonymousAuth())
 
 julia> patient1 = FHIRClient.request(FHIRClient.FHIRPatient, client, "GET", "/Patient/22692")
