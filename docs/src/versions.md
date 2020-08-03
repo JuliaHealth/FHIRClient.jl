@@ -7,21 +7,21 @@ CurrentModule = FHIRClient
 The following table shows which versions of the FHIR specification are
 implemented in each version of the `FHIRClient.jl` Julia package.
 
-| `FHIRClient.jl` | FHIR specification |
-| --------------- | ------------------ |
-| 0.1.0           |  R4 (4.0.1)        |
+| `FHIRClient.jl` | FHIR releases | FHIR versions |
+| --------------- | ------------- | ------------- |
+| 0.1.0           |  R4           | R4 (4.0.1)    |
 
-In order to see the current FHIR version for a specific
-milestone release, use the
+In order to see the full FHIR version number
+for a specific FHIR release, use the
 `FHIRClient.fhir_version` function:
 ```julia
-julia> FHIRClient.fhir_version(FHIRClient.R4()) # prints the current FHIR version for the R4 milestone release
+julia> FHIRClient.fhir_version(FHIRClient.R4()) # prints the full FHIR version number for the R4 release
 ```
 
 In order to see the current `FHIRClient.jl` version, use the
 `FHIRClient.version` function:
 ```julia
-julia> FHIRClient.version() # prints the current `FHIRClient.jl` version
+julia> FHIRClient.version() # prints the current `FHIRClient.jl` version number
 ```
 
 To see all versions of the FHIR specification, go to the
