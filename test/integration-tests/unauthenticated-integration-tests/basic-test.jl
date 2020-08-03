@@ -24,9 +24,9 @@ using Test
     ]
     for auth in all_auths
         base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
-        fhir_version = FHIRClient.R4()
-        client = FHIRClient.Client(fhir_version, base_url, auth)
-        @test FHIRClient.get_fhir_version(client) == fhir_version
+        fhir_release = FHIRClient.R4()
+        client = FHIRClient.Client(fhir_release, base_url, auth)
+        @test FHIRClient.get_fhir_release(client) == fhir_release
         @test FHIRClient.get_base_url(client) == base_url
         request_path = "/Patient/22692"
         json_response = FHIRClient.request_json(client, "GET", request_path)

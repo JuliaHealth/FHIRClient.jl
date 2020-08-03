@@ -9,9 +9,9 @@ A `FHIRType` is a Julia type representation of a FHIR object.
 abstract type FHIRType end
 
 """
-A struct corresponding to a version of the FHIR specification.
+A struct corresponding to a release of the FHIR specification.
 """
-abstract type FHIRVersion end
+abstract type FHIRRelease end
 
 """
 The base URL for a FHIR server.
@@ -25,8 +25,8 @@ end
 """
 A FHIR client.
 """
-struct Client{V <: FHIRVersion, A <: Authentication} <: HealthBase.AbstractFHIRClient
-    fhir_version::V
+struct Client{R <: FHIRRelease, A <: Authentication} <: HealthBase.AbstractFHIRClient
+    fhir_release::R
     base_url::BaseURL
     auth::A
 end
