@@ -1,3 +1,3 @@
-# import OMOPCommonDataModel
+import OMOPCommonDataModel
 
 include("patient.jl")
