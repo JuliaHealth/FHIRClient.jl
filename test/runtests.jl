@@ -4,6 +4,7 @@ using DataFrames
 using Documenter
 using PrettyPrint
 using StructArrays
+using Tables
 using Test
 
 FHIRCLIENT_AUTHENTICATED_TESTS = get(ENV, "FHIRCLIENT_AUTHENTICATED_TESTS", "") == "true"
