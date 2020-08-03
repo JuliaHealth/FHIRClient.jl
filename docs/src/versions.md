@@ -16,12 +16,10 @@ milestone release, use the
 `FHIRClient.fhir_version` function:
 ```julia
 julia> FHIRClient.fhir_version(FHIRClient.R4()) # prints the current FHIR version for the R4 milestone release
-v"4.0.1"
 ```
 
 In order to see the current `FHIRClient.jl` version, use the
 `FHIRClient.version` function:
-
 ```julia
 julia> FHIRClient.version() # prints the current `FHIRClient.jl` version
 ```
