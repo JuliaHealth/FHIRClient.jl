@@ -27,7 +27,7 @@ In order to see the current `FHIRClient.jl` version, use the
 julia> using FHIRClient
 
 julia> FHIRClient.version()
-v"0.1.0"
+v"0.1.1"
 ```
 
 To see all versions of the FHIR specification, go to the
