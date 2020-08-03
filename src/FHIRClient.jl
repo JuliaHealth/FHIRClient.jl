@@ -16,7 +16,6 @@ export fhir_get_struct
 include("types.jl")
 include("version.jl")
 
-include("Generate/Generate.jl")
 include("authentication.jl")
 include("authentication-headers.jl")
 include("client.jl")

@@ -1,0 +1,5 @@
+[deps]
+SimplePosets = "b2aef97b-4721-5af9-b440-0bad754dc5ba"
+
+[compat]
+SimplePosets = "0.1"
