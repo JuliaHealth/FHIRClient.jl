@@ -9,7 +9,7 @@ implemented in each version of the `FHIRClient.jl` Julia package.
 
 | `FHIRClient.jl` | FHIR releases | FHIR versions |
 | --------------- | ------------- | ------------- |
-| 0.1.0           |  R4           | R4 (4.0.1)    |
+| 0.1.0           |  R4           | 4.0.1 (R4)    |
 
 In order to see the full FHIR version number
 for a specific FHIR release, use the
