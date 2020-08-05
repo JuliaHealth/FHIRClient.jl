@@ -43,7 +43,7 @@ jobs:
 #         env:
 #           FHIRCLIENT_AUTHENTICATED_TESTS: "true"
 #         with:
-#           inline: 'no'
+#           inline: 'yes'
       - run: julia --color=yes --check-bounds=yes --inline=yes --project -e 'using Pkg; Pkg.test(coverage=true)'
         env:
           FHIRCLIENT_AUTHENTICATED_TESTS: "true"
