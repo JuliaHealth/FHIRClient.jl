@@ -3,7 +3,7 @@ using Documenter
 
 makedocs(;
     modules=[FHIRClient],
-    authors="Dilum Aluthge, Brown Center for Biomedical Informatics, JuliaHealth, and contributors",
+    authors="Dilum Aluthge, Rhode Island Quality Institute, and contributors",
     repo="https://github.com/JuliaHealth/FHIRClient.jl/blob/{commit}{path}#L{line}",
     sitename="FHIRClient.jl",
     format=Documenter.HTML(;
@@ -13,12 +13,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        "Examples" => "examples.md",
-        "Authentication" => "authentication.md",
-        "Version" => "versions.md",
-        "API" => "api.md",
     ],
-    strict = true,
+    strict=true,
 )
 
 deploydocs(;
