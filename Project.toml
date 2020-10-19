@@ -1,40 +1,13 @@
 name = "FHIRClient"
-uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
-authors = ["Dilum Aluthge", "Brown Center for Biomedical Informatics", "JuliaHealth", "contributors"]
-version = "0.3.0-DEV"
-
-[deps]
-Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
-DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-HealthBase = "94e1309d-ccf4-42de-905f-515f1d7b1cae"
-JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
-OMOPCommonDataModel = "ba65db9e-6590-4054-ab8a-101ed9124986"
-Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
+uuid = "36ce4777-55b4-4f29-9913-0d7de30fc7f6"
+authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
+version = "0.1.0"
 
 [compat]
-DataFrames = "0.21"
-DocStringExtensions = "0.8"
-HTTP = "0.8"
-HealthBase = "0.1.2"
-JSON3 = "1"
-OMOPCommonDataModel = "0.1"
-PrettyPrint = "0.2"
-StructArrays = "0.4"
-StructTypes = "1"
-Tables = "1"
 julia = "1.3"
 
 [extras]
-DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
-PrettyPrint = "8162dcfd-2161-5ef2-ae6c-7681170c5f98"
-StructArrays = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
-Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["DataFrames", "Documenter", "HTTP", "JSON3", "PrettyPrint", "StructArrays", "Tables", "Test"]
+test = ["Test"]
