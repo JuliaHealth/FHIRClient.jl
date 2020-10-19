@@ -28,7 +28,7 @@ using Test
         client = FHIRClient.Client(fhir_release, base_url, auth)
         @test FHIRClient.get_fhir_release(client) == fhir_release
         @test FHIRClient.get_base_url(client) == base_url
-        request_path = "/Patient/22692"
+        request_path = "/Patient/1476056"
         json_response = FHIRClient.request_json(client, "GET", request_path)
         json_response = FHIRClient.request_json(client, "GET", request_path; body = JSON3.read("{}"))
         json_response = FHIRClient.request_json(client, "GET", request_path; query = Dict{String, String}())
