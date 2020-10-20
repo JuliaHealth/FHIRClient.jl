@@ -8,7 +8,8 @@ Download and unzip the file at `url`.
 
 ## Example
 ```julia
-julia> Generate.download_fhir_json_schema("https://www.hl7.org/fhir/R4/definitions.json.zip")
+julia> url = "https://www.hl7.org/fhir/R4/definitions.json.zip"
+julia> Generate.download_fhir_json_schema(url)
 ```
 """
 @inline function download_fhir_json_schema(url::AbstractString)
