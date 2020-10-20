@@ -6,7 +6,7 @@ CurrentModule = Generate
 
 ## Example usage
 
-```@repl
+```@example
 using Generate
 url = "https://www.hl7.org/fhir/R4/definitions.json.zip"
 definitions = Generate.download_fhir_json_schema(url)
