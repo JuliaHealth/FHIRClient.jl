@@ -1,8 +1,9 @@
 using FHIRClient
+using Generate
 using Documenter
 
 makedocs(;
-    modules=[FHIRClient],
+    modules=[FHIRClient, Generate],
     authors="Dilum Aluthge, Rhode Island Quality Institute, and contributors",
     repo="https://github.com/JuliaHealth/FHIRClient.jl/blob/{commit}{path}#L{line}",
     sitename="FHIRClient.jl",
@@ -13,6 +14,9 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Examples" => "examples.md",
+        "API" => "api.md",
+        "Auto-generating the type definitions" => "generate.md",
     ],
     strict=true,
 )

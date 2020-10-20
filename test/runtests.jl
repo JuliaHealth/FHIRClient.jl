@@ -1,6 +1,14 @@
 using FHIRClient
 using Test
 
+import Documenter
+import Pkg
+
+Pkg.develop(Pkg.PackageSpec(path = joinpath(dirname(@__DIR__), "Generate")))
+import Generate
+
 @testset "FHIRClient.jl" begin
-    @test FHIRClient._foo(1) == 2
+    include("unit-tests.jl")
+    include("integration-tests.jl")
+    include("run-doctests.jl")
 end
