@@ -18,7 +18,7 @@ makedocs(;
         "API" => "api.md",
         "Auto-generating the type definitions" => "generate.md",
     ],
-    strict=false,
+    strict=true,
 )
 
 deploydocs(;
