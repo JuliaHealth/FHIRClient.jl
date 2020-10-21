@@ -11,4 +11,5 @@ import Generate
     include("unit-tests.jl")
     include("integration-tests.jl")
     include("run-doctests.jl")
+    include("test-generate.jl")
 end
