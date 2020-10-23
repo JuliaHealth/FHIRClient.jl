@@ -26,7 +26,7 @@ import SimplePosets
             x = structname_to_structinfo[dependency]
             y = struct_info
             # @info("$(x.typename_symbol)<$(y.typename_symbol)")
-            SimplePosets.add!(poset, x, y) || @error("Could not add: $(x.typename_symbol)<$(y.typename_symbol)")
+            SimplePosets.add!(poset, x, y) # || @error("Could not add: $(x.typename_symbol)<$(y.typename_symbol)")
         end
     end
 
