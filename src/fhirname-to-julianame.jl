@@ -12,11 +12,13 @@ const string_fhir = String
 
 const FHIR_TO_JULIA_BIJECTIVE = Bijections.Bijection(
     Dict{String, String}(
-        "string"       => "string_fhir",
+        "string"          => "string_fhir",
     )
 )
 
 const FHIR_TO_JULIA_NONBIJECTIVE = Dict{String, String}(
+    "BigFloat"     => "FHIRNumber",
+    "Narrative"    => "String",
     "ResourceList" => "ResourceList",
     "base64Binary" => "String",
     "boolean"      => "Bool",

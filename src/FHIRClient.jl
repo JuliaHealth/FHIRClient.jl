@@ -14,4 +14,4 @@ include("fhir-releases.jl")
 
 include("fhirname-to-julianame.jl")
 
-end
+end # end module FHIRClient
