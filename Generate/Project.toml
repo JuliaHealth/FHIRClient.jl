@@ -2,12 +2,10 @@ name = "Generate"
 uuid = "ff303c0d-e9c7-476c-bf3b-b5f85c44159a"
 
 [deps]
-Bijections = "e2ed5e7c-b2de-5872-ae92-c73ca462fb04"
-Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
-SaferIntegers = "88634af6-177f-5301-88b8-7819386cfa38"
-SimplePosets = "b2aef97b-4721-5af9-b440-0bad754dc5ba"
-StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
-TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
+
+[compat]
+JSON3 = "1.4"
+ZipFile = "0.9.3"

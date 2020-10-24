@@ -1,11 +1,10 @@
 name = "FHIRClient"
 uuid = "36ce4777-55b4-4f29-9913-0d7de30fc7f6"
 authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
-version = "0.1.0"
+version = "0.3.0-DEV"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
-Bijections = "e2ed5e7c-b2de-5872-ae92-c73ca462fb04"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
@@ -14,7 +13,6 @@ StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
-Bijections = "0.1.2"
 HTTP = "0.8.19"
 JSON3 = "1.4"
 SaferIntegers = "2.5.1"
@@ -23,9 +21,16 @@ TimeZones = "1.4"
 julia = "1.4"
 
 [extras]
+Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+SaferIntegers = "88634af6-177f-5301-88b8-7819386cfa38"
+StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [targets]
-test = ["Documenter", "Pkg", "Test"]
+test = ["Base64", "Dates", "Documenter", "HTTP", "JSON3", "Pkg", "SaferIntegers", "StructTypes", "Test", "TimeZones"]
