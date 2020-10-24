@@ -2,4 +2,3 @@
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 FHIRClient = "36ce4777-55b4-4f29-9913-0d7de30fc7f6"
 Generate = "ff303c0d-e9c7-476c-bf3b-b5f85c44159a"
-LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
