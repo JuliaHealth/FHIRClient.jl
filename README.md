@@ -1,9 +1,18 @@
 # FHIRClient
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaHealth.github.io/FHIRClient.jl/stable)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://JuliaHealth.github.io/FHIRClient.jl/dev)
-[![Build Status](https://github.com/JuliaHealth/FHIRClient.jl/workflows/CI/badge.svg)](https://github.com/JuliaHealth/FHIRClient.jl/actions)
-[![Coverage](https://codecov.io/gh/JuliaHealth/FHIRClient.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JuliaHealth/FHIRClient.jl)
+[![Stable][docs-stable-img]][docs-stable-url]
+[![Dev][docs-dev-img]][docs-dev-url]
+[![Build Status][ci-img]][ci-url]
+[![Coverage][codecov-img]][codecov-url]
+
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://JuliaHealth.github.io/FHIRClient.jl/stable
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://JuliaHealth.github.io/FHIRClient.jl/dev
+[ci-img]: https://github.com/JuliaHealth/FHIRClient.jl/workflows/CI/badge.svg
+[ci-url]: https://github.com/JuliaHealth/FHIRClient.jl/actions
+[codecov-img]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl
 
 FHIRClient
 provides a Julia client for connecting to servers that support the
