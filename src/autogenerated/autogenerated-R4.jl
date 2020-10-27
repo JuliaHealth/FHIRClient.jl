@@ -1,5 +1,5 @@
 import Dates
-import JSON3
+import .JSON3
 import SaferIntegers
 import StructTypes
 import TimeZones

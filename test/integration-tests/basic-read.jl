@@ -3,7 +3,7 @@ using Test
 
 import Dates
 import HTTP
-import JSON3
+import .JSON3
 import StructTypes
 
 # query_string = "/Patient?given=Jason&family=Argonaut"

@@ -1,18 +1,22 @@
-name = "Generate"
-uuid = "ff303c0d-e9c7-476c-bf3b-b5f85c44159a"
+name = "JSON3"
+uuid = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+authors = ["Jacob Quinn <quinn.jacobd@gmail.com>"]
+version = "1.5.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
-Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
-# JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
 Mmap = "a63ad114-7e13-5084-954f-fe012c677804"
 Parsers = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
 StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
-ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
-# JSON3 = "1.4"
-Parsers = "1"
+Parsers = "0.3, 1"
 StructTypes = "1"
-ZipFile = "0.9.3"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

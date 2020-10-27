@@ -9,6 +9,4 @@ devpkgs = [
 
 Pkg.develop(devpkgs)
 
-Pkg.add(PackageSpec(url = "https://github.com/DilumAluthge/JSON3.jl", rev = "dpa/abstracttype-with-single-subtype"))
-
 Pkg.instantiate()
