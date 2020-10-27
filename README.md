@@ -3,6 +3,7 @@
 [![Stable][docs-stable-img]][docs-stable-url]
 [![Dev][docs-dev-img]][docs-dev-url]
 [![Build Status][ci-img]][ci-url]
+[![PkgEval][pkgeval-img]][pkgeval-url]
 [![Coverage][codecov-img]][codecov-url]
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
@@ -13,6 +14,8 @@
 [ci-url]: https://github.com/JuliaHealth/FHIRClient.jl/actions
 [codecov-img]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl
+[pkgeval-img]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/F/FHIRClient.named.svg
+[pkgeval-url]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/F/FHIRClient.html
 
 FHIRClient
 provides a Julia client for connecting to servers that support the
