@@ -8,7 +8,7 @@ import StructTypes
 
 # query_string = "/Patient?given=Jason&family=Argonaut"
 
-@testset "Basic read-only test" begin
+@testset "Basic reading" begin
     anonymous_auth = FHIRClient.AnonymousAuth()
     oauth2_auth = FHIRClient.OAuth2()
     FHIRClient.set_token!(oauth2_auth, "helloworld")
@@ -32,31 +32,35 @@ import StructTypes
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_base_url(client) == base_url
         request_path = "/Patient/1476056"
-        json_response = FHIRClient._request_json(client, "GET", request_path)
-        json_response = FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}"))
-        json_response = FHIRClient._request_json(client, "GET", request_path; query = Dict{String, String}())
-        json_response = FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}())
-        # patient = FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path)
-        # @test patient isa FHIRClient.R4Types.Patient
-        # patient = FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; body = JSON3.read("{}"))
-        # @test patient isa FHIRClient.R4Types.Patient
-        # patient = FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; query = Dict{String, String}())
-        # @test patient isa FHIRClient.R4Types.Patient
-        # patient = FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}())
-        # @test patient isa FHIRClient.R4Types.Patient
-        patient = FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path)
-        @test patient isa FHIRClient.R4Types.Patient
-        patient = FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; body = JSON3.read("{}"))
-        @test patient isa FHIRClient.R4Types.Patient
-        patient = FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; query = Dict{String, String}())
-        @test patient isa FHIRClient.R4Types.Patient
-        patient = FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}())
-        @test patient isa FHIRClient.R4Types.Patient
-        @test only(patient.name).use == "usual"
-        @test only(patient.name).text == "Jason Argonaut"
-        @test only(patient.name).family == "Argonaut"
-        @test only(only(patient.name).given) == "Jason"
-        @test patient.birthDate == Dates.Date("1985-08-01")
+        fs = [
+            () -> FHIRClient._request_json(client, "GET", request_path),
+            () -> FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}")),
+            () -> FHIRClient._request_json(client, "GET", request_path; query = Dict{String, String}()),
+            () -> FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}()),
+        ]
+        for f in fs
+            json_response = f()
+        end 
+        gs = [
+            () -> FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path),
+            () -> FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; body = JSON3.read("{}")),
+            () -> FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; query = Dict{String, String}()),
+            () -> FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}()),
+            # () -> FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path),
+            # () -> FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; body = JSON3.read("{}")),
+            # () -> FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; query = Dict{String, String}()),
+            # () -> FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}()),
+        ]
+        for g in gs
+            patient = g()
+            @test patient isa FHIRClient.R4Types.AbstractResource
+            @test patient isa FHIRClient.R4Types.Patient
+            @test only(patient.name).use == "usual"
+            @test only(patient.name).text == "Jason Argonaut"
+            @test only(patient.name).family == "Argonaut"
+            @test only(only(patient.name).given) == "Jason"
+            @test patient.birthDate == Dates.Date("1985-08-01")
+        end
         Base.shred!(auth)
         Base.shred!(client)
     end
