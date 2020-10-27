@@ -9,6 +9,8 @@ on:
       - staging
       - trying
     tags: '*'
+  schedule:
+    - cron: 0 0 * * *
 jobs:
   test:
     name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
