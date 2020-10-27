@@ -4,6 +4,8 @@ using Test
 import Documenter
 import Pkg
 
+const JSON3 = FHIRClient.JSON3
+
 Pkg.develop(Pkg.PackageSpec(path = joinpath(dirname(@__DIR__), "Generate")))
 import Generate
 

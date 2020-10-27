@@ -1,7 +1,9 @@
 module Generate
 
+include(joinpath(dirname(dirname(@__DIR__)), "vendored", "JSON3", "src", "JSON3.jl"))
+
 import Downloads
-import JSON3
+import .JSON3
 import ZipFile
 
 export download_fhir_json_schema

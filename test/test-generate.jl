@@ -4,6 +4,7 @@ import Generate
 module TestGenerate
     using Test
     import ..Generate
+    const JSON3 = Generate.JSON3
 
     function test_generate(fhir_version::AbstractString)
         url = "https://www.hl7.org/fhir/$(fhir_version)/definitions.json.zip"
@@ -23,6 +24,8 @@ module TestGenerate
 
     module TestGenerate_R4
         using Test
+        import ..Generate
+        const JSON3 = Generate.JSON3
         import ..test_generate
         output_file = test_generate("R4")
         @test !(@isdefined Patient)
