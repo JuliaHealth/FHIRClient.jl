@@ -6,7 +6,7 @@ import HTTP
 import .JSON3
 import StructTypes
 
-# query_string = "/Patient?given=Jason&family=Argonaut"
+# query_string = "/Patient?given=Jason&family=Argonaut" # TODO: add a test for searching
 
 @testset "Basic read-only test" begin
     anonymous_auth = FHIRClient.AnonymousAuth()
