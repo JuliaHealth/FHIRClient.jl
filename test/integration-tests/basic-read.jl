@@ -52,7 +52,7 @@ import StructTypes
             # () -> FHIRClient.request(FHIRClient.R4Types.AbstractResource, client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}()),
         ]
         for g in gs
-            # patient = g()
+            patient = g()
             # @test patient isa FHIRClient.R4Types.AbstractResource
             # @test patient isa FHIRClient.R4Types.Patient
             # @test only(patient.name).use == "usual"
