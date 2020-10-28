@@ -39,7 +39,7 @@ import StructTypes
             () -> FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}"), query = Dict{String, String}()),
         ]
         for f in fs
-            # json_response = f()
+            json_response = f()
         end 
         gs = [
             () -> FHIRClient.request(FHIRClient.R4Types.Patient, client, "GET", request_path),
