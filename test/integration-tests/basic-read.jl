@@ -25,13 +25,13 @@ import StructTypes
         username_password_auth_1,
         username_password_auth_2,
     ]
+    request_path = "/Patient/1476056"
     for auth in all_auths
-        base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
         fhir_version = FHIRClient.R4()
+        base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
         client = FHIRClient.Client(fhir_version, base_url, auth)
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_base_url(client) == base_url
-        request_path = "/Patient/1476056"
         json_responses = [
             FHIRClient._request_json(client, "GET", request_path),
             FHIRClient._request_json(client, "GET", request_path; body = JSON3.read("{}")),
