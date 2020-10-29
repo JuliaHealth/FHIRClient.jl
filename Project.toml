@@ -1,5 +1,5 @@
 name = "FHIRClient"
-uuid = "36ce4777-55b4-4f29-9913-0d7de30fc7f6"
+uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
 version = "0.3.0"
 
