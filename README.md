@@ -3,6 +3,7 @@
 [![Stable][docs-stable-img]][docs-stable-url]
 [![Dev][docs-dev-img]][docs-dev-url]
 [![Build Status][ci-img]][ci-url]
+[![PkgEval][pkgeval-img]][pkgeval-url]
 [![Coverage][codecov-img]][codecov-url]
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
