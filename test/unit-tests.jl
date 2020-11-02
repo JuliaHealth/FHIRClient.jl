@@ -16,4 +16,14 @@ import .JSON3
         @test FHIRClient._add_trailing_slash(HTTP.URI("https://example.com")) == HTTP.URI("https://example.com/")
         @test FHIRClient._add_trailing_slash(HTTP.URI("https://example.com/")) == HTTP.URI("https://example.com/")
     end
+
+    @testset "Auto-generated source files" begin
+        @testset "R4" begin
+            @testset "Patient" begin
+                p = FHIRClient.R4Types.Patient()
+                @test p.resourceType isa String
+                @test p.resourceType == "Patient"
+            end
+        end
+    end
 end

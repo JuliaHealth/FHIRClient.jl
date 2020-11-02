@@ -6,7 +6,7 @@ module TestGenerate
     import ..Generate
     const JSON3 = Generate.JSON3
 
-    function test_generate(fhir_version::AbstractString)
+    function test_generate(fhir_version::Symbol)
         url = "https://www.hl7.org/fhir/$(fhir_version)/definitions.json.zip"
         json_definitions = Generate.download_fhir_json_schema(url)
         schema_string = json_definitions["fhir.schema.json.zip"]["fhir.schema.json"]
@@ -27,7 +27,7 @@ module TestGenerate
         import ..Generate
         const JSON3 = Generate.JSON3
         import ..test_generate
-        output_file = test_generate("R4")
+        output_file = test_generate(:R4)
         @test !(@isdefined Patient)
         include(output_file)
         @test @isdefined Patient

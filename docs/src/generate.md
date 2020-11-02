@@ -8,7 +8,7 @@ CurrentModule = Generate
 
 ```@repl
 using Generate
-fhir_version = "R4"
+fhir_version = :R4
 url = "https://www.hl7.org/fhir/$(fhir_version)/definitions.json.zip"
 json_definitions = Generate.download_fhir_json_schema(url);
 schema_string = json_definitions["fhir.schema.json.zip"]["fhir.schema.json"];
