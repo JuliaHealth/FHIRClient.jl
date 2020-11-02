@@ -4365,7 +4365,7 @@ Base.@kwdef mutable struct Account <: AbstractAccount
     name::Union{String, Nothing} = nothing
     owner::Union{AbstractReference, Nothing} = nothing
     partOf::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Account"
     servicePeriod::Union{AbstractPeriod, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Vector{AbstractReference} = AbstractReference[]
@@ -4468,7 +4468,7 @@ Base.@kwdef mutable struct ActivityDefinition <: AbstractActivityDefinition
     purpose::Union{String, Nothing} = nothing
     quantity::Union{AbstractQuantity, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ActivityDefinition"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     specimenRequirement::Vector{AbstractReference} = AbstractReference[]
     status::Union{String, Nothing} = nothing
@@ -4548,7 +4548,7 @@ Base.@kwdef mutable struct AdverseEvent <: AbstractAdverseEvent
     recordedDate::Union{FHIRDateTime, Nothing} = nothing
     recorder::Union{AbstractReference, Nothing} = nothing
     referenceDocument::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "AdverseEvent"
     resultingCondition::Vector{AbstractReference} = AbstractReference[]
     seriousness::Union{AbstractCodeableConcept, Nothing} = nothing
     severity::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -4625,7 +4625,7 @@ Base.@kwdef mutable struct AllergyIntolerance <: AbstractAllergyIntolerance
     reaction::Vector{AbstractAllergyIntolerance_Reaction} = AbstractAllergyIntolerance_Reaction[]
     recordedDate::Union{FHIRDateTime, Nothing} = nothing
     recorder::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "AllergyIntolerance"
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Union{String, Nothing} = nothing
     verificationStatus::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -4689,7 +4689,7 @@ Base.@kwdef mutable struct Appointment <: AbstractAppointment
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     requestedPeriod::Vector{AbstractPeriod} = AbstractPeriod[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Appointment"
     serviceCategory::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     serviceType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     slot::Vector{AbstractReference} = AbstractReference[]
@@ -4742,7 +4742,7 @@ Base.@kwdef mutable struct AppointmentResponse <: AbstractAppointmentResponse
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     participantStatus::Union{String, Nothing} = nothing
     participantType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "AppointmentResponse"
     start::Union{ZonedDateTime, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -4773,7 +4773,7 @@ Base.@kwdef mutable struct AuditEvent <: AbstractAuditEvent
     period::Union{AbstractPeriod, Nothing} = nothing
     purposeOfEvent::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     recorded::Union{ZonedDateTime, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "AuditEvent"
     source::Union{AbstractAuditEvent_Source, Nothing} = nothing
     subtype::Vector{AbstractCoding} = AbstractCoding[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -4890,7 +4890,7 @@ Base.@kwdef mutable struct Basic <: AbstractBasic
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Basic"
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -4910,7 +4910,7 @@ Base.@kwdef mutable struct Binary <: AbstractBinary
     implicitRules::Union{String, Nothing} = nothing
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Binary"
     securityContext::Union{AbstractReference, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: Binary} = StructTypes.Mutable()
@@ -4940,7 +4940,7 @@ Base.@kwdef mutable struct BiologicallyDerivedProduct <: AbstractBiologicallyDer
     productCode::Union{AbstractCodeableConcept, Nothing} = nothing
     quantity::Union{SafeInt32, Nothing} = nothing
     request::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "BiologicallyDerivedProduct"
     status::Union{String, Nothing} = nothing
     storage::Vector{AbstractBiologicallyDerivedProduct_Storage} = AbstractBiologicallyDerivedProduct_Storage[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -5034,7 +5034,7 @@ Base.@kwdef mutable struct BodyStructure <: AbstractBodyStructure
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     morphology::Union{AbstractCodeableConcept, Nothing} = nothing
     patient::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "BodyStructure"
     text::Union{AbstractNarrative, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: BodyStructure} = StructTypes.Mutable()
@@ -5055,7 +5055,7 @@ Base.@kwdef mutable struct Bundle <: AbstractBundle
     language::Union{String, Nothing} = nothing
     link::Vector{AbstractBundle_Link} = AbstractBundle_Link[]
     meta::Union{AbstractMeta, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Bundle"
     signature::Union{AbstractSignature, Nothing} = nothing
     timestamp::Union{ZonedDateTime, Nothing} = nothing
     total::Union{SafeInt32, Nothing} = nothing
@@ -5196,7 +5196,7 @@ Base.@kwdef mutable struct CapabilityStatement <: AbstractCapabilityStatement
     patchFormat::Vector{String} = String[]
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CapabilityStatement"
     rest::Vector{AbstractCapabilityStatement_Rest} = AbstractCapabilityStatement_Rest[]
     software::Union{AbstractCapabilityStatement_Software, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -5468,7 +5468,7 @@ Base.@kwdef mutable struct CarePlan <: AbstractCarePlan
     partOf::Vector{AbstractReference} = AbstractReference[]
     period::Union{AbstractPeriod, Nothing} = nothing
     replaces::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CarePlan"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     supportingInfo::Vector{AbstractReference} = AbstractReference[]
@@ -5553,7 +5553,7 @@ Base.@kwdef mutable struct CareTeam <: AbstractCareTeam
     period::Union{AbstractPeriod, Nothing} = nothing
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CareTeam"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
@@ -5601,7 +5601,7 @@ Base.@kwdef mutable struct CatalogEntry <: AbstractCatalogEntry
     orderable::Union{Bool, Nothing} = nothing
     referencedItem::Union{AbstractReference, Nothing} = nothing
     relatedEntry::Vector{AbstractCatalogEntry_RelatedEntry} = AbstractCatalogEntry_RelatedEntry[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CatalogEntry"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -5667,7 +5667,7 @@ Base.@kwdef mutable struct ChargeItem <: AbstractChargeItem
     quantity::Union{AbstractQuantity, Nothing} = nothing
     reason::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     requestingOrganization::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ChargeItem"
     service::Vector{AbstractReference} = AbstractReference[]
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -5731,7 +5731,7 @@ Base.@kwdef mutable struct ChargeItemDefinition <: AbstractChargeItemDefinition
     propertyGroup::Vector{AbstractChargeItemDefinition_PropertyGroup} = AbstractChargeItemDefinition_PropertyGroup[]
     publisher::Union{String, Nothing} = nothing
     replaces::Vector{String} = String[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ChargeItemDefinition"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     title::Union{String, Nothing} = nothing
@@ -5822,7 +5822,7 @@ Base.@kwdef mutable struct Claim <: AbstractClaim
     provider::Union{AbstractReference, Nothing} = nothing
     referral::Union{AbstractReference, Nothing} = nothing
     related::Vector{AbstractClaim_Related} = AbstractClaim_Related[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Claim"
     status::Union{String, Nothing} = nothing
     subType::Union{AbstractCodeableConcept, Nothing} = nothing
     supportingInfo::Vector{AbstractClaim_SupportingInfo} = AbstractClaim_SupportingInfo[]
@@ -6100,7 +6100,7 @@ Base.@kwdef mutable struct ClaimResponse <: AbstractClaimResponse
     processNote::Vector{AbstractClaimResponse_ProcessNote} = AbstractClaimResponse_ProcessNote[]
     request::Union{AbstractReference, Nothing} = nothing
     requestor::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ClaimResponse"
     status::Union{String, Nothing} = nothing
     subType::Union{AbstractCodeableConcept, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -6366,7 +6366,7 @@ Base.@kwdef mutable struct ClinicalImpression <: AbstractClinicalImpression
     prognosisCodeableConcept::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     prognosisReference::Vector{AbstractReference} = AbstractReference[]
     protocol::Vector{String} = String[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ClinicalImpression"
     status::Union{String, Nothing} = nothing
     statusReason::Union{AbstractCodeableConcept, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -6450,7 +6450,7 @@ Base.@kwdef mutable struct CodeSystem <: AbstractCodeSystem
     property::Vector{AbstractCodeSystem_Property} = AbstractCodeSystem_Property[]
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CodeSystem"
     status::Union{String, Nothing} = nothing
     supplements::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -6593,7 +6593,7 @@ Base.@kwdef mutable struct Communication <: AbstractCommunication
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     received::Union{FHIRDateTime, Nothing} = nothing
     recipient::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Communication"
     sender::Union{AbstractReference, Nothing} = nothing
     sent::Union{FHIRDateTime, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -6655,7 +6655,7 @@ Base.@kwdef mutable struct CommunicationRequest <: AbstractCommunicationRequest
     recipient::Vector{AbstractReference} = AbstractReference[]
     replaces::Vector{AbstractReference} = AbstractReference[]
     requester::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CommunicationRequest"
     sender::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     statusReason::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -6711,7 +6711,7 @@ Base.@kwdef mutable struct CompartmentDefinition <: AbstractCompartmentDefinitio
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     resource::Vector{AbstractCompartmentDefinition_Resource} = AbstractCompartmentDefinition_Resource[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CompartmentDefinition"
     search::Union{Bool, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -6764,7 +6764,7 @@ Base.@kwdef mutable struct Composition <: AbstractComposition
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     relatesTo::Vector{AbstractComposition_RelatesTo} = AbstractComposition_RelatesTo[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Composition"
     section::Vector{AbstractComposition_Section} = AbstractComposition_Section[]
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -6877,7 +6877,7 @@ Base.@kwdef mutable struct ConceptMap <: AbstractConceptMap
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ConceptMap"
     sourceCanonical::Union{String, Nothing} = nothing
     sourceUri::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -7019,7 +7019,7 @@ Base.@kwdef mutable struct Condition <: AbstractCondition
     onsetString::Union{String, Nothing} = nothing
     recordedDate::Union{FHIRDateTime, Nothing} = nothing
     recorder::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Condition"
     severity::Union{AbstractCodeableConcept, Nothing} = nothing
     stage::Vector{AbstractCondition_Stage} = AbstractCondition_Stage[]
     subject::Union{AbstractReference, Nothing} = nothing
@@ -7077,7 +7077,7 @@ Base.@kwdef mutable struct Consent <: AbstractConsent
     policy::Vector{AbstractConsent_Policy} = AbstractConsent_Policy[]
     policyRule::Union{AbstractCodeableConcept, Nothing} = nothing
     provision::Union{AbstractConsent_Provision, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Consent"
     scope::Union{AbstractCodeableConcept, Nothing} = nothing
     sourceAttachment::Union{AbstractAttachment, Nothing} = nothing
     sourceReference::Union{AbstractReference, Nothing} = nothing
@@ -7204,7 +7204,7 @@ Base.@kwdef mutable struct Contract <: AbstractContract
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     relevantHistory::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Contract"
     rule::Vector{AbstractContract_Rule} = AbstractContract_Rule[]
     scope::Union{AbstractCodeableConcept, Nothing} = nothing
     signer::Vector{AbstractContract_Signer} = AbstractContract_Signer[]
@@ -7558,7 +7558,7 @@ Base.@kwdef mutable struct Coverage <: AbstractCoverage
     period::Union{AbstractPeriod, Nothing} = nothing
     policyHolder::Union{AbstractReference, Nothing} = nothing
     relationship::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Coverage"
     status::Union{String, Nothing} = nothing
     subrogation::Union{Bool, Nothing} = nothing
     subscriber::Union{AbstractReference, Nothing} = nothing
@@ -7637,7 +7637,7 @@ Base.@kwdef mutable struct CoverageEligibilityRequest <: AbstractCoverageEligibi
     priority::Union{AbstractCodeableConcept, Nothing} = nothing
     provider::Union{AbstractReference, Nothing} = nothing
     purpose::Vector{String} = String[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CoverageEligibilityRequest"
     servicedDate::Union{String, Nothing} = nothing
     servicedPeriod::Union{AbstractPeriod, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -7742,7 +7742,7 @@ Base.@kwdef mutable struct CoverageEligibilityResponse <: AbstractCoverageEligib
     purpose::Vector{String} = String[]
     request::Union{AbstractReference, Nothing} = nothing
     requestor::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "CoverageEligibilityResponse"
     servicedDate::Union{String, Nothing} = nothing
     servicedPeriod::Union{AbstractPeriod, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -7855,7 +7855,7 @@ Base.@kwdef mutable struct DetectedIssue <: AbstractDetectedIssue
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     patient::Union{AbstractReference, Nothing} = nothing
     reference::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DetectedIssue"
     severity::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -7928,7 +7928,7 @@ Base.@kwdef mutable struct Device <: AbstractDevice
     partNumber::Union{String, Nothing} = nothing
     patient::Union{AbstractReference, Nothing} = nothing
     property::Vector{AbstractDevice_Property} = AbstractDevice_Property[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Device"
     safety::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     serialNumber::Union{String, Nothing} = nothing
     specialization::Vector{AbstractDevice_Specialization} = AbstractDevice_Specialization[]
@@ -8052,7 +8052,7 @@ Base.@kwdef mutable struct DeviceDefinition <: AbstractDeviceDefinition
     physicalCharacteristics::Union{AbstractProdCharacteristic, Nothing} = nothing
     property::Vector{AbstractDeviceDefinition_Property} = AbstractDeviceDefinition_Property[]
     quantity::Union{AbstractQuantity, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DeviceDefinition"
     safety::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     shelfLifeStorage::Vector{AbstractProductShelfLife} = AbstractProductShelfLife[]
     specialization::Vector{AbstractDeviceDefinition_Specialization} = AbstractDeviceDefinition_Specialization[]
@@ -8171,7 +8171,7 @@ Base.@kwdef mutable struct DeviceMetric <: AbstractDeviceMetric
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     operationalStatus::Union{String, Nothing} = nothing
     parent::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DeviceMetric"
     source::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -8238,7 +8238,7 @@ Base.@kwdef mutable struct DeviceRequest <: AbstractDeviceRequest
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     relevantHistory::Vector{AbstractReference} = AbstractReference[]
     requester::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DeviceRequest"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     supportingInfo::Vector{AbstractReference} = AbstractReference[]
@@ -8287,7 +8287,7 @@ Base.@kwdef mutable struct DeviceUseStatement <: AbstractDeviceUseStatement
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     recordedOn::Union{FHIRDateTime, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DeviceUseStatement"
     source::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -8329,7 +8329,7 @@ Base.@kwdef mutable struct DiagnosticReport <: AbstractDiagnosticReport
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     performer::Vector{AbstractReference} = AbstractReference[]
     presentedForm::Vector{AbstractAttachment} = AbstractAttachment[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DiagnosticReport"
     result::Vector{AbstractReference} = AbstractReference[]
     resultsInterpreter::Vector{AbstractReference} = AbstractReference[]
     specimen::Vector{AbstractReference} = AbstractReference[]
@@ -8377,7 +8377,7 @@ Base.@kwdef mutable struct DocumentManifest <: AbstractDocumentManifest
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     recipient::Vector{AbstractReference} = AbstractReference[]
     related::Vector{AbstractDocumentManifest_Related} = AbstractDocumentManifest_Related[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DocumentManifest"
     source::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -8427,7 +8427,7 @@ Base.@kwdef mutable struct DocumentReference <: AbstractDocumentReference
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     relatesTo::Vector{AbstractDocumentReference_RelatesTo} = AbstractDocumentReference_RelatesTo[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "DocumentReference"
     securityLabel::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -8524,7 +8524,7 @@ Base.@kwdef mutable struct EffectEvidenceSynthesis <: AbstractEffectEvidenceSynt
     population::Union{AbstractReference, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EffectEvidenceSynthesis"
     resultsByExposure::Vector{AbstractEffectEvidenceSynthesis_ResultsByExposure} = AbstractEffectEvidenceSynthesis_ResultsByExposure[]
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     sampleSize::Union{AbstractEffectEvidenceSynthesis_SampleSize, Nothing} = nothing
@@ -8664,7 +8664,7 @@ Base.@kwdef mutable struct Encounter <: AbstractEncounter
     priority::Union{AbstractCodeableConcept, Nothing} = nothing
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Encounter"
     serviceProvider::Union{AbstractReference, Nothing} = nothing
     serviceType::Union{AbstractCodeableConcept, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -8789,7 +8789,7 @@ Base.@kwdef mutable struct Endpoint <: AbstractEndpoint
     payloadMimeType::Vector{String} = String[]
     payloadType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     period::Union{AbstractPeriod, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Endpoint"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -8816,7 +8816,7 @@ Base.@kwdef mutable struct EnrollmentRequest <: AbstractEnrollmentRequest
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     provider::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EnrollmentRequest"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -8846,7 +8846,7 @@ Base.@kwdef mutable struct EnrollmentResponse <: AbstractEnrollmentResponse
     outcome::Union{String, Nothing} = nothing
     request::Union{AbstractReference, Nothing} = nothing
     requestProvider::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EnrollmentResponse"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -8874,7 +8874,7 @@ Base.@kwdef mutable struct EpisodeOfCare <: AbstractEpisodeOfCare
     patient::Union{AbstractReference, Nothing} = nothing
     period::Union{AbstractPeriod, Nothing} = nothing
     referralRequest::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EpisodeOfCare"
     status::Union{String, Nothing} = nothing
     statusHistory::Vector{AbstractEpisodeOfCare_StatusHistory} = AbstractEpisodeOfCare_StatusHistory[]
     team::Vector{AbstractReference} = AbstractReference[]
@@ -8955,7 +8955,7 @@ Base.@kwdef mutable struct EventDefinition <: AbstractEventDefinition
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EventDefinition"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     status::Union{String, Nothing} = nothing
     subjectCodeableConcept::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -9017,7 +9017,7 @@ Base.@kwdef mutable struct Evidence <: AbstractEvidence
     outcome::Vector{AbstractReference} = AbstractReference[]
     publisher::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Evidence"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     shortTitle::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -9075,7 +9075,7 @@ Base.@kwdef mutable struct EvidenceVariable <: AbstractEvidenceVariable
     note::Vector{AbstractAnnotation} = AbstractAnnotation[]
     publisher::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "EvidenceVariable"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     shortTitle::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -9154,7 +9154,7 @@ Base.@kwdef mutable struct ExampleScenario <: AbstractExampleScenario
     process::Vector{AbstractExampleScenario_Process} = AbstractExampleScenario_Process[]
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ExampleScenario"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     url::Union{String, Nothing} = nothing
@@ -9197,7 +9197,7 @@ Base.@kwdef mutable struct ExampleScenario_Instance <: AbstractExampleScenario_I
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     resourceId::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ExampleScenario_Instance"
     version::Vector{AbstractExampleScenario_Version} = AbstractExampleScenario_Version[]
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: ExampleScenario_Instance} = StructTypes.Mutable()
@@ -9364,7 +9364,7 @@ Base.@kwdef mutable struct ExplanationOfBenefit <: AbstractExplanationOfBenefit
     provider::Union{AbstractReference, Nothing} = nothing
     referral::Union{AbstractReference, Nothing} = nothing
     related::Vector{AbstractExplanationOfBenefit_Related} = AbstractExplanationOfBenefit_Related[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ExplanationOfBenefit"
     status::Union{String, Nothing} = nothing
     subType::Union{AbstractCodeableConcept, Nothing} = nothing
     supportingInfo::Vector{AbstractExplanationOfBenefit_SupportingInfo} = AbstractExplanationOfBenefit_SupportingInfo[]
@@ -9831,7 +9831,7 @@ Base.@kwdef mutable struct FamilyMemberHistory <: AbstractFamilyMemberHistory
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     relationship::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "FamilyMemberHistory"
     sex::Union{AbstractCodeableConcept, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -9878,7 +9878,7 @@ Base.@kwdef mutable struct Flag <: AbstractFlag
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     period::Union{AbstractPeriod, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Flag"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -9913,7 +9913,7 @@ Base.@kwdef mutable struct Goal <: AbstractGoal
     outcomeCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     outcomeReference::Vector{AbstractReference} = AbstractReference[]
     priority::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Goal"
     startCodeableConcept::Union{AbstractCodeableConcept, Nothing} = nothing
     startDate::Union{String, Nothing} = nothing
     statusDate::Union{Date, Nothing} = nothing
@@ -9981,7 +9981,7 @@ Base.@kwdef mutable struct GraphDefinition <: AbstractGraphDefinition
     profile::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "GraphDefinition"
     start::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -10076,7 +10076,7 @@ Base.@kwdef mutable struct Group <: AbstractGroup
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     quantity::Union{SafeInt32, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Group"
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Union{String, Nothing} = nothing
 end
@@ -10147,7 +10147,7 @@ Base.@kwdef mutable struct GuidanceResponse <: AbstractGuidanceResponse
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     requestIdentifier::Union{AbstractIdentifier, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "GuidanceResponse"
     result::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -10194,7 +10194,7 @@ Base.@kwdef mutable struct HealthcareService <: AbstractHealthcareService
     program::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     providedBy::Union{AbstractReference, Nothing} = nothing
     referralMethod::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "HealthcareService"
     serviceProvisionCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     specialty::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
@@ -10281,7 +10281,7 @@ Base.@kwdef mutable struct ImagingStudy <: AbstractImagingStudy
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     referrer::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ImagingStudy"
     series::Vector{AbstractImagingStudy_Series} = AbstractImagingStudy_Series[]
     started::Union{FHIRDateTime, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -10390,7 +10390,7 @@ Base.@kwdef mutable struct Immunization <: AbstractImmunization
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     recorded::Union{FHIRDateTime, Nothing} = nothing
     reportOrigin::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Immunization"
     route::Union{AbstractCodeableConcept, Nothing} = nothing
     site::Union{AbstractCodeableConcept, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -10499,7 +10499,7 @@ Base.@kwdef mutable struct ImmunizationEvaluation <: AbstractImmunizationEvaluat
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     patient::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ImmunizationEvaluation"
     series::Union{String, Nothing} = nothing
     seriesDosesPositiveInt::Union{FHIRInt32, Nothing} = nothing
     seriesDosesString::Union{String, Nothing} = nothing
@@ -10528,7 +10528,7 @@ Base.@kwdef mutable struct ImmunizationRecommendation <: AbstractImmunizationRec
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     patient::Union{AbstractReference, Nothing} = nothing
     recommendation::Vector{AbstractImmunizationRecommendation_Recommendation} = AbstractImmunizationRecommendation_Recommendation[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ImmunizationRecommendation"
     text::Union{AbstractNarrative, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: ImmunizationRecommendation} = StructTypes.Mutable()
@@ -10617,7 +10617,7 @@ Base.@kwdef mutable struct ImplementationGuide <: AbstractImplementationGuide
     name::Union{String, Nothing} = nothing
     packageId::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ImplementationGuide"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     title::Union{String, Nothing} = nothing
@@ -10834,7 +10834,7 @@ Base.@kwdef mutable struct InsurancePlan <: AbstractInsurancePlan
     ownedBy::Union{AbstractReference, Nothing} = nothing
     period::Union{AbstractPeriod, Nothing} = nothing
     plan::Vector{AbstractInsurancePlan_Plan} = AbstractInsurancePlan_Plan[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "InsurancePlan"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
@@ -10991,7 +10991,7 @@ Base.@kwdef mutable struct Invoice <: AbstractInvoice
     participant::Vector{AbstractInvoice_Participant} = AbstractInvoice_Participant[]
     paymentTerms::Union{String, Nothing} = nothing
     recipient::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Invoice"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -11093,7 +11093,7 @@ Base.@kwdef mutable struct Library <: AbstractLibrary
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Library"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     status::Union{String, Nothing} = nothing
     subjectCodeableConcept::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -11127,7 +11127,7 @@ Base.@kwdef mutable struct Linkage <: AbstractLinkage
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Linkage"
     text::Union{AbstractNarrative, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: Linkage} = StructTypes.Mutable()
@@ -11171,7 +11171,7 @@ Base.@kwdef mutable struct List <: AbstractList
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     note::Vector{AbstractAnnotation} = AbstractAnnotation[]
     orderedBy::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "List"
     source::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -11229,7 +11229,7 @@ Base.@kwdef mutable struct Location <: AbstractLocation
     partOf::Union{AbstractReference, Nothing} = nothing
     physicalType::Union{AbstractCodeableConcept, Nothing} = nothing
     position::Union{AbstractLocation_Position, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Location"
     status::Union{String, Nothing} = nothing
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -11333,7 +11333,7 @@ Base.@kwdef mutable struct Measure <: AbstractMeasure
     rateAggregation::Union{String, Nothing} = nothing
     rationale::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Measure"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     riskAdjustment::Union{String, Nothing} = nothing
     scoring::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -11450,7 +11450,7 @@ Base.@kwdef mutable struct MeasureReport <: AbstractMeasureReport
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     period::Union{AbstractPeriod, Nothing} = nothing
     reporter::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MeasureReport"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -11577,7 +11577,7 @@ Base.@kwdef mutable struct Media <: AbstractMedia
     operator::Union{AbstractReference, Nothing} = nothing
     partOf::Vector{AbstractReference} = AbstractReference[]
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Media"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -11608,7 +11608,7 @@ Base.@kwdef mutable struct Medication <: AbstractMedication
     manufacturer::Union{AbstractReference, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Medication"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -11676,7 +11676,7 @@ Base.@kwdef mutable struct MedicationAdministration <: AbstractMedicationAdminis
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     request::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicationAdministration"
     status::Union{String, Nothing} = nothing
     statusReason::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     subject::Union{AbstractReference, Nothing} = nothing
@@ -11748,7 +11748,7 @@ Base.@kwdef mutable struct MedicationDispense <: AbstractMedicationDispense
     performer::Vector{AbstractMedicationDispense_Performer} = AbstractMedicationDispense_Performer[]
     quantity::Union{AbstractQuantity, Nothing} = nothing
     receiver::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicationDispense"
     status::Union{String, Nothing} = nothing
     statusReasonCodeableConcept::Union{AbstractCodeableConcept, Nothing} = nothing
     statusReasonReference::Union{AbstractReference, Nothing} = nothing
@@ -11825,7 +11825,7 @@ Base.@kwdef mutable struct MedicationKnowledge <: AbstractMedicationKnowledge
     productType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     regulatory::Vector{AbstractMedicationKnowledge_Regulatory} = AbstractMedicationKnowledge_Regulatory[]
     relatedMedicationKnowledge::Vector{AbstractMedicationKnowledge_RelatedMedicationKnowledge} = AbstractMedicationKnowledge_RelatedMedicationKnowledge[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicationKnowledge"
     status::Union{String, Nothing} = nothing
     synonym::Vector{String} = String[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -12092,7 +12092,7 @@ Base.@kwdef mutable struct MedicationRequest <: AbstractMedicationRequest
     reportedBoolean::Union{Bool, Nothing} = nothing
     reportedReference::Union{AbstractReference, Nothing} = nothing
     requester::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicationRequest"
     status::Union{String, Nothing} = nothing
     statusReason::Union{AbstractCodeableConcept, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -12178,7 +12178,7 @@ Base.@kwdef mutable struct MedicationStatement <: AbstractMedicationStatement
     partOf::Vector{AbstractReference} = AbstractReference[]
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicationStatement"
     status::Union{String, Nothing} = nothing
     statusReason::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     subject::Union{AbstractReference, Nothing} = nothing
@@ -12217,7 +12217,7 @@ Base.@kwdef mutable struct MedicinalProduct <: AbstractMedicinalProduct
     paediatricUseIndicator::Union{AbstractCodeableConcept, Nothing} = nothing
     pharmaceuticalProduct::Vector{AbstractReference} = AbstractReference[]
     productClassification::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProduct"
     specialDesignation::Vector{AbstractMedicinalProduct_SpecialDesignation} = AbstractMedicinalProduct_SpecialDesignation[]
     specialMeasures::Vector{String} = String[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -12329,7 +12329,7 @@ Base.@kwdef mutable struct MedicinalProductAuthorization <: AbstractMedicinalPro
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     procedure::Union{AbstractMedicinalProductAuthorization_Procedure, Nothing} = nothing
     regulator::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductAuthorization"
     restoreDate::Union{FHIRDateTime, Nothing} = nothing
     status::Union{AbstractCodeableConcept, Nothing} = nothing
     statusDate::Union{FHIRDateTime, Nothing} = nothing
@@ -12388,7 +12388,7 @@ Base.@kwdef mutable struct MedicinalProductContraindication <: AbstractMedicinal
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     otherTherapy::Vector{AbstractMedicinalProductContraindication_OtherTherapy} = AbstractMedicinalProductContraindication_OtherTherapy[]
     population::Vector{AbstractPopulation} = AbstractPopulation[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductContraindication"
     subject::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
     therapeuticIndication::Vector{AbstractReference} = AbstractReference[]
@@ -12428,7 +12428,7 @@ Base.@kwdef mutable struct MedicinalProductIndication <: AbstractMedicinalProduc
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     otherTherapy::Vector{AbstractMedicinalProductIndication_OtherTherapy} = AbstractMedicinalProductIndication_OtherTherapy[]
     population::Vector{AbstractPopulation} = AbstractPopulation[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductIndication"
     subject::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
     undesirableEffect::Vector{AbstractReference} = AbstractReference[]
@@ -12465,7 +12465,7 @@ Base.@kwdef mutable struct MedicinalProductIngredient <: AbstractMedicinalProduc
     manufacturer::Vector{AbstractReference} = AbstractReference[]
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductIngredient"
     role::Union{AbstractCodeableConcept, Nothing} = nothing
     specifiedSubstance::Vector{AbstractMedicinalProductIngredient_SpecifiedSubstance} = AbstractMedicinalProductIngredient_SpecifiedSubstance[]
     substance::Union{AbstractMedicinalProductIngredient_Substance, Nothing} = nothing
@@ -12552,7 +12552,7 @@ Base.@kwdef mutable struct MedicinalProductInteraction <: AbstractMedicinalProdu
     management::Union{AbstractCodeableConcept, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductInteraction"
     subject::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -12590,7 +12590,7 @@ Base.@kwdef mutable struct MedicinalProductManufactured <: AbstractMedicinalProd
     otherCharacteristics::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     physicalCharacteristics::Union{AbstractProdCharacteristic, Nothing} = nothing
     quantity::Union{AbstractQuantity, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductManufactured"
     text::Union{AbstractNarrative, Nothing} = nothing
     unitOfPresentation::Union{AbstractCodeableConcept, Nothing} = nothing
 end
@@ -12618,7 +12618,7 @@ Base.@kwdef mutable struct MedicinalProductPackaged <: AbstractMedicinalProductP
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     packageItem::Vector{AbstractMedicinalProductPackaged_PackageItem} = AbstractMedicinalProductPackaged_PackageItem[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductPackaged"
     subject::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -12676,7 +12676,7 @@ Base.@kwdef mutable struct MedicinalProductPharmaceutical <: AbstractMedicinalPr
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductPharmaceutical"
     routeOfAdministration::Vector{AbstractMedicinalProductPharmaceutical_RouteOfAdministration} = AbstractMedicinalProductPharmaceutical_RouteOfAdministration[]
     text::Union{AbstractNarrative, Nothing} = nothing
     unitOfPresentation::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -12754,7 +12754,7 @@ Base.@kwdef mutable struct MedicinalProductUndesirableEffect <: AbstractMedicina
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     population::Vector{AbstractPopulation} = AbstractPopulation[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MedicinalProductUndesirableEffect"
     subject::Vector{AbstractReference} = AbstractReference[]
     symptomConditionEffect::Union{AbstractCodeableConcept, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -12807,7 +12807,7 @@ Base.@kwdef mutable struct MessageDefinition <: AbstractMessageDefinition
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     replaces::Vector{String} = String[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MessageDefinition"
     responseRequired::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -12870,7 +12870,7 @@ Base.@kwdef mutable struct MessageHeader <: AbstractMessageHeader
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     reason::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MessageHeader"
     response::Union{AbstractMessageHeader_Response, Nothing} = nothing
     responsible::Union{AbstractReference, Nothing} = nothing
     sender::Union{AbstractReference, Nothing} = nothing
@@ -12958,7 +12958,7 @@ Base.@kwdef mutable struct MolecularSequence <: AbstractMolecularSequence
     readCoverage::Union{SafeInt32, Nothing} = nothing
     referenceSeq::Union{AbstractMolecularSequence_ReferenceSeq, Nothing} = nothing
     repository::Vector{AbstractMolecularSequence_Repository} = AbstractMolecularSequence_Repository[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "MolecularSequence"
     specimen::Union{AbstractReference, Nothing} = nothing
     structureVariant::Vector{AbstractMolecularSequence_StructureVariant} = AbstractMolecularSequence_StructureVariant[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -13168,7 +13168,7 @@ Base.@kwdef mutable struct NamingSystem <: AbstractNamingSystem
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "NamingSystem"
     responsible::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -13231,7 +13231,7 @@ Base.@kwdef mutable struct NutritionOrder <: AbstractNutritionOrder
     oralDiet::Union{AbstractNutritionOrder_OralDiet, Nothing} = nothing
     orderer::Union{AbstractReference, Nothing} = nothing
     patient::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "NutritionOrder"
     status::Union{String, Nothing} = nothing
     supplement::Vector{AbstractNutritionOrder_Supplement} = AbstractNutritionOrder_Supplement[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -13377,7 +13377,7 @@ Base.@kwdef mutable struct Observation <: AbstractObservation
     partOf::Vector{AbstractReference} = AbstractReference[]
     performer::Vector{AbstractReference} = AbstractReference[]
     referenceRange::Vector{AbstractObservation_ReferenceRange} = AbstractObservation_ReferenceRange[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Observation"
     specimen::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -13471,7 +13471,7 @@ Base.@kwdef mutable struct ObservationDefinition <: AbstractObservationDefinitio
     preferredReportName::Union{String, Nothing} = nothing
     qualifiedInterval::Vector{AbstractObservationDefinition_QualifiedInterval} = AbstractObservationDefinition_QualifiedInterval[]
     quantitativeDetails::Union{AbstractObservationDefinition_QuantitativeDetails, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ObservationDefinition"
     text::Union{AbstractNarrative, Nothing} = nothing
     validCodedValueSet::Union{AbstractReference, Nothing} = nothing
 end
@@ -13564,7 +13564,7 @@ Base.@kwdef mutable struct OperationDefinition <: AbstractOperationDefinition
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     resource::Vector{String} = String[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "OperationDefinition"
     status::Union{String, Nothing} = nothing
     system::Union{Bool, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -13659,7 +13659,7 @@ Base.@kwdef mutable struct OperationOutcome <: AbstractOperationOutcome
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "OperationOutcome"
     text::Union{AbstractNarrative, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: OperationOutcome} = StructTypes.Mutable()
@@ -13709,7 +13709,7 @@ Base.@kwdef mutable struct Organization <: AbstractOrganization
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     partOf::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Organization"
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
     type::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
@@ -13754,7 +13754,7 @@ Base.@kwdef mutable struct OrganizationAffiliation <: AbstractOrganizationAffili
     organization::Union{AbstractReference, Nothing} = nothing
     participatingOrganization::Union{AbstractReference, Nothing} = nothing
     period::Union{AbstractPeriod, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "OrganizationAffiliation"
     specialty::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -13772,7 +13772,7 @@ Base.@kwdef mutable struct Parameters <: AbstractParameters
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     parameter::Vector{AbstractParameters_Parameter} = AbstractParameters_Parameter[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Parameters"
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: Parameters} = StructTypes.Mutable()
 # @inline StructTypes.omitempties(::Type{T}) where {T <: Parameters} = true
@@ -13896,7 +13896,7 @@ Base.@kwdef mutable struct Patient <: AbstractPatient
     multipleBirthInteger::Union{FHIRInt32, Nothing} = nothing
     name::Vector{AbstractHumanName} = AbstractHumanName[]
     photo::Vector{AbstractAttachment} = AbstractAttachment[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Patient"
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -13972,7 +13972,7 @@ Base.@kwdef mutable struct PaymentNotice <: AbstractPaymentNotice
     provider::Union{AbstractReference, Nothing} = nothing
     recipient::Union{AbstractReference, Nothing} = nothing
     request::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "PaymentNotice"
     response::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -14011,7 +14011,7 @@ Base.@kwdef mutable struct PaymentReconciliation <: AbstractPaymentReconciliatio
     processNote::Vector{AbstractPaymentReconciliation_ProcessNote} = AbstractPaymentReconciliation_ProcessNote[]
     request::Union{AbstractReference, Nothing} = nothing
     requestor::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "PaymentReconciliation"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -14077,7 +14077,7 @@ Base.@kwdef mutable struct Person <: AbstractPerson
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Vector{AbstractHumanName} = AbstractHumanName[]
     photo::Union{AbstractAttachment, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Person"
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -14144,7 +14144,7 @@ Base.@kwdef mutable struct PlanDefinition <: AbstractPlanDefinition
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "PlanDefinition"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     status::Union{String, Nothing} = nothing
     subjectCodeableConcept::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -14331,7 +14331,7 @@ Base.@kwdef mutable struct Practitioner <: AbstractPractitioner
     name::Vector{AbstractHumanName} = AbstractHumanName[]
     photo::Vector{AbstractAttachment} = AbstractAttachment[]
     qualification::Vector{AbstractPractitioner_Qualification} = AbstractPractitioner_Qualification[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Practitioner"
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -14378,7 +14378,7 @@ Base.@kwdef mutable struct PractitionerRole <: AbstractPractitionerRole
     organization::Union{AbstractReference, Nothing} = nothing
     period::Union{AbstractPeriod, Nothing} = nothing
     practitioner::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "PractitionerRole"
     specialty::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -14460,7 +14460,7 @@ Base.@kwdef mutable struct Procedure <: AbstractProcedure
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     recorder::Union{AbstractReference, Nothing} = nothing
     report::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Procedure"
     status::Union{String, Nothing} = nothing
     statusReason::Union{AbstractCodeableConcept, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -14520,7 +14520,7 @@ Base.@kwdef mutable struct Provenance <: AbstractProvenance
     policy::Vector{String} = String[]
     reason::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     recorded::Union{ZonedDateTime, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Provenance"
     signature::Vector{AbstractSignature} = AbstractSignature[]
     target::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -14598,7 +14598,7 @@ Base.@kwdef mutable struct Questionnaire <: AbstractQuestionnaire
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Questionnaire"
     status::Union{String, Nothing} = nothing
     subjectType::Vector{String} = String[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -14751,7 +14751,7 @@ Base.@kwdef mutable struct QuestionnaireResponse <: AbstractQuestionnaireRespons
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     partOf::Vector{AbstractReference} = AbstractReference[]
     questionnaire::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "QuestionnaireResponse"
     source::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -14835,7 +14835,7 @@ Base.@kwdef mutable struct RelatedPerson <: AbstractRelatedPerson
     period::Union{AbstractPeriod, Nothing} = nothing
     photo::Vector{AbstractAttachment} = AbstractAttachment[]
     relationship::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "RelatedPerson"
     telecom::Vector{AbstractContactPoint} = AbstractContactPoint[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -14889,7 +14889,7 @@ Base.@kwdef mutable struct RequestGroup <: AbstractRequestGroup
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     replaces::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "RequestGroup"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15023,7 +15023,7 @@ Base.@kwdef mutable struct ResearchDefinition <: AbstractResearchDefinition
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ResearchDefinition"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     shortTitle::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -15092,7 +15092,7 @@ Base.@kwdef mutable struct ResearchElementDefinition <: AbstractResearchElementD
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ResearchElementDefinition"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     shortTitle::Union{String, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -15186,7 +15186,7 @@ Base.@kwdef mutable struct ResearchStudy <: AbstractResearchStudy
     protocol::Vector{AbstractReference} = AbstractReference[]
     reasonStopped::Union{AbstractCodeableConcept, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ResearchStudy"
     site::Vector{AbstractReference} = AbstractReference[]
     sponsor::Union{AbstractReference, Nothing} = nothing
     status::Union{String, Nothing} = nothing
@@ -15245,7 +15245,7 @@ Base.@kwdef mutable struct ResearchSubject <: AbstractResearchSubject
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     period::Union{AbstractPeriod, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ResearchSubject"
     status::Union{String, Nothing} = nothing
     study::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15284,7 +15284,7 @@ Base.@kwdef mutable struct RiskAssessment <: AbstractRiskAssessment
     prediction::Vector{AbstractRiskAssessment_Prediction} = AbstractRiskAssessment_Prediction[]
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "RiskAssessment"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15356,7 +15356,7 @@ Base.@kwdef mutable struct RiskEvidenceSynthesis <: AbstractRiskEvidenceSynthesi
     population::Union{AbstractReference, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     relatedArtifact::Vector{AbstractRelatedArtifact} = AbstractRelatedArtifact[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "RiskEvidenceSynthesis"
     reviewer::Vector{AbstractContactDetail} = AbstractContactDetail[]
     riskEstimate::Union{AbstractRiskEvidenceSynthesis_RiskEstimate, Nothing} = nothing
     sampleSize::Union{AbstractRiskEvidenceSynthesis_SampleSize, Nothing} = nothing
@@ -15472,7 +15472,7 @@ Base.@kwdef mutable struct Schedule <: AbstractSchedule
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     planningHorizon::Union{AbstractPeriod, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Schedule"
     serviceCategory::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     serviceType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     specialty::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
@@ -15532,7 +15532,7 @@ Base.@kwdef mutable struct SearchParameter <: AbstractSearchParameter
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SearchParameter"
     status::Union{String, Nothing} = nothing
     target::Vector{String} = String[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15614,7 +15614,7 @@ Base.@kwdef mutable struct ServiceRequest <: AbstractServiceRequest
     replaces::Vector{AbstractReference} = AbstractReference[]
     requester::Union{AbstractReference, Nothing} = nothing
     requisition::Union{AbstractIdentifier, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ServiceRequest"
     specimen::Vector{AbstractReference} = AbstractReference[]
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
@@ -15646,7 +15646,7 @@ Base.@kwdef mutable struct Slot <: AbstractSlot
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     overbooked::Union{Bool, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Slot"
     schedule::Union{AbstractReference, Nothing} = nothing
     serviceCategory::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     serviceType::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
@@ -15682,7 +15682,7 @@ Base.@kwdef mutable struct Specimen <: AbstractSpecimen
     processing::Vector{AbstractSpecimen_Processing} = AbstractSpecimen_Processing[]
     receivedTime::Union{FHIRDateTime, Nothing} = nothing
     request::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Specimen"
     status::Union{String, Nothing} = nothing
     subject::Union{AbstractReference, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15762,7 +15762,7 @@ Base.@kwdef mutable struct SpecimenDefinition <: AbstractSpecimenDefinition
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     patientPreparation::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SpecimenDefinition"
     text::Union{AbstractNarrative, Nothing} = nothing
     timeAspect::Union{String, Nothing} = nothing
     typeCollected::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -15890,7 +15890,7 @@ Base.@kwdef mutable struct StructureDefinition <: AbstractStructureDefinition
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "StructureDefinition"
     snapshot::Union{AbstractStructureDefinition_Snapshot, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -15992,7 +15992,7 @@ Base.@kwdef mutable struct StructureMap <: AbstractStructureMap
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "StructureMap"
     status::Union{String, Nothing} = nothing
     structure::Vector{AbstractStructureMap_Structure} = AbstractStructureMap_Structure[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -16258,7 +16258,7 @@ Base.@kwdef mutable struct Subscription <: AbstractSubscription
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     reason::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Subscription"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -16303,7 +16303,7 @@ Base.@kwdef mutable struct Substance <: AbstractSubstance
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Substance"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -16354,7 +16354,7 @@ Base.@kwdef mutable struct SubstanceNucleicAcid <: AbstractSubstanceNucleicAcid
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     numberOfSubunits::Union{SafeInt32, Nothing} = nothing
     oligoNucleotideType::Union{AbstractCodeableConcept, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstanceNucleicAcid"
     sequenceType::Union{AbstractCodeableConcept, Nothing} = nothing
     subunit::Vector{AbstractSubstanceNucleicAcid_Subunit} = AbstractSubstanceNucleicAcid_Subunit[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -16434,7 +16434,7 @@ Base.@kwdef mutable struct SubstancePolymer <: AbstractSubstancePolymer
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     monomerSet::Vector{AbstractSubstancePolymer_MonomerSet} = AbstractSubstancePolymer_MonomerSet[]
     repeat::Vector{AbstractSubstancePolymer_Repeat} = AbstractSubstancePolymer_Repeat[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstancePolymer"
     text::Union{AbstractNarrative, Nothing} = nothing
 end
 @inline StructTypes.StructType(::Type{T}) where {T <: SubstancePolymer} = StructTypes.Mutable()
@@ -16541,7 +16541,7 @@ Base.@kwdef mutable struct SubstanceProtein <: AbstractSubstanceProtein
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     numberOfSubunits::Union{SafeInt32, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstanceProtein"
     sequenceType::Union{AbstractCodeableConcept, Nothing} = nothing
     subunit::Vector{AbstractSubstanceProtein_Subunit} = AbstractSubstanceProtein_Subunit[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -16589,7 +16589,7 @@ Base.@kwdef mutable struct SubstanceReferenceInformation <: AbstractSubstanceRef
     language::Union{String, Nothing} = nothing
     meta::Union{AbstractMeta, Nothing} = nothing
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstanceReferenceInformation"
     target::Vector{AbstractSubstanceReferenceInformation_Target} = AbstractSubstanceReferenceInformation_Target[]
     text::Union{AbstractNarrative, Nothing} = nothing
 end
@@ -16682,7 +16682,7 @@ Base.@kwdef mutable struct SubstanceSourceMaterial <: AbstractSubstanceSourceMat
     parentSubstanceId::Vector{AbstractIdentifier} = AbstractIdentifier[]
     parentSubstanceName::Vector{String} = String[]
     partDescription::Vector{AbstractSubstanceSourceMaterial_PartDescription} = AbstractSubstanceSourceMaterial_PartDescription[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstanceSourceMaterial"
     sourceMaterialClass::Union{AbstractCodeableConcept, Nothing} = nothing
     sourceMaterialState::Union{AbstractCodeableConcept, Nothing} = nothing
     sourceMaterialType::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -16809,7 +16809,7 @@ Base.@kwdef mutable struct SubstanceSpecification <: AbstractSubstanceSpecificat
     protein::Union{AbstractReference, Nothing} = nothing
     referenceInformation::Union{AbstractReference, Nothing} = nothing
     relationship::Vector{AbstractSubstanceSpecification_Relationship} = AbstractSubstanceSpecification_Relationship[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SubstanceSpecification"
     source::Vector{AbstractReference} = AbstractReference[]
     sourceMaterial::Union{AbstractReference, Nothing} = nothing
     status::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -17022,7 +17022,7 @@ Base.@kwdef mutable struct SupplyDelivery <: AbstractSupplyDelivery
     partOf::Vector{AbstractReference} = AbstractReference[]
     patient::Union{AbstractReference, Nothing} = nothing
     receiver::Vector{AbstractReference} = AbstractReference[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SupplyDelivery"
     status::Union{String, Nothing} = nothing
     suppliedItem::Union{AbstractSupplyDelivery_SuppliedItem, Nothing} = nothing
     supplier::Union{AbstractReference, Nothing} = nothing
@@ -17077,7 +17077,7 @@ Base.@kwdef mutable struct SupplyRequest <: AbstractSupplyRequest
     reasonCode::Vector{AbstractCodeableConcept} = AbstractCodeableConcept[]
     reasonReference::Vector{AbstractReference} = AbstractReference[]
     requester::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "SupplyRequest"
     status::Union{String, Nothing} = nothing
     supplier::Vector{AbstractReference} = AbstractReference[]
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -17148,7 +17148,7 @@ Base.@kwdef mutable struct Task <: AbstractTask
     reasonReference::Union{AbstractReference, Nothing} = nothing
     relevantHistory::Vector{AbstractReference} = AbstractReference[]
     requester::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "Task"
     restriction::Union{AbstractTask_Restriction, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     statusReason::Union{AbstractCodeableConcept, Nothing} = nothing
@@ -17373,7 +17373,7 @@ Base.@kwdef mutable struct TerminologyCapabilities <: AbstractTerminologyCapabil
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "TerminologyCapabilities"
     software::Union{AbstractTerminologyCapabilities_Software, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
@@ -17555,7 +17555,7 @@ Base.@kwdef mutable struct TestReport <: AbstractTestReport
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     name::Union{String, Nothing} = nothing
     participant::Vector{AbstractTestReport_Participant} = AbstractTestReport_Participant[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "TestReport"
     result::Union{String, Nothing} = nothing
     score::Union{FHIRNumber, Nothing} = nothing
     setup::Union{AbstractTestReport_Setup, Nothing} = nothing
@@ -17727,7 +17727,7 @@ Base.@kwdef mutable struct TestScript <: AbstractTestScript
     profile::Vector{AbstractReference} = AbstractReference[]
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "TestScript"
     setup::Union{AbstractTestScript_Setup, Nothing} = nothing
     status::Union{String, Nothing} = nothing
     teardown::Union{AbstractTestScript_Teardown, Nothing} = nothing
@@ -18077,7 +18077,7 @@ Base.@kwdef mutable struct ValueSet <: AbstractValueSet
     name::Union{String, Nothing} = nothing
     publisher::Union{String, Nothing} = nothing
     purpose::Union{String, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "ValueSet"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
     title::Union{String, Nothing} = nothing
@@ -18261,7 +18261,7 @@ Base.@kwdef mutable struct VerificationResult <: AbstractVerificationResult
     need::Union{AbstractCodeableConcept, Nothing} = nothing
     nextScheduled::Union{Date, Nothing} = nothing
     primarySource::Vector{AbstractVerificationResult_PrimarySource} = AbstractVerificationResult_PrimarySource[]
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "VerificationResult"
     status::Union{String, Nothing} = nothing
     statusDate::Union{FHIRDateTime, Nothing} = nothing
     target::Vector{AbstractReference} = AbstractReference[]
@@ -18349,7 +18349,7 @@ Base.@kwdef mutable struct VisionPrescription <: AbstractVisionPrescription
     modifierExtension::Vector{AbstractExtension} = AbstractExtension[]
     patient::Union{AbstractReference, Nothing} = nothing
     prescriber::Union{AbstractReference, Nothing} = nothing
-    resourceType::Union{String, Nothing} = nothing
+    resourceType::String = "VisionPrescription"
     status::Union{String, Nothing} = nothing
     text::Union{AbstractNarrative, Nothing} = nothing
 end
