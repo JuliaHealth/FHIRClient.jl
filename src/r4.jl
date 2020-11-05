@@ -1,8 +1,5 @@
 import .JSON3
 
-export R4
-export R4Types
-
 """
 FHIR version R4.
 
