@@ -2,13 +2,10 @@ module StructTypes
 
 using UUIDs, Dates
 
-"Abstract super type of various `StructType`s; see `StructTypes.DataType`, `StructTypes.InterfaceType`, and `StructTypes.AbstractType` for more specific kinds of `StructType`s"
 abstract type StructType end
 
-"Default `StructTypes.StructType` for types that don't have a `StructType` defined; this ensures objects must have an explicit `StructType` to avoid unanticipated issues"
 struct NoStructType <: StructType end
 
-"A kind of `StructType` where an object's \"data\" is made up, at least in part, by its direct fields. When serializing, appropriate fields will be accessed directly."
 abstract type DataType <: StructType end
 
 struct Struct <: DataType end
