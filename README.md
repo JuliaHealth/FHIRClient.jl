@@ -5,6 +5,7 @@
 [![Build Status][ci-img]][ci-url]
 [![PkgEval][pkgeval-img]][pkgeval-url]
 [![Coverage][codecov-img]][codecov-url]
+[![Coveralls][coveralls-img]][coveralls-url]
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://JuliaHealth.github.io/FHIRClient.jl/stable
@@ -14,6 +15,8 @@
 [ci-url]: https://github.com/JuliaHealth/FHIRClient.jl/actions
 [codecov-img]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/JuliaHealth/FHIRClient.jl
+[coveralls-img]: https://coveralls.io/repos/github/JuliaHealth/FHIRClient.jl/badge.svg
+[coveralls-url]: https://coveralls.io/github/JuliaHealth/FHIRClient.jl
 [pkgeval-img]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/F/FHIRClient.named.svg
 [pkgeval-url]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/F/FHIRClient.html
 

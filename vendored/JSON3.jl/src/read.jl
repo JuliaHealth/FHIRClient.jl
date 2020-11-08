@@ -1,3 +1,5 @@
+import .StructTypes
+
 # temporary wrapper to pass byte vector through
 struct VectorString{T <: AbstractVector{UInt8}} <: AbstractString
     bytes::T

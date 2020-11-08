@@ -1,3 +1,5 @@
+import .StructTypes
+
 _symbol(ptr, len) = ccall(:jl_symbol_n, Ref{Symbol}, (Ptr{UInt8}, Int), ptr, len)
 
 function getbyte(buf, pos)

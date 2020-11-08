@@ -1,3 +1,5 @@
+import .StructTypes
+
 Base.show(io::IO, j::Object) = _show(io, j)
 # use the Base fallback AbstractArray show method instead
 # Base.show(io::IO, j::Array) = _show(io, j)

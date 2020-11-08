@@ -1,3 +1,5 @@
+import .StructTypes
+
 macro pretty(json)
     return esc(:(JSON3.pretty($json)))
 end

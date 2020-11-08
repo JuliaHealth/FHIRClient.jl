@@ -2,9 +2,7 @@ using FHIRClient
 using Test
 
 import Dates
-import HTTP
 import .JSON3
-import StructTypes
 
 @testset "Basic reading" begin
     anonymous_auth = FHIRClient.AnonymousAuth()
