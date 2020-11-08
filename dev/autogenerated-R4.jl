@@ -1,7 +1,8 @@
 import Dates
 import .JSON3
 import SaferIntegers
-import StructTypes
+# import StructTypes
+import .StructTypes
 import TimeZones
 
 abstract type AbstractFHIRType
