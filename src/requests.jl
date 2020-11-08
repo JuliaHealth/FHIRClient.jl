@@ -1,6 +1,7 @@
 import HTTP
 import .JSON3
 import StructTypes
+# import .StructTypes
 
 @inline function _request_http(verb::AbstractString,
                                full_url::HTTP.URI,

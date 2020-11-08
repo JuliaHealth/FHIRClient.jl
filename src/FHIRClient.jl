@@ -1,6 +1,7 @@
 module FHIRClient
 
-include(joinpath(dirname(@__DIR__), "vendored", "JSON3", "src", "JSON3.jl"))
+include(joinpath(dirname(@__DIR__), "vendored", "JSON3.jl", "src", "JSON3.jl"))
+# include(joinpath(dirname(@__DIR__), "vendored", "StructTypes.jl", "src", "StructTypes.jl"))
 
 import Base64
 import Dates
@@ -8,6 +9,7 @@ import HTTP
 import .JSON3
 import SaferIntegers
 import StructTypes
+# import .StructTypes
 import TimeZones
 
 include("types.jl")

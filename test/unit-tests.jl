@@ -2,7 +2,6 @@ using FHIRClient
 using Test
 
 import HTTP
-import .JSON3
 
 @testset "Unit tests" begin
     @testset "fhir-to-julia.jl" begin
