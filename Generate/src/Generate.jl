@@ -1,11 +1,11 @@
 module Generate
 
 include(joinpath(dirname(dirname(@__DIR__)), "vendored", "JSON3.jl", "src", "JSON3.jl"))
-# include(joinpath(dirname(dirname(@__DIR__)), "vendored", "StructTypes.jl", "src", "StructTypes.jl"))
+include(joinpath(dirname(dirname(@__DIR__)), "vendored", "StructTypes.jl", "src", "StructTypes.jl"))
 
 import Downloads
 import .JSON3
-# import .StructTypes
+import .StructTypes
 import ZipFile
 
 export download_fhir_json_schema

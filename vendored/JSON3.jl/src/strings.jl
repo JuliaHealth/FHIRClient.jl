@@ -1,3 +1,5 @@
+import .StructTypes
+
 struct PointerString <: AbstractString
     ptr::Ptr{UInt8}
     len::Int

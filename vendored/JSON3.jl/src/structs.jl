@@ -1,4 +1,19 @@
-import StructTypes: StructType, DictType, ArrayType, StringType, NumberType, BoolType, NullType, NoStructType, Struct, Mutable, construct, AbstractType, subtypes, subtypekey
+import .StructTypes
+
+const StructType = StructTypes.StructType
+const DictType = StructTypes.DictType
+const ArrayType = StructTypes.ArrayType
+const StringType = StructTypes.StringType
+const NumberType = StructTypes.NumberType
+const BoolType = StructTypes.BoolType
+const NullType = StructTypes.NullType
+const NoStructType = StructTypes.NoStructType
+const Struct = StructTypes.Struct
+const Mutable = StructTypes.Mutable
+const construct = StructTypes.construct
+const AbstractType = StructTypes.AbstractType
+const subtypes = StructTypes.subtypes
+const subtypekey = StructTypes.subtypekey
 
 struct RawType <: StructType end
 

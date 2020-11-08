@@ -1,8 +1,8 @@
 import Dates
 import .JSON3
 import SaferIntegers
-import StructTypes
-# import .StructTypes
+# import StructTypes
+import .StructTypes
 import TimeZones
 
 abstract type AbstractFHIRType
@@ -13871,8 +13871,8 @@ Base.@kwdef mutable struct Patient <: AbstractPatient
     _gender::Union{AbstractElement, Nothing} = nothing
     _implicitRules::Union{AbstractElement, Nothing} = nothing
     _language::Union{AbstractElement, Nothing} = nothing
-    # _multipleBirthBoolean::Union{AbstractElement, Nothing} = nothing
-    # _multipleBirthInteger::Union{AbstractElement, Nothing} = nothing
+    _multipleBirthBoolean::Union{AbstractElement, Nothing} = nothing
+    _multipleBirthInteger::Union{AbstractElement, Nothing} = nothing
     active::Union{Bool, Nothing} = nothing
     address::Vector{AbstractAddress} = AbstractAddress[]
     birthDate::Union{Date, Nothing} = nothing

@@ -1,3 +1,5 @@
+import .StructTypes
+
 defaultminimum(::Union{Nothing, Missing}) = 4
 defaultminimum(::Number) = 20
 defaultminimum(::T) where {T <: Base.IEEEFloat} = Parsers.neededdigits(T)

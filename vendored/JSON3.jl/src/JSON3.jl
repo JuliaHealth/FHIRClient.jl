@@ -1,6 +1,9 @@
 module JSON3
 
-using Parsers, Mmap, UUIDs, Dates, StructTypes
+import ..StructTypes
+import ..Parsers
+
+using Mmap, UUIDs, Dates
 
 struct Object{S <: AbstractVector{UInt8}, TT <: AbstractVector{UInt64}} <: AbstractDict{Symbol, Any}
     buf::S
@@ -162,7 +165,7 @@ end
     else
         tapeidx = 3
         idx = 1
-        while true 
+        while true
             @inbounds t = tape[tapeidx]
             if i == idx
                 return getvalue(T, buf, tape, tapeidx, t)
