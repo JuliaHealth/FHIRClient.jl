@@ -1,7 +1,10 @@
 module Generate
 
-include(joinpath(dirname(dirname(@__DIR__)), "vendored", "JSON3.jl", "src", "JSON3.jl"))
 include(joinpath(dirname(dirname(@__DIR__)), "vendored", "StructTypes.jl", "src", "StructTypes.jl"))
+import .StructTypes
+import Parsers
+include(joinpath(dirname(dirname(@__DIR__)), "vendored", "JSON3.jl", "src", "JSON3.jl"))
+import .JSON3
 
 import Downloads
 import .JSON3
