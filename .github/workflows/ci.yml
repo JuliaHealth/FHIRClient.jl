@@ -8,7 +8,7 @@ on:
       - master
     tags: '*'
   schedule:
-    - cron: 0 0 * * 0
+    - cron: 0 0 1 * *
 jobs:
   test:
     name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }}
@@ -24,12 +24,12 @@ jobs:
         os:
           - ubuntu-latest
         version:
-#           - '1.4'
-#           - '1.4.0'
-#           - '1.4.1'
-#           - '1.4.2'
-#           - '1.5.0'
-#           - '1.5.1'
+          - '1.4'
+          - '1.4.0'
+          - '1.4.1'
+          - '1.4.2'
+          - '1.5.0'
+          - '1.5.1'
           # - '1'
           - 'nightly'
     steps:
