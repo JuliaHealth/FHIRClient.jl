@@ -14,6 +14,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Installing FHIRClient" => "installation.md",
         "Examples" => "examples.md",
         "API" => "api.md",
         "Auto-generating the type definitions" => "generate.md",
