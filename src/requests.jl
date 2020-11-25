@@ -86,6 +86,12 @@ end
     return full_url_uri
 end
 
+"""
+    request_raw(client, verb, path; query, body, headers)
+    request_raw(client, verb, path; query, headers)
+    request_raw(client, verb, path; body, headers)
+    request_raw(client, verb, path; headers)
+"""
 @inline function request_raw(client::Client,
                              verb::AbstractString,
                              path::AbstractString;
@@ -117,6 +123,12 @@ end
     return body_string
 end
 
+"""
+    request_json(client, verb, path; query, body, headers)
+    request_json(client, verb, path; query, headers)
+    request_json(client, verb, path; body, headers)
+    request_json(client, verb, path; headers)
+"""
 @inline function request_json(client::Client,
                               verb::AbstractString,
                               path::AbstractString;
