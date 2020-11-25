@@ -28,7 +28,7 @@ import .JSON3
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_base_url(client) == base_url
         search_request_path = "/Patient?given=Jason&family=Argonaut"
-        json_response_search_results_bundle = FHIRClient._request_json(client, "GET", search_request_path)
+        json_response_search_results_bundle = FHIRClient.request_json(client, "GET", search_request_path)
         patient_id = json_response_search_results_bundle.entry[1].resource.id
         patient_request = "/Patient/$(patient_id)"
         patients = [
