@@ -86,12 +86,12 @@ end
     return full_url_uri
 end
 
-@inline function _request_raw(client::Client,
-                              verb::AbstractString,
-                              path::AbstractString;
-                              body::Union{AbstractString, Nothing} = nothing,
-                              headers::AbstractDict = Dict{String, String}(),
-                              query::Union{AbstractDict, Nothing} = nothing)::String
+@inline function request_raw(client::Client,
+                             verb::AbstractString,
+                             path::AbstractString;
+                             body::Union{AbstractString, Nothing} = nothing,
+                             headers::AbstractDict = Dict{String, String}(),
+                             query::Union{AbstractDict, Nothing} = nothing)::String
     full_url = _generate_full_url(client,
                                   path)
     _new_headers = Dict{String, String}()
@@ -117,19 +117,19 @@ end
     return body_string
 end
 
-@inline function _request_json(client::Client,
-                               verb::AbstractString,
-                               path::AbstractString;
-                               body::Union{JSON3.Object, Nothing} = nothing,
-                               headers::AbstractDict = Dict{String, String}(),
-                               query::Union{AbstractDict, Nothing} = nothing)
+@inline function request_json(client::Client,
+                              verb::AbstractString,
+                              path::AbstractString;
+                              body::Union{JSON3.Object, Nothing} = nothing,
+                              headers::AbstractDict = Dict{String, String}(),
+                              query::Union{AbstractDict, Nothing} = nothing)
     _new_request_body = _write_json_request_body(body)
-    response_body::String = _request_raw(client,
-                                         verb,
-                                         path;
-                                         body = _new_request_body,
-                                         headers = headers,
-                                         query = query)::String
+    response_body::String = request_raw(client,
+                                        verb,
+                                        path;
+                                        body = _new_request_body,
+                                        headers = headers,
+                                        query = query)::String
     response_json = JSON3.read(response_body)
     return response_json
 end
@@ -158,12 +158,12 @@ end
                          query::Union{AbstractDict, Nothing} = nothing,
                          kwargs...)::T where T
     _new_request_body = _write_struct_request_body(body)
-    response_body::String = _request_raw(client,
-                                         verb,
-                                         path;
-                                         body = _new_request_body,
-                                         headers = headers,
-                                         query = query)::String
+    response_body::String = request_raw(client,
+                                        verb,
+                                        path;
+                                        body = _new_request_body,
+                                        headers = headers,
+                                        query = query)::String
     response_object::T = JSON3.read(response_body,
                                     T;
                                     kwargs...)::T
