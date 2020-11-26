@@ -24,7 +24,7 @@ specification and building
 [SMART on FHIR](https://docs.smarthealthit.org/)
 applications.
 
-Please see the [documentation](https://JuliaHealth.github.io/FHIRClient.jl/stable).
+Please see the [documentation](https://juliahealth.org/FHIRClient.jl/stable/).
 
 ---
 
