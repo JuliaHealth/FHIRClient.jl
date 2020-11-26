@@ -9,29 +9,34 @@ on:
     tags: '*'
   schedule:
     - cron: 0 0 1 * *
+defaults:
+  run:
+    shell: bash
 jobs:
   test:
-    name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }}
+    name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }} / ${{ matrix.arch }} / ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        arch:
-          - x64
         generate:
           - 'false'
           - 'true'
-        os:
-          - ubuntu-latest
         version:
           - '1.4'
-          - '1.4.0'
-          - '1.4.1'
-          - '1.4.2'
           - '1.5.0'
           - '1.5.1'
           # - '1'
           - 'nightly'
+        os:
+          - ubuntu-latest
+          - windows-latest
+        arch:
+          - x64
+          - x86
+        exclude:
+          - os: windows-latest
+            version: 'nightly'
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
