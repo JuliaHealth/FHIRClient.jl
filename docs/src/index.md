@@ -11,7 +11,7 @@ specification and building
 [SMART on FHIR](https://docs.smarthealthit.org/)
 applications.
 
-The code for this package is available in the [GitHub repository](https://github.com/JuliaHealth/FHIRClient.jl).
+The source code for this package is available in the [GitHub repository](https://github.com/JuliaHealth/FHIRClient.jl).
 
 ---
 
