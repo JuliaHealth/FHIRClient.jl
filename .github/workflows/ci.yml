@@ -19,6 +19,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        generate:
+          - 'false'
+          - 'true'
         version:
           - '1.4'
           - '1.5.0'
