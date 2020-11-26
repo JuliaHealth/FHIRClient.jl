@@ -17,7 +17,7 @@ UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 HTTP = "0.8.19, 0.9"
 Parsers = "1"
 SaferIntegers = "2.5.1"
-TimeZones = "1.5.2"
+TimeZones = "1.5.2, 1.5"
 julia = "1.4"
 
 [extras]
