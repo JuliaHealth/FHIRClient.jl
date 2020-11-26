@@ -14,7 +14,7 @@ defaults:
     shell: bash
 jobs:
   test:
-    name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }}
+    name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }} / ${{ matrix.arch }} / ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
