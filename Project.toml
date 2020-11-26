@@ -1,7 +1,7 @@
 name = "FHIRClient"
 uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
-version = "0.7.2"
+version = "0.7.3"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -17,7 +17,7 @@ UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 HTTP = "0.8.19, 0.9"
 Parsers = "1"
 SaferIntegers = "2.5.1"
-TimeZones = "1.5.2"
+TimeZones = "1.5.2, 1.5"
 julia = "1.4"
 
 [extras]
