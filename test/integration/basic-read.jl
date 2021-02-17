@@ -1,9 +1,3 @@
-using FHIRClient
-using Test
-
-import Dates
-import .JSON3
-
 @testset "Basic reading" begin
     anonymous_auth = FHIRClient.AnonymousAuth()
     oauth2_auth = FHIRClient.OAuth2()
