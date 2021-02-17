@@ -23,6 +23,7 @@ include("r4.jl")
 include("credentials.jl")
 include("fhir-to-julia.jl")
 include("headers.jl")
+include("other-fhir-versions.jl")
 include("requests.jl")
 
 end # end module FHIRClient

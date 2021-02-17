@@ -1,9 +1,3 @@
-using FHIRClient
-using Test
-
-import Dates
-import .JSON3
-
 @testset "Raw JSON" begin
     fhir_version = FHIRClient.R4()
     base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")

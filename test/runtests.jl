@@ -8,7 +8,10 @@ import Test
 
 const JSON3 = FHIRClient.JSON3
 
+import Dates
+import .JSON3
+
 @testset "FHIRClient.jl" begin
-    include("unit-tests.jl")
-    include("integration-tests.jl")
+    include("unit.jl")
+    include("integration.jl")
 end
