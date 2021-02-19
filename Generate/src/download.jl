@@ -1,6 +1,3 @@
-import Downloads
-import ZipFile
-
 """
     download_fhir_json_schema(url::AbstractString)
 

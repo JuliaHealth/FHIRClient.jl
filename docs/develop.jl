@@ -1,10 +1,10 @@
-using Pkg
+import Pkg
 
 Pkg.activate(@__DIR__)
 
 devpkgs = [
-    PackageSpec(path = dirname(@__DIR__)),
-    PackageSpec(path = joinpath(dirname(@__DIR__), "Generate")),
+    Pkg.PackageSpec(path = dirname(@__DIR__)),
+    Pkg.PackageSpec(path = joinpath(dirname(@__DIR__), "Generate")),
 ]
 
 Pkg.develop(devpkgs)
