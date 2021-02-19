@@ -61,7 +61,7 @@ jobs:
         with:
           # version: '1'
           version: '1.5.1'
-      - run: julia --color=yes -e 'using Pkg; VERSION >= v"1.5-" && !isdir(joinpath(DEPOT_PATH[1], "registries", "General")) && Pkg.Registry.add("General")'
+      - run: julia --color=yes -e 'import Pkg; VERSION >= v"1.5-" && !isdir(joinpath(DEPOT_PATH[1], "registries", "General")) && Pkg.Registry.add("General")'
         shell: bash
         env:
           # We set `JULIA_PKG_SERVER` only for this step to enforce
@@ -72,16 +72,16 @@ jobs:
       - run: julia --project=docs docs/develop.jl
       - run: |
           julia --project=docs -e '
-            using Documenter: doctest
-            using FHIRClient
-            using Generate
-            doctest(FHIRClient)'
+            import Documenter
+            import FHIRClient
+            import Generate
+            Documenter.doctest(FHIRClient)'
       - run: |
           julia --project=docs -e '
-            using Documenter: doctest
-            using FHIRClient
-            using Generate
-            doctest(Generate; manual = joinpath(pwd(), "docs", "src"))'
+            import Documenter
+            import FHIRClient
+            import Generate
+            Documenter.doctest(Generate; manual = joinpath(pwd(), "docs", "src"))'
       - run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

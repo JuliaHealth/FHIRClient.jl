@@ -1,4 +1,4 @@
-using Generate
+import Generate
 
 fhir_versions = [:R4]
 

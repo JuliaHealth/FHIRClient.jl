@@ -1,7 +1,3 @@
-import HTTP
-# import JSON3
-import .JSON3
-
 @inline function _request_http(verb::AbstractString,
                                full_url::HTTP.URI,
                                headers::AbstractDict,

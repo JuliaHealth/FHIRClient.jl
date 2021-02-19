@@ -1,13 +1,13 @@
-using FHIRClient
-using Generate
-using Documenter
+import FHIRClient
+import Generate
+import Documenter
 
-makedocs(;
+Documenter.makedocs(;
     modules=[FHIRClient, Generate],
     authors="Dilum Aluthge, Rhode Island Quality Institute, and contributors",
     repo="https://github.com/JuliaHealth/FHIRClient.jl/blob/{commit}{path}#L{line}",
     sitename="FHIRClient.jl",
-    format=Documenter.HTML(;
+    format=Documenter.Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://JuliaHealth.github.io/FHIRClient.jl",
         assets=String[],
@@ -22,6 +22,6 @@ makedocs(;
     strict=true,
 )
 
-deploydocs(;
+Documenter.deploydocs(;
     repo="github.com/JuliaHealth/FHIRClient.jl",
 )

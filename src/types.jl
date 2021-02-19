@@ -1,5 +1,3 @@
-import HTTP
-
 """
 Supertype of the various authentication types.
 
