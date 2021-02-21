@@ -29,7 +29,6 @@ in the future:
 
 | Standard/Specification | Description |
 | ---------------------- | ----------- |
-| [CDS Hooks](https://cds-hooks.hl7.org/) | Clinical Decision Support Hooks. Web standard for CDS in the EHR workflow. |
 | [FHIR Bulk Data Access (Flat FHIR)](https://hl7.org/fhir/uv/bulkdata/) | FHIR export API for large-scale data access. |
 
 These descriptions are taken from the
