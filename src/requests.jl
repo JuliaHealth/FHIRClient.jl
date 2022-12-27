@@ -94,6 +94,17 @@ end
                              body::Union{AbstractString, Nothing} = nothing,
                              headers::AbstractDict = Dict{String, String}(),
                              query::Union{AbstractDict, Nothing} = nothing)::String
+    response = _request_raw_response(client, verb, path; body=body, headers=headers, query=query)
+    response_body_string::String = String(response.body)::String
+    return response_body_string
+end
+
+@inline function _request_raw_response(client::Client,
+                             verb::AbstractString,
+                             path::AbstractString;
+                             body::Union{AbstractString, Nothing} = nothing,
+                             headers::AbstractDict = Dict{String, String}(),
+                             query::Union{AbstractDict, Nothing} = nothing)
     full_url = _generate_full_url(client,
                                   path)
     _new_headers = Dict{String, String}()
@@ -106,8 +117,7 @@ end
                              query,
                              body)
     empty!(_new_headers)
-    response_body_string::String = String(response.body)::String
-    return response_body_string
+    return response
 end
 
 @inline function _write_json_request_body(body::Nothing)::Nothing
