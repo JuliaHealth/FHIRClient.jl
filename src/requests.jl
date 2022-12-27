@@ -120,7 +120,6 @@ end
     return response
 end
 
-
 @inline function _write_json_request_body(body::Nothing)::Nothing
     return nothing
 end
