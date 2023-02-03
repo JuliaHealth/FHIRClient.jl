@@ -2,11 +2,13 @@
                                full_url::HTTP.URI,
                                headers::AbstractDict,
                                query::Nothing,
-                               body::Nothing)
+                               body::Nothing;
+                               status_exception::Bool = true)
     response = HTTP.request(
         verb,
         full_url,
-        headers,
+        headers;
+        status_exception = status_exception,
     )
     return response
 end
@@ -15,12 +17,14 @@ end
                                full_url::HTTP.URI,
                                headers::AbstractDict,
                                query::Nothing,
-                               body::AbstractString)
+                               body::AbstractString;
+                               status_exception::Bool = true)
     response = HTTP.request(
         verb,
         full_url,
         headers,
-        body,
+        body;
+        status_exception = status_exception,
     )
     return response
 end
@@ -29,12 +33,14 @@ end
                                full_url::HTTP.URI,
                                headers::AbstractDict,
                                query::AbstractDict,
-                               body::Nothing)
+                               body::Nothing;
+                               status_exception::Bool = true)
     response = HTTP.request(
         verb,
         full_url,
         headers;
         query = query,
+        status_exception = status_exception,
     )
     return response
 end
@@ -43,13 +49,15 @@ end
                                full_url::HTTP.URI,
                                headers::AbstractDict,
                                query::AbstractDict,
-                               body::AbstractString)
+                               body::AbstractString;
+                               status_exception::Bool = true)
     response = HTTP.request(
         verb,
         full_url,
         headers,
         body;
         query = query,
+        status_exception = status_exception,
     )
     return response
 end
@@ -93,8 +101,17 @@ end
                              path::AbstractString;
                              body::Union{AbstractString, Nothing} = nothing,
                              headers::AbstractDict = Dict{String, String}(),
-                             query::Union{AbstractDict, Nothing} = nothing)::String
-    response = _request_raw_response(client, verb, path; body=body, headers=headers, query=query)
+                             query::Union{AbstractDict, Nothing} = nothing,
+                             status_exception::Bool = true)::String
+    response = _request_raw_response(
+        client,
+        verb,
+        path;
+        body=body,
+        headers=headers,
+        query=query,
+        status_exception=status_exception,
+    )
     response_body_string::String = String(response.body)::String
     return response_body_string
 end
@@ -104,7 +121,8 @@ end
                              path::AbstractString;
                              body::Union{AbstractString, Nothing} = nothing,
                              headers::AbstractDict = Dict{String, String}(),
-                             query::Union{AbstractDict, Nothing} = nothing)
+                             query::Union{AbstractDict, Nothing} = nothing,
+                             status_exception::Bool = true)
     full_url = _generate_full_url(client,
                                   path)
     _new_headers = Dict{String, String}()
@@ -115,7 +133,8 @@ end
                              full_url,
                              _new_headers,
                              query,
-                             body)
+                             body;
+                             status_exception = status_exception)
     empty!(_new_headers)
     return response
 end
@@ -140,14 +159,16 @@ end
                               path::AbstractString;
                               body::Union{JSON3.Object, Nothing} = nothing,
                               headers::AbstractDict = Dict{String, String}(),
-                              query::Union{AbstractDict, Nothing} = nothing)
+                              query::Union{AbstractDict, Nothing} = nothing,
+                              status_exception::Bool = true)
     _new_request_body = _write_json_request_body(body)
     response_body::String = request_raw(client,
                                         verb,
                                         path;
                                         body = _new_request_body,
                                         headers = headers,
-                                        query = query)::String
+                                        query = query,
+                                        status_exception = status_exception)::String
     response_json = JSON3.read(response_body)
     return response_json
 end
@@ -174,6 +195,7 @@ end
                          body = nothing,
                          headers::AbstractDict = Dict{String, String}(),
                          query::Union{AbstractDict, Nothing} = nothing,
+                         status_exception::Bool = true,
                          kwargs...)::T where T
     _new_request_body = _write_struct_request_body(body)
     response_body::String = request_raw(client,
@@ -181,7 +203,8 @@ end
                                         path;
                                         body = _new_request_body,
                                         headers = headers,
-                                        query = query)::String
+                                        query = query,
+                                        status_exception = status_exception)::String
     response_object::T = JSON3.read(response_body,
                                     T;
                                     kwargs...)::T
