@@ -38,7 +38,7 @@ struct BaseURL <: Any
 """
 struct BaseURL
     uri::HTTP.URI
-    function BaseURL(uri::HTTP.URI; require_https::Bool = false) # TODO: change the default to `true`
+    function BaseURL(uri::HTTP.URI; require_https::Bool = true)
         this_uri_uses_https = _uses_https(uri)
         if !this_uri_uses_https
             msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
