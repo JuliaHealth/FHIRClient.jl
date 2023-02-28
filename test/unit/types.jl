@@ -1,4 +1,4 @@
-@testset "BaseURL constructor"
+@testset "BaseURL constructor" begin
     https_uris = ["https://example.com", HTTP.URI("https://example.com")]
     @testset for uri in uris
         @test FHIRClient.BaseURL(uri) isa FHIRClient.BaseURL
