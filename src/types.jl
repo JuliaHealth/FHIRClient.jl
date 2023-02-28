@@ -17,11 +17,11 @@ abstract type FHIRVersion <: Any
 abstract type FHIRVersion
 end
 
-function _uses_https(url_str::AbstractString)
+@inline function _uses_https(url_str::AbstractString)
     return startswith(lowercase(strip(url_str)), "https://")
 end
 
-function _uses_https(uri::HTTP.URI)
+@inline function _uses_https(uri::HTTP.URI)
     return _uses_https(Base.string(uri))
 end
 
@@ -38,6 +38,7 @@ struct BaseURL <: Any
 """
 struct BaseURL
     uri::HTTP.URI
+
     function BaseURL(uri::HTTP.URI; require_https::Bool = true)
         this_uri_uses_https = _uses_https(uri)
         if !this_uri_uses_https
@@ -51,21 +52,33 @@ struct BaseURL
         end
         return new(uri)
     end
+
+    @doc """
+        BaseURL(base_url::AbstractString)
+
+    Construct a `BaseURL` object given the base URL.
+
+    The base URL is also called the "Service Root URL"
+    """
+    function BaseURL(uri::AbstractString; require_https::Bool = true)
+        this_uri_uses_https = _uses_https(uri)
+        if !this_uri_uses_https
+            msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
+            if require_https
+                throw(ArgumentError(msg))
+            else
+                @warn "`require_https` is set to `false` - we strongly recommend setting it to `true`"
+                @warn msg
+            end
+        end
+        return new(HTTP.URI(uri))
+    end
 end
+
 _get_http_uri(base_url::BaseURL) = base_url.uri
 function _get_http_uri_string(uri::HTTP.URI)::String
     return Base.string(uri)
 end
-
-"""
-    BaseURL(base_url::AbstractString)
-
-Construct a `BaseURL` object given the base URL.
-
-The base URL is also called the "Service Root URL"
-"""
-BaseURL(base_url::AbstractString) = BaseURL(HTTP.URI(base_url))
-
 
 """
 A FHIR client.
