@@ -71,7 +71,7 @@ struct BaseURL
                 @warn msg
             end
         end
-        return new(HTTP.URI(base_url))
+        return new(HTTP.URI(uri))
     end
 end
 
