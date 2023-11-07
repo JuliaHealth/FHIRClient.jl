@@ -7,6 +7,7 @@ import JSON3
 import SaferIntegers
 import StructTypes
 import TimeZones
+import URIs
 
 include("types.jl")
 

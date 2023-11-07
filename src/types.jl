@@ -21,7 +21,7 @@ end
     return startswith(lowercase(strip(url_str)), "https://")
 end
 
-@inline function _uses_https(uri::HTTP.URI)
+@inline function _uses_https(uri::URIs.URI)
     return _uses_https(Base.string(uri))
 end
 
@@ -34,12 +34,12 @@ The base URL is also called the "Service Root URL"
 struct BaseURL <: Any
 
 ## Fields
-- uri :: HTTP.URIs.URI
+- uri :: URIs.URI
 """
 struct BaseURL
-    uri::HTTP.URI
+    uri::URIs.URI
 
-    function BaseURL(uri::HTTP.URI; require_https::Bool = true)
+    function BaseURL(uri::URIs.URI; require_https::Bool = true)
         this_uri_uses_https = _uses_https(uri)
         if !this_uri_uses_https
             msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
@@ -71,12 +71,12 @@ struct BaseURL
                 @warn msg
             end
         end
-        return new(HTTP.URI(uri))
+        return new(URIs.URI(uri))
     end
 end
 
 _get_http_uri(base_url::BaseURL) = base_url.uri
-function _get_http_uri_string(uri::HTTP.URI)::String
+function _get_http_uri_string(uri::URIs.URI)::String
     return Base.string(uri)
 end
 

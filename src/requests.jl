@@ -1,5 +1,5 @@
 @inline function _request_http(verb::AbstractString,
-                               full_url::HTTP.URI,
+                               full_url::URIs.URI,
                                headers::AbstractDict,
                                query::Nothing,
                                body::Nothing)
@@ -12,7 +12,7 @@
 end
 
 @inline function _request_http(verb::AbstractString,
-                               full_url::HTTP.URI,
+                               full_url::URIs.URI,
                                headers::AbstractDict,
                                query::Nothing,
                                body::AbstractString)
@@ -26,7 +26,7 @@ end
 end
 
 @inline function _request_http(verb::AbstractString,
-                               full_url::HTTP.URI,
+                               full_url::URIs.URI,
                                headers::AbstractDict,
                                query::AbstractDict,
                                body::Nothing)
@@ -40,7 +40,7 @@ end
 end
 
 @inline function _request_http(verb::AbstractString,
-                               full_url::HTTP.URI,
+                               full_url::URIs.URI,
                                headers::AbstractDict,
                                query::AbstractDict,
                                body::AbstractString)
@@ -63,23 +63,23 @@ end
 end
 
 @inline function _generate_full_url(client::Client, path::AbstractString)::HTTP.URI
-    base_url = get_base_url(client)
-    result = _generate_full_url(base_url, path)
-    return result
-end
+    # Add trailing slash to base URL
+    # This is important since
+    # URIs.resolvereference("http://foo/bar", "./baz") = URIs.URI("http://foo/baz")
+    # whereas
+    # URIs.resolvereference("http://foo/bar/", "./baz") = URIs.URI("http://foo/bar/baz")
+    # (compliant with RFC 3986 Section 5.2)
+    base_url = _add_trailing_slash(_get_http_uri(get_base_url(client)))
 
-@inline function _generate_full_url(base_url::BaseURL, path::AbstractString)::HTTP.URI
-    base_url_uri = _get_http_uri(base_url)
-    result = _generate_full_url(base_url_uri, path)
-    return result
-end
+    # Treat all paths without scheme as relative
+    # Adding the dot is important since
+    # URIs.resolvereference("http://foo/bar/", "/baz") = URIs.URI("http://foo/baz")
+    # whereas
+    # URIs.resolvereference("http://foo/bar/", "./baz") = URIs.URI("http://foo/bar/baz")
+    # (compliant with RFC 3986 Section 5.2)
+    _path = replace(path, r"^/+" => "./")
 
-@inline function _generate_full_url(base_url_uri::HTTP.URI, path::AbstractString)::HTTP.URI
-    base_url_uri_with_trailing_slash = _add_trailing_slash(base_url_uri)
-    base_url_uri_string = _get_http_uri_string(base_url_uri_with_trailing_slash)
-    full_url_uri_string = string(base_url_uri_string, path)
-    full_url_uri = HTTP.URI(full_url_uri_string)
-    return full_url_uri
+    return URIs.resolvereference(base_url, _path) 
 end
 
 """

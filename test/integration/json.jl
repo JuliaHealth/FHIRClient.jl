@@ -5,6 +5,11 @@
     client = FHIRClient.Client(fhir_version, base_url, auth)
     search_request = "/Patient?given=Jason&family=Argonaut"
     json_response_search_results_bundle = FHIRClient.request_json(client, "GET", search_request)
+
+    # Check that the same search results can be obtained with the absolute URL
+    url = "https://hapi.fhir.org/baseR4" * search_request
+    @test FHIRClient.request_json(client, "GET", url) == json_response_search_results_bundle
+
     patient_id = json_response_search_results_bundle.entry[1].resource.id
     patient_request = "/Patient/$(patient_id)"
     json_responses_patient = [
