@@ -2,3 +2,6 @@
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 FHIRClient = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 Generate = "ff303c0d-e9c7-476c-bf3b-b5f85c44159a"
+
+[compat]
+Documenter = "1"
