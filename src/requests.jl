@@ -55,7 +55,7 @@ end
 end
 
 @inline function _add_trailing_slash(url::HTTP.URI)::HTTP.URI
-    _url_string = _get_http_uri_string(url)
+    _url_string = string(url)
     if endswith(_url_string, "/")
         return url
     end
@@ -64,20 +64,8 @@ end
 
 @inline function _generate_full_url(client::Client, path::AbstractString)::HTTP.URI
     base_url = get_base_url(client)
-    result = _generate_full_url(base_url, path)
-    return result
-end
-
-@inline function _generate_full_url(base_url::BaseURL, path::AbstractString)::HTTP.URI
-    base_url_uri = _get_http_uri(base_url)
-    result = _generate_full_url(base_url_uri, path)
-    return result
-end
-
-@inline function _generate_full_url(base_url_uri::HTTP.URI, path::AbstractString)::HTTP.URI
-    base_url_uri_with_trailing_slash = _add_trailing_slash(base_url_uri)
-    base_url_uri_string = _get_http_uri_string(base_url_uri_with_trailing_slash)
-    full_url_uri_string = string(base_url_uri_string, path)
+    base_url_uri_with_trailing_slash = _add_trailing_slash(base_url.uri)
+    full_url_uri_string = string(base_url_uri_with_trailing_slash, path)
     full_url_uri = HTTP.URI(full_url_uri_string)
     return full_url_uri
 end
