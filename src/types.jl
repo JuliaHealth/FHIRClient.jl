@@ -39,7 +39,7 @@ struct BaseURL
     The base URL is also called the "Service Root URL".
     """
     function BaseURL(uri::Union{HTTP.URI, AbstractString}; require_https::Bool = true)
-        _uri = HTTP.URI(uri)
+        _uri = uri isa HTTP.URI ? uri : HTTP.URI(uri)
         if lowercase(_uri.scheme) != "https"
             msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
             if require_https
