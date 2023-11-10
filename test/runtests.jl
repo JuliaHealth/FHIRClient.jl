@@ -2,9 +2,8 @@ using FHIRClient
 using Test
 
 import Dates
-import HTTP
 import JSON3
-import Test
+import URIs
 
 @testset "FHIRClient.jl" begin
     include("unit.jl")

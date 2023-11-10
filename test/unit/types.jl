@@ -1,12 +1,12 @@
 @testset "BaseURL constructor" begin
-    https_uris = ["https://example.com", HTTP.URI("https://example.com")]
+    https_uris = ["https://example.com", URIs.URI("https://example.com")]
     @testset for uri in https_uris
         @test FHIRClient.BaseURL(uri) isa FHIRClient.BaseURL
         @test FHIRClient.BaseURL(uri; require_https = true) isa FHIRClient.BaseURL
         @test FHIRClient.BaseURL(uri; require_https = false) isa FHIRClient.BaseURL
     end
 
-    http_uris = ["http://example.com", HTTP.URI("http://example.com")]
+    http_uris = ["http://example.com", URIs.URI("http://example.com")]
     @testset for uri in http_uris
         @test_throws Exception FHIRClient.BaseURL(uri)
         @test_throws Exception FHIRClient.BaseURL(uri; require_https = true)
