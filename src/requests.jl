@@ -55,7 +55,7 @@ end
 end
 
 @inline function _add_trailing_slash(url::HTTP.URI)::HTTP.URI
-    _url_string = _get_http_uri_string(url)
+    _url_string = string(url)
     if endswith(_url_string, "/")
         return url
     end
@@ -69,7 +69,7 @@ end
     # whereas
     # URIs.resolvereference("http://foo/bar/", "./baz") = URIs.URI("http://foo/bar/baz")
     # (compliant with RFC 3986 Section 5.2)
-    base_url = _add_trailing_slash(_get_http_uri(base))
+    base_url = _add_trailing_slash(base)
 
     # Treat all paths without scheme as relative
     # Adding the dot is important since
@@ -129,7 +129,7 @@ end
                              require_client_host::Bool = true,
                              require_client_path::Bool = true)
     # Construct and check the validity of the target URL
-    base_url = get_base_url(client)
+    base_url = get_base_url(client).uri
     full_url = _generate_full_url(base_url, path)
     if require_client_scheme && full_url.scheme != base_url.scheme
         throw(ArgumentError("The requested URL ($full_url) must have the same scheme as the FHIR client ($base_url)."))
@@ -221,7 +221,7 @@ end
                                         path;
                                         body = _new_request_body,
                                         headers = headers,
-                                        query = query
+                                        query = query,
                                         require_client_scheme = require_client_scheme,
                                         require_client_host = require_client_host,
                                         require_client_path = require_client_path)::String
