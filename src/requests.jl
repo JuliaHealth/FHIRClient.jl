@@ -77,7 +77,7 @@ end
     # whereas
     # URIs.resolvereference("http://foo/bar/", "./baz") = URIs.URI("http://foo/bar/baz")
     # (compliant with RFC 3986 Section 5.2)
-    _path = replace(path, r"^/+" => "./")
+    _path = startswith(path, "/") ? "." * path : path
 
     return URIs.resolvereference(base_url, _path) 
 end
@@ -131,7 +131,7 @@ end
                              require_base_url::Symbol = :strict)
     # Check that `require_base_url` is valid
     if require_base_url !== :strict && require_base_url !== :host && require_base_url !== :scheme && require_base_url !== :no
-        throw(ArgumentError("The provided keyword argument `require_base_url = $(require_base_url)` is invalid: `require_base_url` must be `:full`, `:host`, `:scheme`, or `:no`."))
+        throw(ArgumentError("The provided keyword argument `require_base_url = $(require_base_url)` is invalid: `require_base_url` must be `:strict`, `:host`, `:scheme`, or `:no`."))
     end
 
     # Construct and check the validity of the target URL
@@ -144,7 +144,7 @@ end
 
         if require_base_url !== :scheme
             if lowercase(full_url.host) !== lowercase(base_url.host)
-                throw(ArgumentError("The scheme of the requested URL ($full_url) and the base URL ($base_url) are not equal: If the requested URL is correct, set `require_base_url = :scheme`."))
+                throw(ArgumentError("The host of the requested URL ($full_url) and the base URL ($base_url) are not equal: If the requested URL is correct, set `require_base_url = :scheme`."))
             end
 
             if require_base_url !== :host && !startswith(full_url.path, base_url.path)
