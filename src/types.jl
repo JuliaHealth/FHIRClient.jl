@@ -26,10 +26,10 @@ The base URL is also called the "Service Root URL"
 struct BaseURL <: Any
 
 ## Fields
-- uri :: HTTP.URIs.URI
+- uri :: URIs.URI
 """
 struct BaseURL
-    uri::HTTP.URI
+    uri::URIs.URI
 
     """
         BaseURL(base_url::Union{URIs.URI, AbstractString})
@@ -38,8 +38,8 @@ struct BaseURL
 
     The base URL is also called the "Service Root URL".
     """
-    function BaseURL(uri::Union{HTTP.URI, AbstractString}; require_https::Bool = true)
-        _uri = uri isa HTTP.URI ? uri : HTTP.URI(uri)
+    function BaseURL(uri::Union{URIs.URI, AbstractString}; require_https::Bool = true)
+        _uri = uri isa URIs.URI ? uri : URIs.URI(uri)
         if lowercase(_uri.scheme) != "https"
             msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
             if require_https
