@@ -4,8 +4,7 @@ FHIR version R4.
 ## Summary
 abstract type Authentication <: Any
 """
-struct R4 <: FHIRVersion
-end
+struct R4 <: FHIRVersion end
 
 module R4Types
 

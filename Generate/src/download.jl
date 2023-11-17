@@ -17,9 +17,9 @@ julia> Generate.download_fhir_json_schema(url)
 end
 
 @inline function _process_zip_reader(r::ZipFile.Reader)
-    result = Dict{String, Union{String, Dict}}()
+    result = Dict{String,Union{String,Dict}}()
     files = r.files
-    for i in 1:length(files)
+    for i = 1:length(files)
         file = files[i]
         filename = file.name
         result[filename] = _process_zip_file(filename, file)

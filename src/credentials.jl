@@ -1,5 +1,4 @@
-function set_credential!(cred::Credential,
-                         value::AbstractString)::Nothing
+function set_credential!(cred::Credential, value::AbstractString)::Nothing
     Base.shred!(cred.secret_buffer)
     seekstart(cred.secret_buffer)
     write(cred.secret_buffer, value)
@@ -16,20 +15,20 @@ function Base.shred!(cred::Credential)::Nothing
     return nothing
 end
 
-function set_token!(jwt_auth::JWTAuth,
-                    token_value::AbstractString)::Nothing
+function set_token!(jwt_auth::JWTAuth, token_value::AbstractString)::Nothing
     set_credential!(jwt_auth.jwt_cred, token_value)
     return nothing
 end
 
-function set_token!(oauth2::OAuth2,
-                    token_value::AbstractString)::Nothing
+function set_token!(oauth2::OAuth2, token_value::AbstractString)::Nothing
     set_credential!(oauth2.oauth2_cred, token_value)
     return nothing
 end
 
-function set_password!(password_auth::UsernamePassAuth,
-                       password_value::AbstractString)::Nothing
+function set_password!(
+    password_auth::UsernamePassAuth,
+    password_value::AbstractString,
+)::Nothing
     set_credential!(password_auth.password_cred, password_value)
     return nothing
 end

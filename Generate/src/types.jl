@@ -19,8 +19,14 @@ end
         push!(lines, "    $(struct_field_line)")
     end
     push!(lines, "end")
-    push!(lines, "@inline StructTypes.StructType(::Type{T}) where {T <: $(typename_string)} = StructTypes.Mutable()")
-    push!(lines, "# @inline StructTypes.omitempties(::Type{T}) where {T <: $(typename_string)} = true")
+    push!(
+        lines,
+        "@inline StructTypes.StructType(::Type{T}) where {T <: $(typename_string)} = StructTypes.Mutable()",
+    )
+    push!(
+        lines,
+        "# @inline StructTypes.omitempties(::Type{T}) where {T <: $(typename_string)} = true",
+    )
     result = strip(join(lines, "\n")) * "\n\n"
     return result
 end
