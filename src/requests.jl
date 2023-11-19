@@ -79,7 +79,7 @@ end
     # (compliant with RFC 3986 Section 5.2)
     _path = startswith(path, "/") ? "." * path : path
 
-    return URIs.resolvereference(base_url, _path) 
+    return URIs.resolvereference(base_url, _path)
 end
 
 """
@@ -248,25 +248,40 @@ for the FHIR `client`, and parse the JSON response with JSON3 as an object of ty
 
 See also [`request_json`](@ref) and [`request_raw`](@ref).
 """
-@inline function request(::Type{T},
-                         client::Client,
-                         verb::AbstractString,
-                         path::AbstractString;
-                         body = nothing,
-                         headers::AbstractDict = Dict{String, String}(),
-                         query::Union{AbstractDict, Nothing} = nothing,
-                         require_base_url::Symbol = :strict,
-                         kwargs...)::T where T
+@inline function request(
+    ::Type{T},
+    client::Client,
+    verb::AbstractString,
+    path::AbstractString;
+    body = nothing,
+    headers::AbstractDict = Dict{String, String}(),
+    query::Union{AbstractDict, Nothing} = nothing,
+    require_base_url::Symbol = :strict,
+    kwargs...,
+) where T
     _new_request_body = _write_struct_request_body(body)
-    response_body::String = request_raw(client,
-                                        verb,
-                                        path;
-                                        body = _new_request_body,
-                                        headers = headers,
-                                        query = query,
-                                        require_base_url = require_base_url)::String
-    response_object::T = JSON3.read(response_body,
-                                    T;
-                                    kwargs...)::T
+    response_body = request_raw(client,
+        verb,
+        path;
+        body = _new_request_body,
+        headers = headers,
+        query = query,
+        require_base_url = require_base_url,
+    )::String
+
+    # Recall that the default log levels are:
+    #     Error === LogLevel(2_000)
+    #     Warn === LogLevel(1_000)
+    #     Info === LogLevel(0)
+    #     Debug === LogLevel(-1_000)
+    #
+    # Ref: https://docs.julialang.org/en/v1/stdlib/Logging
+
+    # This is really only necessary if you run into errors when parsing the JSON.
+    @logmsg LogLevel(-5_000) "" response_body
+
+    @logmsg LogLevel(-3_000) "" JSON3.read(response_body)
+
+    response_object = JSON3.read(response_body, T; kwargs...)::T
     return response_object
 end
