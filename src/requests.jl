@@ -278,7 +278,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     # Ref: https://docs.julialang.org/en/v1/stdlib/Logging
 
     # This is really only necessary if you run into errors when parsing the JSON.
-    @logmsg LogLevel(-5_000) "" response_body
+    @logmsg LogLevel(-5_000) "FHIRClient.request" response_body path verb
 
     @logmsg LogLevel(-3_000) "" JSON3.read(response_body)
 
