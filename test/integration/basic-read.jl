@@ -71,6 +71,39 @@
             @test only(only(patient.name).given) == patient_given_name
             @test patient.birthDate == patient_birthdate
         end
+
+        @testset "verbosity" begin
+            request_dict(args...; kwargs...) = FHIRClient.request(Dict, args...; kwargs...)
+            for f in (FHIRClient.request_raw, FHIRClient.request_json, request_dict)
+                # No logs by default and with `verbose = 0`
+                @test_logs f(client, "GET", search_request_path)
+                @test_logs f(client, "GET", search_request_path; verbose = 0)
+
+                # Some logs with `verbose = 1`
+                @test_logs (:debug, "GET /r4/Patient?given=Sam&family=Jones HTTP/1.1") (
+                    :debug,
+                    "HTTP/1.1 200 OK <= (GET /r4/Patient?given=Sam&family=Jones HTTP/1.1)",
+                ) f(client, "GET", search_request_path; verbose = 1)
+
+                # More logs with `verbose = 2`
+                @test_logs (:debug, "GET /r4/Patient?given=Sam&family=Jones HTTP/1.1") (
+                    :debug,
+                    "client startwrite",
+                ) (:debug, r"^HTTP\.Messages\.Request:") (:debug, "client closewrite") (
+                    :debug,
+                    "client startread",
+                ) (:debug, "client closeread") (
+                    :debug,
+                    "HTTP/1.1 200 OK <= (GET /r4/Patient?given=Sam&family=Jones HTTP/1.1)",
+                ) (:debug, r"HTTP\.Messages\.Response:") f(
+                    client,
+                    "GET",
+                    search_request_path;
+                    verbose = 2,
+                )
+            end
+        end
+
         Base.shred!(auth)
         Base.shred!(client)
     end

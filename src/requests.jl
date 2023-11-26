@@ -1,47 +1,3 @@
-@inline function _request_http(
-    verb::AbstractString,
-    full_url::URIs.URI,
-    headers::AbstractDict,
-    query::Nothing,
-    body::Nothing,
-)
-    response = HTTP.request(verb, full_url, headers)
-    return response
-end
-
-@inline function _request_http(
-    verb::AbstractString,
-    full_url::URIs.URI,
-    headers::AbstractDict,
-    query::Nothing,
-    body::AbstractString,
-)
-    response = HTTP.request(verb, full_url, headers, body)
-    return response
-end
-
-@inline function _request_http(
-    verb::AbstractString,
-    full_url::URIs.URI,
-    headers::AbstractDict,
-    query::AbstractDict,
-    body::Nothing,
-)
-    response = HTTP.request(verb, full_url, headers; query = query)
-    return response
-end
-
-@inline function _request_http(
-    verb::AbstractString,
-    full_url::URIs.URI,
-    headers::AbstractDict,
-    query::AbstractDict,
-    body::AbstractString,
-)
-    response = HTTP.request(verb, full_url, headers, body; query = query)
-    return response
-end
-
 @inline function _add_trailing_slash(url::HTTP.URI)::HTTP.URI
     _url_string = string(url)
     if endswith(_url_string, "/")
@@ -78,6 +34,8 @@ const _common_docstring_request = """
     - `:host` (host and scheme of the requested URL and base URL have to be equal),
     - `:scheme` (scheme of the requested URL and base URL have to be equal),
     - `:no` (requested URL does not have to match the base URL).
+- `verbose::Int = 0`: Verbosity of the logging of the request and response processes.
+  The keyword argument is forwarded to `HTTP.request` and can be set to `1` or `2` for increasingly verbose logging.
 """
 
 """
@@ -104,6 +62,7 @@ See also [`request_json`](@ref) and [`request`](@ref).
     headers::AbstractDict = Dict{String,String}(),
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
+    verbose::Int = 0,
 )::String
     response = _request_raw_response(
         client,
@@ -113,6 +72,7 @@ See also [`request_json`](@ref) and [`request`](@ref).
         headers = headers,
         query = query,
         require_base_url = require_base_url,
+        verbose = verbose,
     )
     response_body_string::String = String(response.body)::String
     return response_body_string
@@ -126,6 +86,7 @@ end
     headers::AbstractDict = Dict{String,String}(),
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
+    verbose::Int = 0,
 )
     # Check that `require_base_url` is valid
     if require_base_url !== :strict &&
@@ -174,7 +135,11 @@ end
     json_headers!(_new_headers)
     authentication_headers!(_new_headers, client)
     merge!(_new_headers, headers)
-    response = _request_http(verb, full_url, _new_headers, query, body)
+    response = if body === nothing
+        HTTP.request(verb, full_url, _new_headers; query = query, verbose = verbose)
+    else
+        HTTP.request(verb, full_url, _new_headers, body; query = query, verbose = verbose)
+    end
     empty!(_new_headers)
     return response
 end
@@ -212,6 +177,7 @@ See also [`request`](@ref) and [`request_raw`](@ref).
     headers::AbstractDict = Dict{String,String}(),
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
+    verbose::Int = 0,
 )
     _new_request_body = _write_json_request_body(body)
     response_body::String = request_raw(
@@ -222,6 +188,7 @@ See also [`request`](@ref) and [`request_raw`](@ref).
         headers = headers,
         query = query,
         require_base_url = require_base_url,
+        verbose = verbose,
     )::String
     response_json = JSON3.read(response_body)
     return response_json
@@ -262,6 +229,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     headers::AbstractDict = Dict{String,String}(),
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
+    verbose::Int = 0,
     kwargs...,
 )::T where {T}
     _new_request_body = _write_struct_request_body(body)
@@ -273,6 +241,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
         headers = headers,
         query = query,
         require_base_url = require_base_url,
+        verbose = verbose,
     )::String
     response_object::T = JSON3.read(response_body, T; kwargs...)::T
     return response_object
