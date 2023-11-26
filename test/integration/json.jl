@@ -1,10 +1,10 @@
 @testset "Raw JSON" begin
     for trailing_slash in (true, false)
         fhir_version = FHIRClient.R4()
-        base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4" * (trailing_slash ? "/" : ""))
+        base_url = FHIRClient.BaseURL("https://server.fire.ly/r4" * (trailing_slash ? "/" : ""))
         auth = FHIRClient.AnonymousAuth()
         client = FHIRClient.Client(fhir_version, base_url, auth)
-        search_request = "/Patient?given=Jason&family=Argonaut"
+        search_request = "/Patient?given=Sam&family=Jones"
         json_response_search_results_bundle = FHIRClient.request_json(client, "GET", search_request)
 
         patient_id = json_response_search_results_bundle.entry[1].resource.id
@@ -39,7 +39,7 @@
         end
 
         # Absolute path
-        path = string(base_url.uri) * "/Patient/$(patient_id)"
+        path = string(base_url.uri, trailing_slash ? "" : "/", "Patient/", patient_id)
         path_uri = URIs.URI(path)
     
         # Mismatch of scheme
@@ -75,7 +75,7 @@
         end
 
         # Mismatch of path
-        base_url2 = FHIRClient.BaseURL(URIs.URI(base_url.uri; path = replace(base_url.uri.path, "/base" => "/")))
+        base_url2 = FHIRClient.BaseURL(URIs.URI(base_url.uri; path = replace(base_url.uri.path, "/r4" => "/baseR4")))
         client2 = FHIRClient.Client(fhir_version, base_url2, auth)
         @test_throws ArgumentError FHIRClient.request_raw(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request_json(client2, "GET", path)

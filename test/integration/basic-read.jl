@@ -17,11 +17,11 @@
     ]
     for auth in all_auths
         fhir_version = FHIRClient.R4()
-        base_url = FHIRClient.BaseURL("https://hapi.fhir.org/baseR4")
+        base_url = FHIRClient.BaseURL("https://server.fire.ly/r4")
         client = FHIRClient.Client(fhir_version, base_url, auth)
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_base_url(client) == base_url
-        search_request_path = "/Patient?given=Jason&family=Argonaut"
+        search_request_path = "/Patient?given=Sam&family=Jones"
         json_response_search_results_bundle = FHIRClient.request_json(client, "GET", search_request_path)
         patient_id = json_response_search_results_bundle.entry[1].resource.id
         patient_request = "/Patient/$(patient_id)"
@@ -38,11 +38,9 @@
         for patient in patients
             @test patient isa FHIRClient.R4Types.AbstractResource
             @test patient isa FHIRClient.R4Types.Patient
-            @test only(patient.name).use == "usual"
-            @test only(patient.name).text == "Jason Argonaut"
-            @test only(patient.name).family == "Argonaut"
-            @test only(only(patient.name).given) == "Jason"
-            @test patient.birthDate == Dates.Date("1985-08-01")
+            @test only(patient.name).family == "Jones"
+            @test only(only(patient.name).given) == "Sam"
+            @test patient.birthDate == Dates.Date("1988-03-04")
         end
         Base.shred!(auth)
         Base.shred!(client)
