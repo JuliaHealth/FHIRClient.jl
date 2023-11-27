@@ -11,6 +11,6 @@
         @test_throws Exception FHIRClient.BaseURL(uri)
         @test_throws Exception FHIRClient.BaseURL(uri; require_https = true)
         @test FHIRClient.BaseURL(uri; require_https = false) isa FHIRClient.BaseURL
-        @test_logs (:warn,) match_mode=:any FHIRClient.BaseURL(uri; require_https = false)
+        @test_logs (:warn,) match_mode = :any FHIRClient.BaseURL(uri; require_https = false)
     end
 end

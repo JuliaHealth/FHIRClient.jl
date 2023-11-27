@@ -41,12 +41,8 @@ end
 """
 
 @inline function _is_already_defined(julianame::String)::Bool
-    _already_defined_types = String[
-        "DateTime",
-        "FHIRInt32",
-        "ZonedDateTime",
-        "ResourceList",
-    ]
+    _already_defined_types =
+        String["DateTime", "FHIRInt32", "ZonedDateTime", "ResourceList"]
     if julianame in _already_defined_types || julianame in values(FHIR_TYPE_MAP)
         return true
     else
@@ -54,10 +50,12 @@ end
     end
 end
 
-@inline function _determine_field_type(propertyname_symbol::Symbol,
-                                       property_info::AbstractDict;
-                                       additional_mappings::AbstractDict{Symbol, String},
-                                       typename_string::String)::Tuple{String, String, String}
+@inline function _determine_field_type(
+    propertyname_symbol::Symbol,
+    property_info::AbstractDict;
+    additional_mappings::AbstractDict{Symbol,String},
+    typename_string::String,
+)::Tuple{String,String,String}
     definitions_regex = r"^#\/definitions\/([\w]*)$"
     propertyname_string = String(propertyname_symbol)
     these_map_to_fhirint32 = Symbol[
@@ -107,7 +105,7 @@ end
     elseif propertyname_symbol in haskey(additional_mappings, propertyname_symbol)
         mapped_to_type = convert(String, additional_mappings[propertyname_symbol])::String
         return mapped_to_type
-    elseif propertyname_symbol in  these_map_to_fhirint32
+    elseif propertyname_symbol in these_map_to_fhirint32
         return "FHIRInt32", "Union{FHIRInt32, Nothing}", "nothing"
     elseif propertyname_symbol in these_map_to_fhirnumber
         return "FHIRNumber", "Union{FHIRNumber, Nothing}", "nothing"
@@ -128,15 +126,20 @@ end
             else
                 array_eltype_abstractified = "Abstract$(array_eltype)"
             end
-            return "Vector{$(array_eltype_abstractified)}", "Vector{$(array_eltype_abstractified)}", "$(array_eltype_abstractified)[]"
+            return "Vector{$(array_eltype_abstractified)}",
+            "Vector{$(array_eltype_abstractified)}",
+            "$(array_eltype_abstractified)[]"
         else
-            property_field_type = _single_typestring_to_property_field_type(property_info[:type])
+            property_field_type =
+                _single_typestring_to_property_field_type(property_info[:type])
             if _is_already_defined(property_field_type)
                 property_field_type_abstractified = property_field_type
             else
                 property_field_type_abstractified = "Abstract$(property_field_type)"
             end
-            return property_field_type_abstractified, "Union{$(property_field_type_abstractified), Nothing}", "nothing"
+            return property_field_type_abstractified,
+            "Union{$(property_field_type_abstractified), Nothing}",
+            "nothing"
         end
     elseif haskey(property_info, Symbol("\$ref"))
         refvalue = property_info[Symbol("\$ref")]
@@ -148,7 +151,9 @@ end
         else
             property_field_type_abstractified = "Abstract$(property_field_type)"
         end
-        return property_field_type_abstractified, "Union{$(property_field_type_abstractified), Nothing}", "nothing"
+        return property_field_type_abstractified,
+        "Union{$(property_field_type_abstractified), Nothing}",
+        "nothing"
     elseif haskey(property_info, "enum")
         return "String", "Union{String, Nothing}", "nothing"
     end
@@ -168,11 +173,18 @@ end
 
 Generate the FHIR types and save them in the specified output file.
 """
-@inline function output_fhir_types(; output_file::AbstractString,
-                                     schema_string::AbstractString,
-                                     additional_mappings::AbstractDict{Symbol, String} = Dict{Symbol, String}())::String
+@inline function output_fhir_types(;
+    output_file::AbstractString,
+    schema_string::AbstractString,
+    additional_mappings::AbstractDict{Symbol,String} = Dict{Symbol,String}(),
+)::String
     output_file_abspath = convert(String, abspath(output_file))::String
-    content = strip(generate_fhir_types_content(; schema_string = schema_string, additional_mappings = additional_mappings))
+    content = strip(
+        generate_fhir_types_content(;
+            schema_string = schema_string,
+            additional_mappings = additional_mappings,
+        ),
+    )
     rm(output_file_abspath; force = true, recursive = true)
     mkpath(dirname(output_file_abspath))
     open(output_file_abspath, "w") do f
@@ -182,8 +194,10 @@ Generate the FHIR types and save them in the specified output file.
     return output_file_abspath
 end
 
-@inline function generate_fhir_types_content(; schema_string::AbstractString,
-                                               additional_mappings::AbstractDict{Symbol, String})::String
+@inline function generate_fhir_types_content(;
+    schema_string::AbstractString,
+    additional_mappings::AbstractDict{Symbol,String},
+)::String
     schema_parsed = JSON3.read(schema_string)
     schema_definitions = schema_parsed.definitions
     struct_infos = StructInformation[]
@@ -206,22 +220,40 @@ end
                 propertyname_symbol_fixed = fhir_to_julia(propertyname_symbol)
                 @assert julia_to_fhir(propertyname_symbol_fixed) == propertyname_symbol
                 property_info = properties[propertyname_symbol]
-                property_field_type, property_field_type_withunion, default_value = _determine_field_type(
-                    propertyname_symbol_fixed,
-                    property_info;
-                    additional_mappings = additional_mappings,
-                    typename_string = typename_string,
-                )
+                property_field_type, property_field_type_withunion, default_value =
+                    _determine_field_type(
+                        propertyname_symbol_fixed,
+                        property_info;
+                        additional_mappings = additional_mappings,
+                        typename_string = typename_string,
+                    )
                 if lowercase(strip(property_field_type)) == "number"
-                    @error("\"number\" is too vague of a field type", typename_symbol, propertyname_symbol, propertyname_symbol_fixed, property_field_type, property_field_eltype)
+                    @error(
+                        "\"number\" is too vague of a field type",
+                        typename_symbol,
+                        propertyname_symbol,
+                        propertyname_symbol_fixed,
+                        property_field_type,
+                        property_field_eltype
+                    )
                     throw(ArgumentError("field type is too vague"))
                 end
                 if strip(property_field_type) == "string"
-                    @error("\"string\" is too vague of a field type", typename_symbol, propertyname_symbol, propertyname_symbol_fixed, property_field_type, property_field_eltype)
+                    @error(
+                        "\"string\" is too vague of a field type",
+                        typename_symbol,
+                        propertyname_symbol,
+                        propertyname_symbol_fixed,
+                        property_field_type,
+                        property_field_eltype
+                    )
                     throw(ArgumentError("field type is too vague"))
                 end
                 push!(struct_field_names, "$(propertyname_symbol_fixed)")
-                push!(struct_field_lines, "$(propertyname_symbol_fixed)::$(property_field_type_withunion) = $(default_value)")
+                push!(
+                    struct_field_lines,
+                    "$(propertyname_symbol_fixed)::$(property_field_type_withunion) = $(default_value)",
+                )
             end
             unique!(struct_field_lines)
             sort!(struct_field_lines)
@@ -252,7 +284,11 @@ end
             if has_julia_type(fhirtype)
                 juliatype = get_juliatype(fhirtype)
             else
-                throw(ArgumentError("The FHIR name \"$(fhirtype)\" does not have a corresponding Julia name"))
+                throw(
+                    ArgumentError(
+                        "The FHIR name \"$(fhirtype)\" does not have a corresponding Julia name",
+                    ),
+                )
             end
         end
     end

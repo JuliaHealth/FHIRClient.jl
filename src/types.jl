@@ -4,8 +4,7 @@ Supertype of the various authentication types.
 ## Summary
 abstract type Authentication <: Any
 """
-abstract type Authentication
-end
+abstract type Authentication end
 
 """
 Subtypes of `FHIRVersion` are singleton structs that correspond to versions of the
@@ -14,8 +13,7 @@ FHIR specification.
 ## Summary
 abstract type FHIRVersion <: Any
 """
-abstract type FHIRVersion
-end
+abstract type FHIRVersion end
 
 """
 The base URL for a FHIR server.
@@ -38,7 +36,7 @@ struct BaseURL
 
     The base URL is also called the "Service Root URL".
     """
-    function BaseURL(uri::Union{URIs.URI, AbstractString}; require_https::Bool = true)
+    function BaseURL(uri::Union{URIs.URI,AbstractString}; require_https::Bool = true)
         _uri = uri isa URIs.URI ? uri : URIs.URI(uri)
         if lowercase(_uri.scheme) != "https"
             msg = "The following FHIR Base URL does not use HTTPS: $(uri)"
@@ -64,7 +62,7 @@ struct Client{V <: FHIRVersion, A <: Authentication} <: Any
 - base_url :: BaseURL
 - auth :: A
 """
-struct Client{V <: FHIRVersion, A <: Authentication}
+struct Client{V<:FHIRVersion,A<:Authentication}
     fhir_version::V
     base_url::BaseURL
     auth::A

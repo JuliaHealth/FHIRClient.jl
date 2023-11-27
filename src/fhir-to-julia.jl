@@ -2,13 +2,13 @@
     if fhirname == :end
         return :end_fhir
     elseif fhirname == :function
-            return :function_fhir
+        return :function_fhir
     elseif fhirname == :global
-            return :global_fhir
+        return :global_fhir
     elseif fhirname == :import
-            return :import_fhir
+        return :import_fhir
     elseif fhirname == :for
-            return :for_fhir
+        return :for_fhir
     else
         return fhirname
     end
@@ -18,13 +18,13 @@ end
     if julianame == :end_fhir
         return :end
     elseif julianame == :function_fhir
-            return :function
+        return :function
     elseif julianame == :global_fhir
-            return :global
+        return :global
     elseif julianame == :import_fhir
-            return :import
+        return :import
     elseif julianame == :for_fhir
-            return :for
+        return :for
     else
         return julianame
     end

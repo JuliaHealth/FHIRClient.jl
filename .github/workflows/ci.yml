@@ -16,7 +16,23 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref != 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release-') || github.run_number }}
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 jobs:
+  format:
+    name: Check format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: 1
+      - name: Install and run JuliaFormatter
+        run: make format-fix
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: JuliaFormatter
+          fail_on_error: true
+          filter_mode: added
   test:
+    needs: format
     name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }} / ${{ matrix.arch }} / ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -55,6 +71,7 @@ jobs:
         with:
           file: lcov.info
   docs:
+    needs: format
     name: Documentation
     runs-on: ubuntu-latest
     steps:

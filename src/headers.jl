@@ -25,7 +25,10 @@ function authentication_headers!(headers::AbstractDict, jwt_auth::JWTAuth)::Noth
 end
 
 
-function authentication_headers!(headers::AbstractDict, password_auth::UsernamePassAuth)::Nothing
+function authentication_headers!(
+    headers::AbstractDict,
+    password_auth::UsernamePassAuth,
+)::Nothing
     headers["Authorization"] = "Basic $(Base64.base64encode(string(get_username(password_auth), ':', get_password(password_auth))))"
     return nothing
 end
