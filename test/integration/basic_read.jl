@@ -21,7 +21,9 @@
         client = FHIRClient.Client(fhir_version, base_url, auth)
         @test FHIRClient.get_fhir_version(client) == fhir_version
         @test FHIRClient.get_base_url(client) == base_url
-        search_request_path = "/Patient?given=Sam&family=Jones"
+        firstname = test_server.patient1_firstname
+        lastname = test_server.patient1_lastname
+        search_request_path = "/Patient?given=$(firstname)&family=$(lastname)"
         json_response_search_results_bundle =
             FHIRClient.request_json(client, "GET", search_request_path)
         patient_id = json_response_search_results_bundle.entry[1].resource.id
@@ -58,9 +60,9 @@
         for patient in patients
             @test patient isa FHIRClient.R4Types.AbstractResource
             @test patient isa FHIRClient.R4Types.Patient
-            @test only(patient.name).family == "Jones"
-            @test only(only(patient.name).given) == "Sam"
-            @test patient.birthDate == Dates.Date("1988-03-04")
+            @test only(patient.name).family == test_server.patient1_lastname
+            @test only(only(patient.name).given) == test_server.patient1_firstname
+            @test patient.birthDate == Dates.Date(test_server.patient1_dob_str)
         end
         Base.shred!(auth)
         Base.shred!(client)
