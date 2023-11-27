@@ -21,5 +21,6 @@ include("fhir-to-julia.jl")
 include("headers.jl")
 include("other-fhir-versions.jl")
 include("requests.jl")
+include("tryparse.jl")
 
 end # end module FHIRClient
