@@ -16,6 +16,22 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref != 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release-') || github.run_number }}
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 jobs:
+  finalize:
+    needs: [format, test, docs]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo format: ${{ needs.format.result }}
+          echo test: ${{ needs.test.result }}
+          echo docs: ${{ needs.docs.result }}
+      - run: exit 1
+        # Make sure that every line (except for the last line) ends in `||`.
+        # Make sure that the last line does NOT end in `||`.
+        if: |
+          (needs.format.result != 'success') ||
+          (needs.test.result != 'success') ||
+          (needs.docs.result != 'success')
   format:
     name: Check format
     runs-on: ubuntu-latest
