@@ -5,3 +5,4 @@ Generate = "ff303c0d-e9c7-476c-bf3b-b5f85c44159a"
 
 [compat]
 Documenter = "1"
+FHIRClient = "2"
