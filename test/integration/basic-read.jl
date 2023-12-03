@@ -125,10 +125,7 @@
                         search_request_path;
                         verbose = 1,
                     )
-                    @test occursin(
-                        "GET /r4$search_request_path HTTP/1.1",
-                        output,
-                    )
+                    @test occursin("GET /r4$search_request_path HTTP/1.1", output)
                     @test occursin(
                         "HTTP/1.1 200 OK <= (GET /r4$search_request_path HTTP/1.1)",
                         output,
@@ -141,10 +138,7 @@
                         search_request_path;
                         verbose = 2,
                     )
-                    @test occursin(
-                        "GET /r4$search_request_path HTTP/1.1",
-                        output,
-                    )
+                    @test occursin("GET /r4$search_request_path HTTP/1.1", output)
                     @test occursin("HTTP.Messages.Request:", output)
                     @test occursin("HTTP/1.1 200 OK", output)
                     @test occursin("HTTP.Messages.Response:", output)
