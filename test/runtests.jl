@@ -19,7 +19,7 @@ Logging.disable_logging(Logging.BelowMinLevel)
         # min_level = Logging.BelowMinLevel,
         min_level = Logging.LogLevel(-5_000),
         catch_exceptions = false,
-    );
+    )
     Logging.with_logger(test_logger) do
         include("unit.jl")
         include("integration.jl")
