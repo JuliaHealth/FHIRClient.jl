@@ -1,8 +1,7 @@
 name: CI
 on:
+  merge_group: # GitHub Merge Queue
   pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
