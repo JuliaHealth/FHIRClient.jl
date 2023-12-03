@@ -70,10 +70,20 @@ end
     return URIs.resolvereference(base_url, _path)
 end
 
+const _common_docstring_request = """
+- `headers::AbstractDict = Dict{String, String}()`: headers of the request.
+- `query::Union{AbstractDict, Nothing} = nothing`: query parameters.
+- `require_base_url::Symbol = :strict`: to what extent the requested URL has to match the base URL of the `client`. Possible values are:
+    - `:strict` (requested URL has to start with the base URL),
+    - `:host` (host and scheme of the requested URL and base URL have to be equal),
+    - `:scheme` (scheme of the requested URL and base URL have to be equal),
+    - `:no` (requested URL does not have to match the base URL).
+"""
+
 """
     request_raw(
         client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>
+        <keyword arguments>...
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
@@ -82,13 +92,7 @@ for the FHIR `client`, and return the body of the response as `String`.
 # Arguments
 
 - `body::Union{AbstractString, Nothing} = nothing`: body of the request.
-- `headers::AbstractDict = Dict{String, String}()`: headers of the request.
-- `query::Union{AbstractDict, Nothing} = nothing`: query parameters.
-- `require_base_url::Symbol = :strict`: to what extent the requested URL has to match the base URL of the `client`.
-  Possible values are `:strict` (requested URL has to start with the base URL),
-  `:host` (host and scheme of the requested URL and base URL have to be equal),
-  `:scheme` (scheme of the requested URL and base URL have to be equal),
-  and `:no` (requested URL does not have to match the base URL).
+$(_common_docstring_request)
 
 See also [`request_json`](@ref) and [`request`](@ref).
 """
@@ -187,7 +191,7 @@ end
 """
     request_json(
         client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>
+        <keyword arguments>...
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
@@ -196,13 +200,7 @@ for the FHIR `client`, and parse the JSON response with JSON3.
 # Arguments
 
 - `body::Union{JSON3.Object, Nothing} = nothing`: JSON body of the request.
-- `headers::AbstractDict = Dict{String, String}()`: headers of the request.
-- `query::Union{AbstractDict, Nothing} = nothing`: query parameters.
-- `require_base_url::Symbol = :strict`: to what extent the requested URL has to match the base URL of the `client`.
-  Possible values are `:strict` (requested URL has to start with the base URL),
-  `:host` (host and scheme of the requested URL and base URL have to be equal),
-  `:scheme` (scheme of the requested URL and base URL have to be equal),
-  and `:no` (requested URL does not have to match the base URL).
+$(_common_docstring_request)
 
 See also [`request`](@ref) and [`request_raw`](@ref).
 """
@@ -241,7 +239,7 @@ end
 """
     request(
         T, client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>
+        <keyword arguments>...
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
@@ -250,13 +248,7 @@ for the FHIR `client`, and parse the JSON response with JSON3 as an object of ty
 # Arguments
 
 - `body = nothing`: JSON body of the request.
-- `headers::AbstractDict = Dict{String, String}()`: headers of the request.
-- `query::Union{AbstractDict, Nothing} = nothing`: query parameters.
-- `require_base_url::Symbol = :strict`: to what extent the requested URL has to match the base URL of the `client`.
-  Possible values are `:strict` (requested URL has to start with the base URL),
-  `:host` (host and scheme of the requested URL and base URL have to be equal),
-  `:scheme` (scheme of the requested URL and base URL have to be equal),
-  and `:no` (requested URL does not have to match the base URL).
+$(_common_docstring_request)
 - `kwargs...`: remaining keyword arguments that are forwarded to `JSON3.read` for parsing the JSON response.
 
 See also [`request_json`](@ref) and [`request_raw`](@ref).
