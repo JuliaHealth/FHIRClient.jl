@@ -13,4 +13,4 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 [compat]
 JSON3 = "1.5.1"
 StructTypes = "1.2.3"
-ZipFile = "0.9.3"
+ZipFile = "0.9.3, 0.10"
