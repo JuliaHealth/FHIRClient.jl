@@ -263,9 +263,9 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
     kwargs...,
-)::T where {T}
+) where {T}
     _new_request_body = _write_struct_request_body(body)
-    response_body::String = request_raw(
+    response_body = request_raw(
         client,
         verb,
         path;
@@ -274,6 +274,17 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
         query = query,
         require_base_url = require_base_url,
     )::String
-    response_object::T = JSON3.read(response_body, T; kwargs...)::T
+
+    # Recall that the default log levels are:
+    #     Error === LogLevel(2_000)
+    #     Warn === LogLevel(1_000)
+    #     Info === LogLevel(0)
+    #     Debug === LogLevel(-1_000)
+    #
+    # Ref: https://docs.julialang.org/en/v1/stdlib/Logging
+
+    @logmsg LogLevel(-3_000) "FHIRClient.request()" path verb tryparse_json(response_body)
+
+    response_object = JSON3.read(response_body, T; kwargs...)::T
     return response_object
 end
