@@ -72,8 +72,8 @@ end
 
 """
 request_raw(
-client::Client, verb::AbstractString, path::AbstractString;
-<keyword arguments>
+    client::Client, verb::AbstractString, path::AbstractString;
+    <keyword arguments>
 )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
