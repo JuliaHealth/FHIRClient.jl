@@ -83,7 +83,7 @@ const _common_docstring_request = """
 """
     request_raw(
         client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>...
+        <keyword arguments>
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
@@ -191,7 +191,7 @@ end
 """
     request_json(
         client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>...
+        <keyword arguments>
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
@@ -239,7 +239,7 @@ end
 """
     request(
         T, client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>...
+        <keyword arguments>
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
