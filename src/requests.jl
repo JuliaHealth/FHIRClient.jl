@@ -283,7 +283,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     #
     # Ref: https://docs.julialang.org/en/v1/stdlib/Logging
 
-    @logmsg LogLevel(-3_000) "FHIRClient.request()" path verb tryparse_json(response_body)
+    @logmsg LogLevel(-1_000) "FHIRClient.request()" path verb tryparse_json(response_body)
 
     response_object = JSON3.read(response_body, T; kwargs...)::T
     return response_object
