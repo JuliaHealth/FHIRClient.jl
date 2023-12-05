@@ -10,7 +10,7 @@ import URIs
 # Also possibly related: https://github.com/JuliaLang/julia/issues/34037
 #
 # Note: this is a GLOBAL setting:
-Logging.disable_logging(Logging.BelowMinLevel)
+# Logging.disable_logging(Logging.BelowMinLevel)
 
 @testset "FHIRClient.jl" begin
     # When we run the tests, we want to make sure that none of the `@logmsg`
