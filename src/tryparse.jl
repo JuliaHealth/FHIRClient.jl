@@ -8,7 +8,7 @@ function tryparse_json(response_body::AbstractString)
         # `response_body` so that the user can try to figure out why it failed to
         # parse as valid JSON.
         bt = catch_backtrace()
-        @logmsg LogLevel(-1_000) "tryparse_json()" exception = (ex, bt) response_body
+        @debug "tryparse_json()" exception = (ex, bt) response_body
         nothing
     end
     return response_json

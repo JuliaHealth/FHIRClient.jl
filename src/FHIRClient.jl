@@ -4,13 +4,10 @@ import Base64
 import Dates
 import HTTP
 import JSON3
-import Logging
 import SaferIntegers
 import StructTypes
 import TimeZones
 import URIs
-
-using Logging: @logmsg, LogLevel
 
 include("types.jl")
 
