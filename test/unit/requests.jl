@@ -60,7 +60,7 @@
             )) == JSON3.read(json_body)
         end
         for no_json_body in ("{3}", "[ 4 }", "{\"firstName\":John}")
-            logger = TestLogger(; min_level = Logging.Debug)
+            logger = Test.TestLogger(; min_level = Logging.Debug)
             res = Logging.with_logger(logger) do
                 FHIRClient.tryparse_json(no_json_body)
             end
