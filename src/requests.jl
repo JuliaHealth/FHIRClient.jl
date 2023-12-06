@@ -263,7 +263,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
     kwargs...,
-) where {T}
+)::T where {T}
     _new_request_body = _write_struct_request_body(body)
     response_body = request_raw(
         client,
@@ -285,6 +285,6 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
 
     @logmsg LogLevel(-1_000) "FHIRClient.request()" path verb tryparse_json(response_body)
 
-    response_object = JSON3.read(response_body, T; kwargs...)::T
+    response_object = JSON3.read(response_body, T; kwargs...)
     return response_object
 end
