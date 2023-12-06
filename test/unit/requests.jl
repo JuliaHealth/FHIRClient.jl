@@ -52,4 +52,25 @@
             end
         end
     end
+
+    @testset "tryparse_json" begin
+        for json_body in ("42", "{}", "{\"firstName\":\"John\", \"lastName\":\"Doe\"}")
+            @test (@test_logs min_level = Logging.Debug FHIRClient.tryparse_json(
+                json_body,
+            )) == JSON3.read(json_body)
+        end
+        for no_json_body in ("{3}", "[ 4 }", "{\"firstName\":John}")
+            logger = Test.TestLogger(; min_level = Logging.Debug)
+            res = Logging.with_logger(logger) do
+                FHIRClient.tryparse_json(no_json_body)
+            end
+            @test res === nothing
+            log = only(logger.logs)
+            @test log.message == "FHIRClient.tryparse_json()"
+            @test log.level == Logging.LogLevel(-1_000)
+            @test length(log.kwargs) == 2
+            @test log.kwargs[:exception] isa Tuple{<:Exception,<:Any}
+            @test log.kwargs[:response_body] == no_json_body
+        end
+    end
 end

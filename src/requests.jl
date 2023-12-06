@@ -263,7 +263,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
     kwargs...,
-) where {T}
+)::T where {T}
     _new_request_body = _write_struct_request_body(body)
     response_body = request_raw(
         client,
