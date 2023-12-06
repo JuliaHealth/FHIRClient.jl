@@ -3,6 +3,7 @@ using Test
 
 import Dates
 import JSON3
+import Logging
 import URIs
 
 @testset "FHIRClient.jl" begin

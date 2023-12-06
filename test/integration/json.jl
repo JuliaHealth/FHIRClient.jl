@@ -19,9 +19,19 @@
         @test json_response isa JSON3.Object
         @test json_response == JSON3.read(raw_response)
 
-        dict_response = FHIRClient.request(Dict, client, "GET", patient_request)
+        test_logger = TestLogger(; min_level = Logging.Debug)
+        dict_response = Logging.with_logger(test_logger) do
+            FHIRClient.request(Dict, client, "GET", patient_request)
+        end
         @test dict_response isa Dict
         @test dict_response == JSON3.read(raw_response, Dict)
+        log = only(test_logger.logs)
+        @test log.message == "FHIRClient.request()"
+        @test log.level == Logging.Debug
+        @test length(log.kwargs) == 3
+        @test log.kwargs[:path] == patient_request
+        @test log.kwargs[:verb] == "GET"
+        @test log.kwargs[Symbol("tryparse_json(response_body)")] == json_response
 
         # Relative paths
         for path in ("Patient/$(patient_id)", "./Patient/$(patient_id)")
