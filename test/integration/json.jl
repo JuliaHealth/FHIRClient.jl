@@ -19,7 +19,7 @@
         @test json_response isa JSON3.Object
         @test json_response == JSON3.read(raw_response)
 
-        test_logger = Test.TestLogger(; min_level = Logging.Debug)
+        test_logger = Test.TestLogger(; min_level = Logging.Debug, catch_exceptions = false)
         dict_response = Logging.with_logger(test_logger) do
             FHIRClient.request(Dict, client, "GET", patient_request)
         end
