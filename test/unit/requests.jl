@@ -67,7 +67,7 @@
             @test res === nothing
             log = only(logger.logs)
             @test log.message == "FHIRClient.tryparse_json()"
-            @test log.level == Logging.Debug
+            @test log.level == Logging.LogLevel(-1_000)
             @test length(log.kwargs) == 2
             @test log.kwargs[:exception] isa Tuple{<:Exception,<:Any}
             @test log.kwargs[:response_body] == no_json_body

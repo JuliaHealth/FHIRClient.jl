@@ -25,9 +25,9 @@
         end
         @test dict_response isa Dict
         @test dict_response == JSON3.read(raw_response, Dict)
-        log = only(test_logger.logs)
+        log = only(filter(x -> x._module === FHIRClient, test_logger.logs))
         @test log.message == "FHIRClient.request()"
-        @test log.level == Logging.Debug
+        @test log.level == Logging.LogLevel(-1_000)
         @test length(log.kwargs) == 3
         @test log.kwargs[:path] == patient_request
         @test log.kwargs[:verb] == "GET"
