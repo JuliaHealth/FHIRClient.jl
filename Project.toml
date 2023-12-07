@@ -1,7 +1,7 @@
 name = "FHIRClient"
 uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
-version = "2.2.0"
+version = "2.3.0"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -32,7 +32,8 @@ UUIDs = "<0.0.1, 1"
 julia = "1.4"
 
 [extras]
+Suppressor = "fd094767-a336-5f1f-9728-57cf17d0bbfb"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Suppressor", "Test"]

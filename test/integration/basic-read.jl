@@ -71,6 +71,81 @@
             @test only(only(patient.name).given) == patient_given_name
             @test patient.birthDate == patient_birthdate
         end
+
+        @testset "verbosity" begin
+            request_dict(args...; kwargs...) = FHIRClient.request(Dict, args...; kwargs...)
+            search_request_path = "/Patient?given=$patient_given_name&family=$patient_family_name"
+            for f in (FHIRClient.request_raw, FHIRClient.request_json, request_dict)
+                # In versions >= 1.0.0, HTTP.jl uses the Julia logging system for verbose information
+                if isdefined(HTTP, :LoggingExtras)
+                    # No logs by default and with `verbose = 0`
+                    @test_logs f(client, "GET", search_request_path)
+                    @test_logs f(client, "GET", search_request_path; verbose = 0)
+
+                    # Some logs with `verbose = 1`
+                    @test_logs (:debug, "GET /r4$search_request_path HTTP/1.1") (
+                        :debug,
+                        "HTTP/1.1 200 OK <= (GET /r4$search_request_path HTTP/1.1)",
+                    ) f(client, "GET", search_request_path; verbose = 1)
+
+                    # More logs with `verbose = 2`
+                    @test_logs (:debug, "GET /r4$search_request_path HTTP/1.1") (
+                        :debug,
+                        "client startwrite",
+                    ) (:debug, r"^HTTP\.Messages\.Request:") (:debug, "client closewrite") (
+                        :debug,
+                        "client startread",
+                    ) (:debug, "client closeread") (
+                        :debug,
+                        "HTTP/1.1 200 OK <= (GET /r4$search_request_path HTTP/1.1)",
+                    ) (:debug, r"HTTP\.Messages\.Response:") f(
+                        client,
+                        "GET",
+                        search_request_path;
+                        verbose = 2,
+                    )
+                else
+                    # No information printed to stdout by default and with `verbose = 0`
+                    @test isempty(
+                        Suppressor.@capture_out f(client, "GET", search_request_path)
+                    )
+                    @test isempty(
+                        Suppressor.@capture_out f(
+                            client,
+                            "GET",
+                            search_request_path;
+                            verbose = 0,
+                        )
+                    )
+
+                    # Some information printed to stdout with `verbose = 1`
+                    output = Suppressor.@capture_out f(
+                        client,
+                        "GET",
+                        search_request_path;
+                        verbose = 1,
+                    )
+                    @test occursin("GET /r4$search_request_path HTTP/1.1", output)
+                    @test occursin(
+                        "HTTP/1.1 200 OK <= (GET /r4$search_request_path HTTP/1.1)",
+                        output,
+                    )
+
+                    # More inforrmation with `verbose = 2`
+                    output = Suppressor.@capture_out f(
+                        client,
+                        "GET",
+                        search_request_path;
+                        verbose = 2,
+                    )
+                    @test occursin("GET /r4$search_request_path HTTP/1.1", output)
+                    @test occursin("HTTP.Messages.Request:", output)
+                    @test occursin("HTTP/1.1 200 OK", output)
+                    @test occursin("HTTP.Messages.Response:", output)
+                end
+            end
+        end
+
         Base.shred!(auth)
         Base.shred!(client)
     end

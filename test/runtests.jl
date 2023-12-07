@@ -2,8 +2,10 @@ using FHIRClient
 using Test
 
 import Dates
+import HTTP
 import JSON3
 import Logging
+import Suppressor
 import URIs
 
 # This is necessary to work around https://github.com/JuliaLang/julia/issues/52234
