@@ -56,13 +56,13 @@
     @testset "tryparse_json" begin
         for json_body in ("42", "{}", "{\"firstName\":\"John\", \"lastName\":\"Doe\"}")
             @test (@test_logs min_level = Logging.Debug FHIRClient.tryparse_json(
-                json_body,
+                codeunits(json_body),
             )) == JSON3.read(json_body)
         end
         for no_json_body in ("{3}", "[ 4 }", "{\"firstName\":John}")
             logger = Test.TestLogger(; min_level = Logging.Debug)
             res = Logging.with_logger(logger) do
-                FHIRClient.tryparse_json(no_json_body)
+                FHIRClient.tryparse_json(codeunits(no_json_body))
             end
             @test res === nothing
             log = only(logger.logs)

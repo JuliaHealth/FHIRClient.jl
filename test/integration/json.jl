@@ -11,8 +11,8 @@
 
         patient_id = json_response_search_results_bundle.entry[1].resource.id
         patient_request = "/Patient/$(patient_id)"
-        raw_response = FHIRClient.request_raw(client, "GET", patient_request)
-        @test raw_response isa String
+        raw_response = @inferred(FHIRClient.request_raw(client, "GET", patient_request))
+        @test raw_response isa Vector{UInt8}
 
         # `request_json` and `request` yield consistent results
         json_response = FHIRClient.request_json(client, "GET", patient_request)

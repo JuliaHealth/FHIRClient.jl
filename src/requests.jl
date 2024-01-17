@@ -45,7 +45,7 @@ const _common_docstring_request = """
     )
 
 Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
-for the FHIR `client`, and return the body of the response as `String`.
+for the FHIR `client`, and return the body of the response as `Vector{UInt8}`.
 
 # Arguments
 
@@ -63,7 +63,7 @@ See also [`request_json`](@ref) and [`request`](@ref).
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
     verbose::Int = 0,
-)::String
+)::Vector{UInt8}
     response = _request_raw_response(
         client,
         verb,
@@ -74,8 +74,7 @@ See also [`request_json`](@ref) and [`request`](@ref).
         require_base_url = require_base_url,
         verbose = verbose,
     )
-    response_body_string::String = String(response.body)::String
-    return response_body_string
+    return response.body
 end
 
 @inline function _request_raw_response(
@@ -180,7 +179,7 @@ See also [`request`](@ref) and [`request_raw`](@ref).
     verbose::Int = 0,
 )
     _new_request_body = _write_json_request_body(body)
-    response_body::String = request_raw(
+    response_body = request_raw(
         client,
         verb,
         path;
@@ -189,7 +188,7 @@ See also [`request`](@ref) and [`request_raw`](@ref).
         query = query,
         require_base_url = require_base_url,
         verbose = verbose,
-    )::String
+    )
     response_json = JSON3.read(response_body)
     return response_json
 end
@@ -242,7 +241,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
         query = query,
         require_base_url = require_base_url,
         verbose = verbose,
-    )::String
+    )
 
     # Recall that the default log levels are:
     #     Error === LogLevel(2_000)
