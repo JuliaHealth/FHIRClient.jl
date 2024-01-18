@@ -38,22 +38,6 @@ const _common_docstring_request = """
   The keyword argument is forwarded to `HTTP.request` and can be set to `1` or `2` for increasingly verbose logging.
 """
 
-"""
-    request_raw(
-        client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>
-    )
-
-Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
-for the FHIR `client`, and return the body of the response as `Vector{UInt8}`.
-
-# Arguments
-
-- `body::Union{AbstractString, Nothing} = nothing`: body of the request.
-$(_common_docstring_request)
-
-See also [`request_json`](@ref) and [`request`](@ref).
-"""
 @inline function request_raw(
     client::Client,
     verb::AbstractString,
@@ -166,7 +150,7 @@ for the FHIR `client`, and parse the JSON response with JSON3.
 - `body::Union{JSON3.Object, Nothing} = nothing`: JSON body of the request.
 $(_common_docstring_request)
 
-See also [`request`](@ref) and [`request_raw`](@ref).
+See also [`request`](@ref).
 """
 @inline function request_json(
     client::Client,
@@ -217,7 +201,7 @@ for the FHIR `client`, and parse the JSON response with JSON3 as an object of ty
 $(_common_docstring_request)
 - `kwargs...`: remaining keyword arguments that are forwarded to `JSON3.read` for parsing the JSON response.
 
-See also [`request_json`](@ref) and [`request_raw`](@ref).
+See also [`request_json`](@ref).
 """
 @inline function request(
     ::Type{T},
