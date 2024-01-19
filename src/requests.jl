@@ -38,7 +38,7 @@ const _common_docstring_request = """
   The keyword argument is forwarded to `HTTP.request` and can be set to `1` or `2` for increasingly verbose logging.
 """
 
-@inline function request_raw(
+function _request_raw(
     client::Client,
     verb::AbstractString,
     path::AbstractString;
@@ -48,29 +48,6 @@ const _common_docstring_request = """
     require_base_url::Symbol = :strict,
     verbose::Int = 0,
 )::Vector{UInt8}
-    response = _request_raw_response(
-        client,
-        verb,
-        path;
-        body = body,
-        headers = headers,
-        query = query,
-        require_base_url = require_base_url,
-        verbose = verbose,
-    )
-    return response.body
-end
-
-@inline function _request_raw_response(
-    client::Client,
-    verb::AbstractString,
-    path::AbstractString;
-    body::Union{AbstractString,Nothing} = nothing,
-    headers::AbstractDict = Dict{String,String}(),
-    query::Union{AbstractDict,Nothing} = nothing,
-    require_base_url::Symbol = :strict,
-    verbose::Int = 0,
-)
     # Check that `require_base_url` is valid
     if require_base_url !== :strict &&
        require_base_url !== :host &&
@@ -124,7 +101,8 @@ end
         HTTP.request(verb, full_url, _new_headers, body; query = query, verbose = verbose)
     end
     empty!(_new_headers)
-    return response
+
+    return response.body
 end
 
 @inline function _write_json_request_body(body::Nothing)::Nothing
@@ -163,7 +141,7 @@ See also [`request`](@ref).
     verbose::Int = 0,
 )
     _new_request_body = _write_json_request_body(body)
-    response_body = request_raw(
+    response_body = _request_raw(
         client,
         verb,
         path;
@@ -216,7 +194,7 @@ See also [`request_json`](@ref).
     kwargs...,
 )::T where {T}
     _new_request_body = _write_struct_request_body(body)
-    response_body = request_raw(
+    response_body = _request_raw(
         client,
         verb,
         path;

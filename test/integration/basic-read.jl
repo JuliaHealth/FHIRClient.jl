@@ -75,7 +75,7 @@
         @testset "verbosity" begin
             request_dict(args...; kwargs...) = FHIRClient.request(Dict, args...; kwargs...)
             search_request_path = "/Patient?given=$patient_given_name&family=$patient_family_name"
-            for f in (FHIRClient.request_raw, FHIRClient.request_json, request_dict)
+            for f in (FHIRClient._request_raw, FHIRClient.request_json, request_dict)
                 # In versions >= 1.0.0, HTTP.jl uses the Julia logging system for verbose information
                 if isdefined(HTTP, :LoggingExtras)
                     # No logs by default and with `verbose = 0`
