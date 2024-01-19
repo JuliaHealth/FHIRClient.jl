@@ -37,8 +37,12 @@
         for path in ("Patient/$(patient_id)", "./Patient/$(patient_id)")
             # For relative paths the `require_base_url` setting does not matter
             for sym in (:strict, :host, :scheme, :no)
-                @test FHIRClient._request_raw(client, "GET", path; require_base_url = sym) ==
-                      raw_response
+                @test FHIRClient._request_raw(
+                    client,
+                    "GET",
+                    path;
+                    require_base_url = sym,
+                ) == raw_response
                 @test FHIRClient.request_json(
                     client,
                     "GET",
