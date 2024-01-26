@@ -38,23 +38,7 @@ const _common_docstring_request = """
   The keyword argument is forwarded to `HTTP.request` and can be set to `1` or `2` for increasingly verbose logging.
 """
 
-"""
-    request_raw(
-        client::Client, verb::AbstractString, path::AbstractString;
-        <keyword arguments>
-    )
-
-Perform a request with target `path` and method `verb` (such as `"GET"` or `"POST"`)
-for the FHIR `client`, and return the body of the response as `String`.
-
-# Arguments
-
-- `body::Union{AbstractString, Nothing} = nothing`: body of the request.
-$(_common_docstring_request)
-
-See also [`request_json`](@ref) and [`request`](@ref).
-"""
-@inline function request_raw(
+function _request_raw(
     client::Client,
     verb::AbstractString,
     path::AbstractString;
@@ -63,31 +47,7 @@ See also [`request_json`](@ref) and [`request`](@ref).
     query::Union{AbstractDict,Nothing} = nothing,
     require_base_url::Symbol = :strict,
     verbose::Int = 0,
-)::String
-    response = _request_raw_response(
-        client,
-        verb,
-        path;
-        body = body,
-        headers = headers,
-        query = query,
-        require_base_url = require_base_url,
-        verbose = verbose,
-    )
-    response_body_string::String = String(response.body)::String
-    return response_body_string
-end
-
-@inline function _request_raw_response(
-    client::Client,
-    verb::AbstractString,
-    path::AbstractString;
-    body::Union{AbstractString,Nothing} = nothing,
-    headers::AbstractDict = Dict{String,String}(),
-    query::Union{AbstractDict,Nothing} = nothing,
-    require_base_url::Symbol = :strict,
-    verbose::Int = 0,
-)
+)::Vector{UInt8}
     # Check that `require_base_url` is valid
     if require_base_url !== :strict &&
        require_base_url !== :host &&
@@ -141,16 +101,8 @@ end
         HTTP.request(verb, full_url, _new_headers, body; query = query, verbose = verbose)
     end
     empty!(_new_headers)
-    return response
-end
 
-@inline function _write_json_request_body(body::Nothing)::Nothing
-    return nothing
-end
-
-@inline function _write_json_request_body(body::JSON3.Object)::String
-    body_string::String = JSON3.write(body)::String
-    return body_string
+    return response.body
 end
 
 """
@@ -167,7 +119,7 @@ for the FHIR `client`, and parse the JSON response with JSON3.
 - `body::Union{JSON3.Object, Nothing} = nothing`: JSON body of the request.
 $(_common_docstring_request)
 
-See also [`request`](@ref) and [`request_raw`](@ref).
+See also [`request`](@ref).
 """
 @inline function request_json(
     client::Client,
@@ -179,8 +131,8 @@ See also [`request`](@ref) and [`request_raw`](@ref).
     require_base_url::Symbol = :strict,
     verbose::Int = 0,
 )
-    _new_request_body = _write_json_request_body(body)
-    response_body::String = request_raw(
+    _new_request_body = body === nothing ? nothing : JSON3.write(body)
+    response_body = _request_raw(
         client,
         verb,
         path;
@@ -189,18 +141,9 @@ See also [`request`](@ref) and [`request_raw`](@ref).
         query = query,
         require_base_url = require_base_url,
         verbose = verbose,
-    )::String
+    )
     response_json = JSON3.read(response_body)
     return response_json
-end
-
-@inline function _write_struct_request_body(body::Nothing)::Nothing
-    return nothing
-end
-
-@inline function _write_struct_request_body(body)::String
-    body_string::String = JSON3.write(body)::String
-    return body_string
 end
 
 """
@@ -218,7 +161,7 @@ for the FHIR `client`, and parse the JSON response with JSON3 as an object of ty
 $(_common_docstring_request)
 - `kwargs...`: remaining keyword arguments that are forwarded to `JSON3.read` for parsing the JSON response.
 
-See also [`request_json`](@ref) and [`request_raw`](@ref).
+See also [`request_json`](@ref).
 """
 @inline function request(
     ::Type{T},
@@ -232,8 +175,8 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
     verbose::Int = 0,
     kwargs...,
 )::T where {T}
-    _new_request_body = _write_struct_request_body(body)
-    response_body = request_raw(
+    _new_request_body = body === nothing ? nothing : JSON3.write(body)
+    response_body = _request_raw(
         client,
         verb,
         path;
@@ -242,7 +185,7 @@ See also [`request_json`](@ref) and [`request_raw`](@ref).
         query = query,
         require_base_url = require_base_url,
         verbose = verbose,
-    )::String
+    )
 
     # Recall that the default log levels are:
     #     Error === LogLevel(2_000)

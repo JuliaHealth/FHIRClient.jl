@@ -1,7 +1,7 @@
 name = "FHIRClient"
 uuid = "b44d2ca2-8176-4fa9-8684-826e17b2a2da"
 authors = ["Dilum Aluthge", "Rhode Island Quality Institute", "contributors"]
-version = "2.3.0"
+version = "3.0.0-dev"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"

@@ -11,8 +11,8 @@
 
         patient_id = json_response_search_results_bundle.entry[1].resource.id
         patient_request = "/Patient/$(patient_id)"
-        raw_response = FHIRClient.request_raw(client, "GET", patient_request)
-        @test raw_response isa String
+        raw_response = @inferred(FHIRClient._request_raw(client, "GET", patient_request))
+        @test raw_response isa Vector{UInt8}
 
         # `request_json` and `request` yield consistent results
         json_response = FHIRClient.request_json(client, "GET", patient_request)
@@ -37,8 +37,12 @@
         for path in ("Patient/$(patient_id)", "./Patient/$(patient_id)")
             # For relative paths the `require_base_url` setting does not matter
             for sym in (:strict, :host, :scheme, :no)
-                @test FHIRClient.request_raw(client, "GET", path; require_base_url = sym) ==
-                      raw_response
+                @test FHIRClient._request_raw(
+                    client,
+                    "GET",
+                    path;
+                    require_base_url = sym,
+                ) == raw_response
                 @test FHIRClient.request_json(
                     client,
                     "GET",
@@ -56,7 +60,7 @@
 
             # Invalid keyword arguments
             for sym in (:yes, :host_only, :all)
-                @test_throws ArgumentError FHIRClient.request_raw(
+                @test_throws ArgumentError FHIRClient._request_raw(
                     client,
                     "GET",
                     path;
@@ -88,11 +92,11 @@
             require_https = false,
         )
         client2 = FHIRClient.Client(fhir_version, base_url2, auth)
-        @test_throws ArgumentError FHIRClient.request_raw(client2, "GET", path)
+        @test_throws ArgumentError FHIRClient._request_raw(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request_json(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request(Dict, client2, "GET", path)
         for sym in (:strict, :host, :scheme)
-            @test_throws ArgumentError FHIRClient.request_raw(
+            @test_throws ArgumentError FHIRClient._request_raw(
                 client2,
                 "GET",
                 path;
@@ -112,7 +116,7 @@
                 require_base_url = sym,
             )
         end
-        @test FHIRClient.request_raw(client2, "GET", path; require_base_url = :no) ==
+        @test FHIRClient._request_raw(client2, "GET", path; require_base_url = :no) ==
               raw_response
         @test FHIRClient.request_json(client2, "GET", path; require_base_url = :no) ==
               json_response
@@ -122,11 +126,11 @@
         # Mismatch of host
         base_url2 = FHIRClient.BaseURL(URIs.URI(base_url.uri; host = "example.com"))
         client2 = FHIRClient.Client(fhir_version, base_url2, auth)
-        @test_throws ArgumentError FHIRClient.request_raw(client2, "GET", path)
+        @test_throws ArgumentError FHIRClient._request_raw(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request_json(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request(Dict, client2, "GET", path)
         for sym in (:strict, :host)
-            @test_throws ArgumentError FHIRClient.request_raw(
+            @test_throws ArgumentError FHIRClient._request_raw(
                 client2,
                 "GET",
                 path;
@@ -147,7 +151,7 @@
             )
         end
         for sym in (:scheme, :no)
-            @test FHIRClient.request_raw(client2, "GET", path; require_base_url = sym) ==
+            @test FHIRClient._request_raw(client2, "GET", path; require_base_url = sym) ==
                   raw_response
             @test FHIRClient.request_json(client2, "GET", path; require_base_url = sym) ==
                   json_response
@@ -160,10 +164,10 @@
             URIs.URI(base_url.uri; path = replace(base_url.uri.path, "/r4" => "/baseR4")),
         )
         client2 = FHIRClient.Client(fhir_version, base_url2, auth)
-        @test_throws ArgumentError FHIRClient.request_raw(client2, "GET", path)
+        @test_throws ArgumentError FHIRClient._request_raw(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request_json(client2, "GET", path)
         @test_throws ArgumentError FHIRClient.request(Dict, client2, "GET", path)
-        @test_throws ArgumentError FHIRClient.request_raw(
+        @test_throws ArgumentError FHIRClient._request_raw(
             client2,
             "GET",
             path;
@@ -183,7 +187,7 @@
             require_base_url = :strict,
         )
         for sym in (:host, :scheme, :no)
-            @test FHIRClient.request_raw(client2, "GET", path; require_base_url = sym) ==
+            @test FHIRClient._request_raw(client2, "GET", path; require_base_url = sym) ==
                   raw_response
             @test FHIRClient.request_json(client2, "GET", path; require_base_url = sym) ==
                   json_response
@@ -192,16 +196,16 @@
         end
 
         # Other keyword arguments
-        @test FHIRClient.request_raw(client, "GET", patient_request) == raw_response
-        @test FHIRClient.request_raw(client, "GET", patient_request; body = "{}") ==
+        @test FHIRClient._request_raw(client, "GET", patient_request) == raw_response
+        @test FHIRClient._request_raw(client, "GET", patient_request; body = "{}") ==
               raw_response
-        @test FHIRClient.request_raw(
+        @test FHIRClient._request_raw(
             client,
             "GET",
             patient_request;
             query = Dict{String,String}(),
         ) == raw_response
-        @test FHIRClient.request_raw(
+        @test FHIRClient._request_raw(
             client,
             "GET",
             patient_request;
