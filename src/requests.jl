@@ -105,15 +105,6 @@ function _request_raw(
     return response.body
 end
 
-@inline function _write_json_request_body(body::Nothing)::Nothing
-    return nothing
-end
-
-@inline function _write_json_request_body(body::JSON3.Object)::String
-    body_string::String = JSON3.write(body)::String
-    return body_string
-end
-
 """
     request_json(
         client::Client, verb::AbstractString, path::AbstractString;
@@ -140,7 +131,7 @@ See also [`request`](@ref).
     require_base_url::Symbol = :strict,
     verbose::Int = 0,
 )
-    _new_request_body = _write_json_request_body(body)
+    _new_request_body = body === nothing ? nothing : JSON3.write(body)
     response_body = _request_raw(
         client,
         verb,
@@ -153,15 +144,6 @@ See also [`request`](@ref).
     )
     response_json = JSON3.read(response_body)
     return response_json
-end
-
-@inline function _write_struct_request_body(body::Nothing)::Nothing
-    return nothing
-end
-
-@inline function _write_struct_request_body(body)::String
-    body_string::String = JSON3.write(body)::String
-    return body_string
 end
 
 """
@@ -193,7 +175,7 @@ See also [`request_json`](@ref).
     verbose::Int = 0,
     kwargs...,
 )::T where {T}
-    _new_request_body = _write_struct_request_body(body)
+    _new_request_body = body === nothing ? nothing : JSON3.write(body)
     response_body = _request_raw(
         client,
         verb,
