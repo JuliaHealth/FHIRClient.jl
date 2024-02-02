@@ -25,7 +25,6 @@ jobs:
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
           commit-message: "🤖 Automatic code formatting"
-          committer: "GitHub Actions CI <noreply@example.com>"
           title: "🤖 Automatic code formatting"
           body: |
             This pull request fixes the code formatting of the Julia files in branch ${{ github.ref_name }}.
