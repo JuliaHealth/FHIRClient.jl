@@ -50,6 +50,7 @@ jobs:
     needs: format
     name: Julia ${{ matrix.version }} / generate=${{ matrix.generate }} / ${{ matrix.os }} / ${{ matrix.arch }} / ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.version == 'nightly' }}
     strategy:
       fail-fast: false
       matrix:
