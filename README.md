@@ -27,7 +27,7 @@ applications.
 Please see the [documentation](https://juliahealth.org/FHIRClient.jl/stable/).
 
 The following tables show the mapping between Julia packages and
-standards/specifications:
+standards/specifications. This is another sentence.
 
 | Julia Package | Standard/Specification | Description |
 | ------------- | ---------------------- | ----------- |
